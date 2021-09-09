@@ -41,12 +41,11 @@ class RegisteredUserController extends Controller
             'image' => ['required']
         ]);
 
-        $store = Storage::disk('public')->put('example.txt', $request->file);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'image' => $store - $request->file,
+            'image' => $request->image,
         ]);
 
         $input = $request->all();
