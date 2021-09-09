@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\FormInput;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegisterInput;
 
 Route::get('/', function () {
     return view('index');
@@ -24,7 +25,7 @@ Route::get('/', function () {
 Route::get('view-records', 'MainController@index');
 
 Route::get('/profiel', [MainController::class, 'getWeetjes']);
-// Route::get('/profiel', [MainController::class, 'gebruikers']);
+Route::get('/user', [MainController::class, 'getUsers']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,6 +35,16 @@ require __DIR__ . '/auth.php';
 
 Route::get('/weetjes', [MainController::class, 'create']);
 Route::post('/post', [FormInput::class, 'store']);
+
+
 Route::get('/post/{id}/edit', [FormInput::class, 'edit'])->name('post.edit');
-Route::get('/delete/{id}', [FormInput::class, 'delete']);
+Route::get('/deleteWeetje/{id}', [FormInput::class, 'deleteWeetje']);
 Route::post('/update', [FormInput::class, 'update']);
+
+
+Route::get('/user/{id}/editUser', [RegisterInput::class, 'editUser'])->name('user.editUser');
+Route::get('/deleteUser/{id}', [RegisterInput::class, 'deleteUser']);
+Route::post('/updateUser', [RegisterInput::class, 'updateUser']);
+
+Route::get('/image', [MainController::class, 'image']);
+Route::post('/store', [MainController::class, 'store']);

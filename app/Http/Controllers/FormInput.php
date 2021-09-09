@@ -97,7 +97,7 @@ class FormInput extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function deleteWeetje($id)
     {
         $input = Weetje::find($id);
         $input->delete();

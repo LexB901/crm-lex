@@ -5,7 +5,19 @@
 <title>Weetjes</title>
 
 <style>
+    .bg-white {
+        width: 50%;
+        margin-right: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
 
+    .select {
+        border-radius: 5px;
+    }
 </style>
 <x-guest-layout>
     <div class="mb-4">
@@ -51,7 +63,7 @@
                 {{-- </select>--}}
                 <div class="flex items-center justify-end mt-4">
                     <x-button>
-                        {{ __('Weetje update') }}
+                        {{ __('Weetje wijzigen') }}
                     </x-button>
                 </div>
             </form>

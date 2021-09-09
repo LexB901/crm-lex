@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Register;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterInput extends Controller
 {
@@ -39,12 +41,13 @@ class RegisterInput extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'password_confirmation' => 'required'
+            'password_confirmation' => 'required',
+            'image' => 'required',
         ]);
         $data = $request->all();
-
         $user = Register::create($data);
-        return view('index', ["input" => $user]);
+        // dd($data);
+        return view('user', ["input" => $user]);
     }
 
     /**
@@ -64,9 +67,12 @@ class RegisterInput extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editUser($id)
     {
-        //
+        $user = User::find($id);
+
+        // dd($user);
+        return view('editUser', ['input' => $user]);
     }
 
     /**
@@ -76,9 +82,16 @@ class RegisterInput extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateUser(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $input = User::find($data['id']);
+        $input->name = $data['name'];
+        $input->email = $data['email'];
+        $input->password = Hash::make($data['password']);
+        $input->save();
+        return redirect('user');
     }
 
     /**
@@ -87,8 +100,10 @@ class RegisterInput extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteUser($id)
     {
-        //
+        $input = User::find($id);
+        $input->delete();
+        return redirect('user');
     }
 }

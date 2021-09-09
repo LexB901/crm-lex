@@ -9,11 +9,10 @@
         <thead>
             <div class="weetjetitel">
                 <tr>
-                    <th>Gebruiker</th>
-                    <th>Titel</th>
-                    <th>Weetje</th>
-                    <th>Categorie</th>
-                    <th>Datum</th>
+                    <th>Naam</th>
+                    <th>Email</th>
+                    <th>Lid sinds:</th>
+                    <th>Foto</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -21,22 +20,17 @@
         </thead>
         <tbody>
             <div class="weetje">
-                @foreach($posts as $post)
+                @foreach($users as $user)
                 <tr>
-                    <td>{{$post->user->name}}</td>
-                    <td>{{$post->title}}</td>
-                    <td>{{$post->weetje}}</td>
-                    <td>{{$post->categorien->categorie}}</td>
-                    <td>{{\Carbon\Carbon::parse($post['created_at'])->format('d/m/Y')}}</td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->created_at}}</td>
+                    <td><img src="{{asset('/storage/example/'.$user->image)}}"></td>
                     <th style="background-color: #aec6cf;" class="no-padding">
-
-                        <a href="{{route('post.edit',$post->id)}}">Edit</a>
-
+                        <a href="{{route('user.editUser',$user->id)}}">Edit</a>
                     </th>
                     <th style="background-color: #b0c4de;" class="no-padding">
-
-                        <a href="{{"deleteWeetje/".$post['id']}}">Delete</a>
-
+                        <a href="{{"deleteUser/".$user['id']}}">Delete</a>
                     </th>
                 </tr>
             </div>

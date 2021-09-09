@@ -7,6 +7,8 @@ use Respources\Views;
 use App\Categorie;
 use App\Models\User;
 use App\Weetje;
+use Illuminate\Support\Facades\Storage;
+
 
 class MainController extends Controller
 {
@@ -26,6 +28,14 @@ class MainController extends Controller
     {
         return view('profiel');
     }
+    public function user()
+    {
+        return view('user');
+    }
+    public function image()
+    {
+        return view('image');
+    }
     public function create()
     {
         $categories = Categorie::select('id', 'categorie')->get();
@@ -37,5 +47,12 @@ class MainController extends Controller
         $gebruikers = User::all();
         // dd($posts);
         return view('profiel', ['posts' => $posts]);
+    }
+    public function getUsers(Request $request)
+    {
+        $users = User::all();
+
+        // dd($users);
+        return view('user', ['users' => $users]);
     }
 }
