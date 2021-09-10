@@ -44,10 +44,11 @@ class RegisterInput extends Controller
             'password_confirmation' => 'required',
             'image' => 'required',
         ]);
+        $store = Storage::disk('public')->put('example.txt', $request->file);
         $data = $request->all();
         $user = Register::create($data);
         // dd($data);
-        return view('user', ["input" => $user]);
+        return view('user', ["input" => $user, 'image' => $store]);
     }
 
     /**

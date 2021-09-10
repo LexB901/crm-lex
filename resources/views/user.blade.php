@@ -25,7 +25,7 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->created_at}}</td>
-                    <td><img src="{{asset('/storage/example/'.$user->image)}}"></td>
+                    <td><img style="height: 50px;" src="{{asset('/storage/'.$user->image)}}"></td>
                     <th style="background-color: #aec6cf;" class="no-padding">
                         <a href="{{route('user.editUser',$user->id)}}">Edit</a>
                     </th>

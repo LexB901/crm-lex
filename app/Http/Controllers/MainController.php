@@ -8,6 +8,7 @@ use App\Categorie;
 use App\Models\User;
 use App\Weetje;
 use Illuminate\Support\Facades\Storage;
+use App\Role;
 
 
 class MainController extends Controller
@@ -32,9 +33,13 @@ class MainController extends Controller
     {
         return view('user');
     }
-    public function image()
+    public function maps()
     {
-        return view('image');
+        return view('maps');
+    }
+    public function rol()
+    {
+        return view('role');
     }
     public function create()
     {
@@ -54,5 +59,16 @@ class MainController extends Controller
 
         // dd($users);
         return view('user', ['users' => $users]);
+    }
+    public function store(Request $request)
+    {
+        $store = Storage::disk('public')->put('example.txt', $request->file);
+        // dd($store);
+        echo asset('storage/' . $store);
+    }
+    public function role()
+    {
+        $role = Role::select('id', 'role')->get();
+        return view('role', ['role' => $role]);
     }
 }

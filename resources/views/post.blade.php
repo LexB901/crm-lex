@@ -1,6 +1,7 @@
 @extends('layouts.themalogin')
 
-@section('content') <title>Weetje</title>
+@section('content')
+<title>Weetje</title>
 
 <h1>Weetje:</h1>
 <div class="informatie">

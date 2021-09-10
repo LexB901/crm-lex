@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
         $this->call([WeetjesSeeder::class]);
+        $this->call([RollenSeeder::class]);
         // \App\Models\User::factory(10)->create();
     }
 }

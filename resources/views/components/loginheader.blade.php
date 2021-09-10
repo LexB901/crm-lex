@@ -11,6 +11,7 @@
                 <a href="/weetjes">Weetje toevoegen</a>
                 <a href="/profiel">Mijn weetjes</a>
                 <a href="/user">Gebruikers</a>
+                <a href="/role">Rollen</a>
             </div>
             <div class="hamburger">
                 <div class="balk1"></div>

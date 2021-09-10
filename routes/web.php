@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\FormInput;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RolInput;
 use App\Http\Controllers\RegisterInput;
 
 Route::get('/', function () {
@@ -33,18 +33,18 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
+Route::get('/role', [MainController::class, 'role']);
+Route::post('/user', [RolInput::class, 'store']);
+
 Route::get('/weetjes', [MainController::class, 'create']);
 Route::post('/post', [FormInput::class, 'store']);
-
 
 Route::get('/post/{id}/edit', [FormInput::class, 'edit'])->name('post.edit');
 Route::get('/deleteWeetje/{id}', [FormInput::class, 'deleteWeetje']);
 Route::post('/update', [FormInput::class, 'update']);
 
-
 Route::get('/user/{id}/editUser', [RegisterInput::class, 'editUser'])->name('user.editUser');
 Route::get('/deleteUser/{id}', [RegisterInput::class, 'deleteUser']);
 Route::post('/updateUser', [RegisterInput::class, 'updateUser']);
 
-Route::get('/image', [MainController::class, 'image']);
-Route::post('/store', [MainController::class, 'store']);
+Route::get('/maps', [MainController::class, 'maps']);

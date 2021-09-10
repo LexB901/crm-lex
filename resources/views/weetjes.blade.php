@@ -27,13 +27,13 @@
                 @csrf
                 <input style="border-radius: 5px;" type="text" class="block mt-1 w-full" type="email" name="title" placeholder="Vul hier de titel van het weetje in." required autofocus value="autotitel">
                 <div class="mt-4">
-                    <input style="border-radius: 5px;" type="text" class="block mt-1 w-full" type="email" name="weetje" placeholder="Vul hier uw weetje in." value="autoweetje">
+                    <input style="border-radius: 5px;" type="text" class="block mt-1 w-full" type="email" name="weetje" placeholder="Vul hier uw weetje in." value="autotitel">
                 </div><br>
                 <div class="form-group">
                     <label for="name">Categorie</label>
 
                     <select name="categorie" class="select">
-                        <!-- <option selected disabled value="">Selecteer een categorie</option> -->
+                        <option selected disabled value="">Selecteer een categorie</option>
 
                         @foreach($categories as $categorie)
 
@@ -43,7 +43,7 @@
                     </select>
                 </div>
                 {{-- <select name="categorie" class="select">--}}
-                <!-- {{-- <option selected disabled value="">Selecteer een categorie</option>--}} -->
+                {{-- <option selected disabled value="">Selecteer een categorie</option>--}}
                 {{-- <option value="Sport">Sport</option>--}}
                 {{-- <option value="Autos">Autos</option>--}}
                 {{-- <option value="Kunst">Kunst</option>--}}

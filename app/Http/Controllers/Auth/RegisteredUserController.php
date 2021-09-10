@@ -40,13 +40,18 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'image' => ['required']
         ]);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'image' => $request->image,
         ]);
+
+
+        $store = Storage::disk('public')->put($user->id, $request->image);
+        $user->update([
+            'image' => $store,
+        ]);
+        // dd($request->file, $store);
 
         $input = $request->all();
 
