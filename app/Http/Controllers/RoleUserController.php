@@ -101,8 +101,7 @@ class RoleUserController extends Controller
      */
     public function deleteRole($id)
     {
-        $input = Role::find($id);
-        $input->delete();
+        Auth::user()->roles()->detach($id);
         return redirect('admin');
     }
 }

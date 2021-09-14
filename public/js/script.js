@@ -13,7 +13,7 @@ const options = {
 
 setInterval(() => {
     a = new Date();
-    date = a.toLocaleDateString(undefined, options);
+    date = a.toLocaleDateString('nl-DU', options);
 
     hours = a.getHours();
     if (hours < 10) {

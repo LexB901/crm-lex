@@ -54,7 +54,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            top: 280px;
+            top: 300px;
             color: #fff;
         }
 
@@ -70,7 +70,7 @@
 
         .time-display {
             position: relative;
-            top: 500px;
+            top: 520px;
             width: 100%;
             height: 90px;
             display: flex;
@@ -96,18 +96,19 @@
 
         #date {
             position: absolute;
-            width: 19%;
-            right: 40%;
-            top: 840px;
+            width: 26%;
+            right: 33%;
+            top: 730px;
             height: 25px;
             font-size: 25px;
             color: #ffffff;
         }
 
-        .imgclass {
+        .logo {
             position: relative;
             display: inline;
-            top: 550px;
+            top: 500px;
+            height: 100px;
         }
     </style>
 </head>
