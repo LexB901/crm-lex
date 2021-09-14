@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Weetje;
 use Illuminate\Support\Facades\Storage;
 use App\Role;
+use App\RoleUser;
+use Response;
 
 
 class MainController extends Controller
@@ -41,6 +43,10 @@ class MainController extends Controller
     {
         return view('role');
     }
+    public function admin()
+    {
+        return view('admin');
+    }
     public function create()
     {
         $categories = Categorie::select('id', 'categorie')->get();
@@ -60,6 +66,14 @@ class MainController extends Controller
         // dd($users);
         return view('user', ['users' => $users]);
     }
+    public function getRoles(Request $request)
+    {
+        $roles = \Auth::user()->roles;
+        $users = \Auth::user();
+
+        // dd($roles);
+        return view('admin', ['roles' => $roles, 'users' => $users]);
+    }
     public function store(Request $request)
     {
         $store = Storage::disk('public')->put('example.txt', $request->file);
@@ -68,7 +82,7 @@ class MainController extends Controller
     }
     public function role()
     {
-        $role = Role::select('id', 'role')->get();
-        return view('role', ['role' => $role]);
+        $roles = Role::select('id', 'role')->get();
+        return view('role', ['roles' => $roles]);
     }
 }

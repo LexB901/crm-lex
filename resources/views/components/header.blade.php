@@ -1,16 +1,16 @@
 <header>
-    <div class="flex-center position-ref full-height">
-        <div class="top-right links"></div>
-        <div class="content">
-            <div class="title m-b-md">
-                Weetjes TM
-            </div>
 
-            <div class="links">
-                <a href="/">Home</a>
-                <a href="/login">Login</a>
-                <a href="/register">Registreer</a>
-            </div>
-        </div>
+    <a style="display:flex;align-items:center;justify-content:center;" class="imgclass" href="https://www.flirtcreativity.com/nl/" target="_blank"><img src="/images/flirtlogo.png"></a>
+
+
+
+
+    <div class="links">
+        <a href="/">Home</a>
+        <a href="/register">Registreer</a>
+        <a href="/login">Login</a>
+
     </div>
+
+
 </header>

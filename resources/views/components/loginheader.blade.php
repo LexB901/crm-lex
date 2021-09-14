@@ -9,15 +9,40 @@
             <div class="links">
                 <a href="/dashboard">Home</a>
                 <a href="/weetjes">Weetje toevoegen</a>
+                <a href="/role">Rol toevoegen</a>
                 <a href="/profiel">Mijn weetjes</a>
                 <a href="/user">Gebruikers</a>
-                <a href="/role">Rollen</a>
-            </div>
-            <div class="hamburger">
-                <div class="balk1"></div>
-                <div class="balk2"></div>
-                <div class="balk3"></div>
+                <a href="/admin">Mijn rollen</a>
             </div>
         </div>
+        <nav role="navigation">
+            <div id="menuToggle">
+                <input type="checkbox" />
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <ul id="menu">
+                    <a href="/dashboard">
+                        <li>Home</li>
+                    </a>
+                    <a href="/weetjes">
+                        <li>Weetje toevoegen</li>
+                    </a>
+                    <a href="/role">
+                        <li>Rol toevoegen</li>
+                    </a>
+                    <a href="/profiel">
+                        <li>Mijn weetjes</li>
+                    </a>
+                    <a href="/user">
+                        <li>Gebruikers</li>
+                    </a>
+                    <a href="/admin">
+                        <li>Mijn rollen</li>
+                    </a>
+                </ul>
+            </div>
+        </nav>
     </div>
 </header>

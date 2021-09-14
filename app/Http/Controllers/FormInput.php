@@ -45,7 +45,7 @@ class FormInput extends Controller
         $data = $request->all();
         $data['user_id'] = Auth::id();
         $weetje = Weetje::create($data);
-        // dd($weetje->created_at);
+        // dd($weetje);
         return view('post', ['input' => $weetje, 'categorie' => $weetje->categorien, 'user' => $weetje->user]);
     }
 

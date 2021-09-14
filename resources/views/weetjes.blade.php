@@ -22,7 +22,7 @@
 <x-guest-layout>
     <div class="mb-4">
         <div class="bg-white">
-            <form action="post" method="post" style="width:90%;">
+            <form action="/post" method="post" style="width:90%;">
 
                 @csrf
                 <input style="border-radius: 5px;" type="text" class="block mt-1 w-full" type="email" name="title" placeholder="Vul hier de titel van het weetje in." required autofocus value="autotitel">

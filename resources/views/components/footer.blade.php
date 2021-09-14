@@ -1,3 +1,9 @@
+<style>
+    .footer {
+        color: white;
+    }
+</style>
+
 <footer>
     <div class="footerholder">
         <div class="footer">

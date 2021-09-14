@@ -17,6 +17,8 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\FormInput;
 use App\Http\Controllers\RolInput;
 use App\Http\Controllers\RegisterInput;
+use App\Http\Controllers\RoleUserController;
+use App\RoleUser;
 
 Route::get('/', function () {
     return view('index');
@@ -26,6 +28,7 @@ Route::get('view-records', 'MainController@index');
 
 Route::get('/profiel', [MainController::class, 'getWeetjes']);
 Route::get('/user', [MainController::class, 'getUsers']);
+Route::get('/admin', [MainController::class, 'getRoles']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,7 +37,7 @@ Route::get('/dashboard', function () {
 require __DIR__ . '/auth.php';
 
 Route::get('/role', [MainController::class, 'role']);
-Route::post('/user', [RolInput::class, 'store']);
+Route::post('/role2', [RoleUserController::class, 'store']);
 
 Route::get('/weetjes', [MainController::class, 'create']);
 Route::post('/post', [FormInput::class, 'store']);
@@ -47,4 +50,18 @@ Route::get('/user/{id}/editUser', [RegisterInput::class, 'editUser'])->name('use
 Route::get('/deleteUser/{id}', [RegisterInput::class, 'deleteUser']);
 Route::post('/updateUser', [RegisterInput::class, 'updateUser']);
 
+Route::get('/admin/{id}/editRole', [RoleUserController::class, 'editRole'])->name('admin.editRole');
+Route::get('/deleteRole/{id}', [RoleUserController::class, 'deleteRole']);
+Route::post('/UpdateRole', [RoleUserController::class, 'UpdateRole']);
+
 Route::get('/maps', [MainController::class, 'maps']);
+
+Route::group(['middleware' => 'App\Http\Middleware\AdministratorMiddleware'], function () {
+    Route::match(['get', 'post'], 'admin', [MainController::class, 'getRoles']);
+});
+Route::group(['middleware' => 'App\Http\Middleware\AdministratorMiddleware'], function () {
+    Route::match(['get', 'post'], 'user', [MainController::class, 'getUsers']);
+});
+Route::group(['middleware' => 'App\Http\Middleware\AdministratorMiddleware'], function () {
+    Route::match(['get', 'post'], 'profiel', [MainController::class, 'getWeetjes']);
+});
