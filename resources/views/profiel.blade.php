@@ -1,9 +1,7 @@
 @extends('layouts.themalogin')
 
 @section('content')
-<style>
-
-</style>
+<title>Alle Weetjes</title>
 <div style="overflow-x:auto;">
     <table>
         <thead>

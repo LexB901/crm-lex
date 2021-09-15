@@ -1,7 +1,7 @@
 @extends('layouts.themalogin')
 
 @section('content')
-<title>Registreer</title>
+<title>Edit User</title>
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">

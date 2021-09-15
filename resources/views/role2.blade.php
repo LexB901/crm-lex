@@ -11,6 +11,7 @@
     Rollen:
 
     @foreach($rol as $role)
+
     {{ $role->role . ', ' }}
     @endforeach
 

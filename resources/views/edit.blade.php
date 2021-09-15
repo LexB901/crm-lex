@@ -19,6 +19,7 @@
         border-radius: 5px;
     }
 </style>
+<title>Edit Weetje</title>
 <x-guest-layout>
     <div class="mb-4">
         <div class="bg-white">

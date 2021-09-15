@@ -18,7 +18,6 @@ use App\Http\Controllers\FormInput;
 use App\Http\Controllers\RolInput;
 use App\Http\Controllers\RegisterInput;
 use App\Http\Controllers\RoleUserController;
-use App\RoleUser;
 
 Route::get('/', function () {
     return view('index');
@@ -28,7 +27,11 @@ Route::get('view-records', 'MainController@index');
 
 Route::get('/profiel', [MainController::class, 'getWeetjes']);
 Route::get('/user', [MainController::class, 'getUsers']);
-Route::get('/admin', [MainController::class, 'getRoles']);
+Route::get('/roles', [MainController::class, 'getRoles']);
+Route::get('/admin', [MainController::class, 'getRoles2']);
+Route::get('/welcome', [MainController::class, 'welcome']);
+Route::get('/beheer', [MainController::class, 'beheer']);
+Route::get('/Alle-Weetjes', [MainController::class, 'getWeetjes2']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -50,18 +53,26 @@ Route::get('/user/{id}/editUser', [RegisterInput::class, 'editUser'])->name('use
 Route::get('/deleteUser/{id}', [RegisterInput::class, 'deleteUser']);
 Route::post('/updateUser', [RegisterInput::class, 'updateUser']);
 
-Route::get('/admin/{id}/editRole', [RoleUserController::class, 'editRole'])->name('admin.editRole');
+Route::get('/roles/{id}/editRole', [RoleUserController::class, 'editRole'])->name('roles.editRole');
 Route::get('/deleteRole/{id}', [RoleUserController::class, 'deleteRole']);
 Route::post('/UpdateRole', [RoleUserController::class, 'UpdateRole']);
 
+Route::get('/admin/{id}/editRole2', [RoleUserController::class, 'editRole2'])->name('admin.editRole2');
+Route::get('/deleteRole2/{id}', [RoleUserController::class, 'deleteRole2']);
+Route::post('/UpdateRole2', [RoleUserController::class, 'UpdateRole2']);
+
 Route::get('/maps', [MainController::class, 'maps']);
 
-Route::group(['middleware' => 'App\Http\Middleware\AdministratorMiddleware'], function () {
-    Route::match(['get', 'post'], 'admin', [MainController::class, 'getRoles']);
-});
-Route::group(['middleware' => 'App\Http\Middleware\AdministratorMiddleware'], function () {
-    Route::match(['get', 'post'], 'user', [MainController::class, 'getUsers']);
-});
-Route::group(['middleware' => 'App\Http\Middleware\AdministratorMiddleware'], function () {
+Route::group(['middleware' => 'App\Http\Middleware\LidMiddleware'], function () {
     Route::match(['get', 'post'], 'profiel', [MainController::class, 'getWeetjes']);
+});
+
+Route::middleware(['Administrator'])->group(function () {
+    Route::get('admin', [MainController::class, 'getRoles2']);
+    Route::get('user', [MainController::class, 'getUsers']);
+    Route::get('profiel', [MainController::class, 'getWeetjes']);
+});
+
+Route::middleware(['Lid'])->group(function () {
+    Route::get('profiel', [MainController::class, 'getWeetjes']);
 });

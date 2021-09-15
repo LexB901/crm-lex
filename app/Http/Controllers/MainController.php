@@ -23,29 +23,17 @@ class MainController extends Controller
     {
         return view('registreer');
     }
-    public function weetjes()
-    {
-        return view('weetjes');
-    }
-    public function profiel()
-    {
-        return view('profiel');
-    }
-    public function user()
-    {
-        return view('user');
-    }
     public function maps()
     {
         return view('maps');
     }
-    public function rol()
+    public function welcome()
     {
-        return view('role');
+        return view('welcome');
     }
-    public function admin()
+    public function beheer()
     {
-        return view('admin');
+        return view('beheer');
     }
     public function create()
     {
@@ -56,7 +44,7 @@ class MainController extends Controller
     {
         $posts = Weetje::all();
         $gebruikers = User::all();
-        // dd($posts);
+        // dd($gebruikers);
         return view('profiel', ['posts' => $posts]);
     }
     public function getUsers(Request $request)
@@ -72,7 +60,7 @@ class MainController extends Controller
         $users = \Auth::user();
 
         // dd($roles);
-        return view('admin', ['roles' => $roles, 'users' => $users]);
+        return view('roles', ['roles' => $roles, 'users' => $users]);
     }
     public function store(Request $request)
     {
@@ -84,5 +72,21 @@ class MainController extends Controller
     {
         $roles = Role::select('id', 'role')->get();
         return view('role', ['roles' => $roles]);
+    }
+    public function getRoles2(Request $request)
+    {
+        $roles = \Auth::user()->roles;
+        $users = \Auth::user();
+        $allusers = User::with('roles')->get();
+
+        // dd($allusers);
+        return view('admin', ['roles' => $roles, 'users' => $users, 'allusers' => $allusers]);
+    }
+    public function getWeetjes2()
+    {
+        $posts = Weetje::all();
+        $gebruikers = User::all();
+        // dd($gebruikers);
+        return view('weetjess', ['posts' => $posts]);
     }
 }

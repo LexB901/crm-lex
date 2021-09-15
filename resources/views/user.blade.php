@@ -4,6 +4,7 @@
 <style>
 
 </style>
+<title>Alle Gebruikers</title>
 <div style="overflow-x:auto;">
     <table>
         <thead>

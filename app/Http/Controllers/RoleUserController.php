@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use Illuminate\Http\Request;
-use App\RoleUser;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\RoleUser;
 
 
 
@@ -75,6 +76,12 @@ class RoleUserController extends Controller
 
         return view('editRole', ['input' => $role]);
     }
+    public function editRole2($id)
+    {
+        $allusers = User::with('roles')->get()->all();
+        // dd($allusers);
+        return view('editRole2', ['input' => $allusers]);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -84,6 +91,15 @@ class RoleUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
+    {
+        $data = $request->all();
+
+        $input = Role::find($data['id']);
+        $input->role = $request->role;
+        $input->save();
+        return redirect('roles');
+    }
+    public function update2(Request $request)
     {
         $data = $request->all();
 
@@ -100,6 +116,11 @@ class RoleUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function deleteRole($id)
+    {
+        Auth::user()->roles()->detach($id);
+        return redirect('roles');
+    }
+    public function deleteRole2($id)
     {
         Auth::user()->roles()->detach($id);
         return redirect('admin');

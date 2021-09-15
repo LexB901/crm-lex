@@ -1,6 +1,7 @@
 @extends('layouts.themalogin')
 
 @section('content')
+<title>Maps</title>
 
 <body>
     <div style="width: 640px; height: 480px" id="mapContainer"></div>

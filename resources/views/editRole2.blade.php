@@ -16,11 +16,11 @@
         border-radius: 5px;
     }
 </style>
-
+<title>Edit Role</title>
 <x-guest-layout>
     <div class="mb-4">
         <div class="bg-white">
-            <form action="/role2" method="post" style="width:90%;">
+            <form action="/admin" method="post" style="width:90%;">
 
                 @csrf
                 <label for="name">Selecteer een rol</label>
@@ -30,7 +30,7 @@
 
 
 
-                    <option value="{{$input->id}}">{{$input->role}}</option>
+                    <option value="">{{$input}}</option>
 
 
                 </select>
