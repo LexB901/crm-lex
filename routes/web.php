@@ -71,6 +71,7 @@ Route::middleware(['Administrator'])->group(function () {
     Route::get('admin', [MainController::class, 'getRoles2']);
     Route::get('user', [MainController::class, 'getUsers']);
     Route::get('profiel', [MainController::class, 'getWeetjes']);
+    Route::get('beheer', [MainController::class, 'beheer']);
 });
 
 Route::middleware(['Lid'])->group(function () {

@@ -29,7 +29,7 @@
                     <a href="/weetjes">
                         <li>Weetje toevoegen</li>
                     </a>
-                    <a href="/weetjess">
+                    <a href="/Alle-Weetjes">
                         <li>Alle weetjes</li>
                     </a>
                     <a href="/role">
