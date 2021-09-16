@@ -75,5 +75,6 @@ Route::middleware(['Administrator'])->group(function () {
 });
 
 Route::middleware(['Lid'])->group(function () {
-    Route::get('profiel', [MainController::class, 'getWeetjes']);
+    Route::get('weetjes', [MainController::class, 'create']);
+    Route::get('Alle-Weetjes', [MainController::class, 'getWeetjes2']);
 });

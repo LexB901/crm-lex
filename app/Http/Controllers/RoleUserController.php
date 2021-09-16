@@ -70,17 +70,20 @@ class RoleUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editRole($id)
-    {
-        $role = Role::find($id);
-
-        return view('editRole', ['input' => $role]);
-    }
     public function editRole2($id)
     {
-        $allusers = User::with('roles')->get()->all();
+        $allusers = User::with('roles')->find($id);
+        $roles = $allusers->roles;
+        $allroles = Role::all();
+
+        foreach ($allroles as $item) {
+            $item['selected'] = false;
+            if (collect($roles)->where('id', $item['id'])->all()) {
+                $item['selected'] = true;
+            }
+        }
         // dd($allusers);
-        return view('editRole2', ['input' => $allusers]);
+        return view('editRole2', ['input' => $roles, 'allroles' => $allroles, 'allusers' => $allusers]);
     }
 
     /**
@@ -90,22 +93,16 @@ class RoleUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-    {
-        $data = $request->all();
 
-        $input = Role::find($data['id']);
-        $input->role = $request->role;
-        $input->save();
-        return redirect('roles');
-    }
-    public function update2(Request $request)
+    public function UpdateRole2(Request $request)
     {
-        $data = $request->all();
 
-        $input = Role::find($data['id']);
-        $input->role = $request->role;
-        $input->save();
+        $data = $request->only('id');
+        // dd($data);
+        $user = User::find($data['id']);
+        $user->roles()->sync($request->input('roles'));
+
+        // dd($user->roles);
         return redirect('admin');
     }
 
@@ -119,10 +116,5 @@ class RoleUserController extends Controller
     {
         Auth::user()->roles()->detach($id);
         return redirect('roles');
-    }
-    public function deleteRole2($id)
-    {
-        Auth::user()->roles()->detach($id);
-        return redirect('admin');
     }
 }

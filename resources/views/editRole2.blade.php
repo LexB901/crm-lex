@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .bg-white {
-        width: 50%;
+        width: 25%;
         margin-right: 0px;
         display: flex;
         align-items: center;
@@ -20,31 +20,16 @@
 <x-guest-layout>
     <div class="mb-4">
         <div class="bg-white">
-            <form action="/admin" method="post" style="width:90%;">
+            <form action="/UpdateRole2" method="post" style="width:50%;">
 
                 @csrf
-                <label for="name">Selecteer een rol</label>
-                <input type="hidden" name="name">
-                <select name="role" class="select">
-                    <!-- <option selected disabled value="">Selecteer een categorie</option> -->
+                <label for="name">Selecteer een rol</label><br>
+                <input type="hidden" value="{{$allusers->id}}" name="id">
 
+                @foreach($allroles as $allrole)
+                <input type="checkbox" name="roles[]" value="{{$allrole->id}}" {{ $allrole->selected == 1 ? 'checked' : false }}> {{$allrole->role}}<br>
+                @endforeach
 
-
-                    <option value="">{{$input}}</option>
-
-
-                </select>
-
-                {{-- <select name="role" class="select">--}}
-                <!-- {{-- <option selected disabled value="">Selecteer een categorie</option>--}} -->
-                {{-- <option value="Donateur">Donateur</option>--}}
-                {{-- <option value="Supporter">Supporter</option>--}}
-                {{-- <option value="Lid">Lid</option>--}}
-                {{-- <option value="Leider">Leider</option>--}}
-                {{-- <option value="Administrator">Administrator</option>--}}
-                {{-- <option value="Moderator">Moderator</option>--}}
-                {{-- <option value="Helper">Helper</option>--}}
-                {{-- </select>--}}
                 <div class="flex items-center justify-end mt-4">
                     <x-button>
                         {{ __('Verstuur Rol') }}
