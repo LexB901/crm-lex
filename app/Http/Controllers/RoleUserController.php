@@ -70,6 +70,21 @@ class RoleUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function editRole($id)
+    {
+        $allusers = User::with('roles')->find($id);
+        $roles = $allusers->roles;
+        $allroles = Role::all();
+
+        foreach ($allroles as $item) {
+            $item['selected'] = false;
+            if (collect($roles)->where('id', $item['id'])->all()) {
+                $item['selected'] = true;
+            }
+        }
+        // dd($allusers);
+        return view('editRole', ['input' => $roles, 'allroles' => $allroles, 'allusers' => $allusers]);
+    }
     public function editRole2($id)
     {
         $allusers = User::with('roles')->find($id);
@@ -93,7 +108,17 @@ class RoleUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function UpdateRole(Request $request)
+    {
 
+        $data = $request->only('id');
+        // dd($data);
+        $user = User::find($data['id']);
+        $user->roles()->sync($request->input('roles'));
+
+        // dd($user->roles);
+        return redirect('roles');
+    }
     public function UpdateRole2(Request $request)
     {
 
@@ -114,7 +139,5 @@ class RoleUserController extends Controller
      */
     public function deleteRole($id)
     {
-        Auth::user()->roles()->detach($id);
-        return redirect('roles');
     }
 }

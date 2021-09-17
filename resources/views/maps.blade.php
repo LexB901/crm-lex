@@ -1,10 +1,17 @@
 @extends('layouts.themalogin')
 
 @section('content')
+<style>
+    .aparth1 {
+        text-align: center;
+        width: 100%;
+    }
+</style>
 <title>Maps</title>
 
 <body>
-    <div style="width: 640px; height: 480px" id="mapContainer"></div>
+    <h1 class="aparth1">Onze locatie</h1>
+    <div style="width: 640px; height: 480px; position: absolute; left: 30%;" id="mapContainer"></div>
     <script>
         // Initialize the platform object:
         var platform = new H.service.Platform({

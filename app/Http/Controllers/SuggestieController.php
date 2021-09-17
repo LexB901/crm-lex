@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Weetje;
+use App\User;
 use Illuminate\Support\Facades\Auth;
-use App\Categorie;
+use App\Suggestie;
 
-class FormInput extends Controller
+class SuggestieController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class FormInput extends Controller
      */
     public function create()
     {
-        return view('weetjes'); //
+        return view('');
     }
 
     /**
@@ -37,18 +37,11 @@ class FormInput extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'weetje' => 'required',
-            'categorie' => 'required'
-        ]);
         $data = $request->all();
         $data['user_id'] = Auth::id();
-        $weetje = Weetje::create($data);
-        $categories = Categorie::select('id', 'categorie')->get();
-        echo 'Weetje is toegevoegd';
-        // dd($weetje);
-        return view('weetjes', ['input' => $weetje, 'categorie' => $weetje->categorien, 'user' => $weetje->user, 'categories' => $categories]);
+        $suggestie = Suggestie::create($data);
+        dd($data);
+        return response()->json('succes', 200);
     }
 
     /**
@@ -70,10 +63,6 @@ class FormInput extends Controller
      */
     public function edit($id)
     {
-        $weetje = Weetje::find($id);
-        $categories = Categorie::all();
-        // dd($categories);
-        return view('edit', ['input' => $weetje, 'categories' => $categories, 'categorie' => $weetje->categorien]);
     }
 
     /**
@@ -85,12 +74,6 @@ class FormInput extends Controller
      */
     public function update(Request $request)
     {
-        $input = Weetje::find($request->id);
-        $input->title = $request->title;
-        $input->weetje = $request->weetje;
-        $input->categorie = $request->categorie;
-        $input->save();
-        return  redirect('profiel');
     }
 
     /**
@@ -101,8 +84,5 @@ class FormInput extends Controller
      */
     public function deleteWeetje($id)
     {
-        $input = Weetje::find($id);
-        $input->delete();
-        return redirect('profiel');
     }
 }

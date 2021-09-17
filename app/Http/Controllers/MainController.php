@@ -35,6 +35,11 @@ class MainController extends Controller
     {
         return view('beheer');
     }
+    // public function suggestie(Request $request)
+    // {
+    //     // dd($request->all());
+    //     return response()->json('succes', 200);
+    // }
     public function create()
     {
         $categories = Categorie::select('id', 'categorie')->get();
@@ -56,22 +61,23 @@ class MainController extends Controller
     }
     public function getRoles(Request $request)
     {
-        $roles = \Auth::user()->roles;
-        $users = \Auth::user();
+        // $roles = \Auth::user()->roles;
+        // $users = \Auth::user();
 
         // dd($roles);
-        return view('roles', ['roles' => $roles, 'users' => $users]);
+        // return view('roles', ['roles' => $roles, 'users' => $users]);
+        $roles = \Auth::user()->roles;
+        $users = \Auth::user();
+        $allusers = User::with('roles')->get();
+
+        // dd($allusers);
+        return view('roles', ['roles' => $roles, 'users' => $users, 'allusers' => $allusers]);
     }
     public function store(Request $request)
     {
         $store = Storage::disk('public')->put('example.txt', $request->file);
         // dd($store);
         echo asset('storage/' . $store);
-    }
-    public function role()
-    {
-        $roles = Role::select('id', 'role')->get();
-        return view('role', ['roles' => $roles]);
     }
     public function getRoles2(Request $request)
     {

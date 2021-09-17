@@ -18,12 +18,11 @@ use App\Http\Controllers\FormInput;
 use App\Http\Controllers\RolInput;
 use App\Http\Controllers\RegisterInput;
 use App\Http\Controllers\RoleUserController;
+use App\Http\Controllers\SuggestieController;
 
 Route::get('/', function () {
     return view('index');
 });
-
-Route::get('view-records', 'MainController@index');
 
 Route::get('/profiel', [MainController::class, 'getWeetjes']);
 Route::get('/user', [MainController::class, 'getUsers']);
@@ -39,11 +38,11 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('/role', [MainController::class, 'role']);
-Route::post('/role2', [RoleUserController::class, 'store']);
 
 Route::get('/weetjes', [MainController::class, 'create']);
 Route::post('/post', [FormInput::class, 'store']);
+
+Route::post('/suggestie', [SuggestieController::class, 'store']);
 
 Route::get('/post/{id}/edit', [FormInput::class, 'edit'])->name('post.edit');
 Route::get('/deleteWeetje/{id}', [FormInput::class, 'deleteWeetje']);
@@ -57,15 +56,13 @@ Route::get('/roles/{id}/editRole', [RoleUserController::class, 'editRole'])->nam
 Route::get('/deleteRole/{id}', [RoleUserController::class, 'deleteRole']);
 Route::post('/UpdateRole', [RoleUserController::class, 'UpdateRole']);
 
+Route::get('/admin/{id}/editRole', [RoleUserController::class, 'editRole'])->name('admin.editRole');
+Route::post('/UpdateRole', [RoleUserController::class, 'UpdateRole']);
+
 Route::get('/admin/{id}/editRole2', [RoleUserController::class, 'editRole2'])->name('admin.editRole2');
-Route::get('/deleteRole2/{id}', [RoleUserController::class, 'deleteRole2']);
 Route::post('/UpdateRole2', [RoleUserController::class, 'UpdateRole2']);
 
 Route::get('/maps', [MainController::class, 'maps']);
-
-Route::group(['middleware' => 'App\Http\Middleware\LidMiddleware'], function () {
-    Route::match(['get', 'post'], 'profiel', [MainController::class, 'getWeetjes']);
-});
 
 Route::middleware(['Administrator'])->group(function () {
     Route::get('admin', [MainController::class, 'getRoles2']);

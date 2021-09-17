@@ -3,28 +3,42 @@
 @section('content')
 <style>
     .navigatie {
-        position: absolute;
+        position: relative;
         display: flex;
         flex-direction: column;
-        padding: 10 0;
         font-size: 22px;
         font-weight: 600;
-        margin: 20px;
+        align-items: center;
+        justify-content: center;
     }
 
     a {
-        color: black;
+        color: white;
     }
 
-    .footer {
-        color: black;
+    body {
+        background: #0f3854;
+        background: radial-gradient(ellipse at center, #000000 30%, #0a2e38 70%);
+        background-size: 100%;
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .links>a {
+        color: white;
+    }
+
+    .title {
+        color: white;
     }
 </style>
 <title>Beheer Panel</title>
-<div class="navigatie">
-    <a href="/user">Gebruikers beheren</a>
-    <a href="/profiel">Weetjes beheren</a>
-    <a href="/admin">Rollen beheren</a>
+<div style="padding:500px 0;" class="navigatie">
+    <a style="padding-top:20px;" href="/user">Gebruikers beheren</a>
+    <a style="padding-top:20px;" href="/profiel">Weetjes beheren</a>
+    <a style="padding-top:20px;" href="/admin">Rollen beheren</a>
 </div>
 
 

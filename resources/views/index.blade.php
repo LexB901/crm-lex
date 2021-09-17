@@ -25,6 +25,10 @@
             text-align: center;
         }
 
+        .footer {
+            color: white;
+        }
+
         .top-right {
             position: absolute;
             right: 10px;
@@ -96,10 +100,11 @@
 
         #date {
             position: absolute;
-            width: 26%;
-            right: 33%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
             top: 730px;
-            height: 25px;
             font-size: 25px;
             color: #ffffff;
         }

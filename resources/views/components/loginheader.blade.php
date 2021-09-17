@@ -10,7 +10,6 @@
                 <a href="/dashboard">Home</a>
                 <a href="/weetjes">Weetje toevoegen</a>
                 <a href="/Alle-Weetjes">Alle weetjes</a>
-                <a href="/role">Rol toevoegen</a>
                 <a href="/roles">Mijn rollen</a>
                 <a href="/beheer">Beheer panel</a>
             </div>
@@ -31,9 +30,6 @@
                     </a>
                     <a href="/Alle-Weetjes">
                         <li>Alle weetjes</li>
-                    </a>
-                    <a href="/role">
-                        <li>Rol toevoegen</li>
                     </a>
                     <a href="/profiel">
                         <li>Mijn weetjes</li>

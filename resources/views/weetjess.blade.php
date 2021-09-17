@@ -24,7 +24,7 @@
                     <td>{{$post->user->name}}</td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->weetje}}</td>
-                    <td>{{$post->categorie}}</td>
+                    <td>{{$post->categorien->categorie}}</td>
                     <td>{{\Carbon\Carbon::parse($post['created_at'])->format('d/m/Y')}}</td>
                     <!-- <th style="background-color: #aec6cf;" class="no-padding">
 
