@@ -51,6 +51,7 @@ Route::post('/update', [FormInput::class, 'update']);
 Route::get('/user/{id}/editUser', [RegisterInput::class, 'editUser'])->name('user.editUser');
 Route::get('/deleteUser/{id}', [RegisterInput::class, 'deleteUser']);
 Route::post('/updateUser', [RegisterInput::class, 'updateUser']);
+Route::post('/banUser/{id}', [RegisterInput::class, 'banUser']);
 
 Route::get('/roles/{id}/editRole', [RoleUserController::class, 'editRole'])->name('roles.editRole');
 Route::get('/deleteRole/{id}', [RoleUserController::class, 'deleteRole']);

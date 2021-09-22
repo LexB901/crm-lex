@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Role;
 use App\RoleUser;
+use App\Models\Status;
 
 class User extends Authenticatable
 {
@@ -25,9 +26,9 @@ class User extends Authenticatable
         'email',
         'password',
         'image',
-
+        'status',
     ];
-
+    protected $with = ['statuss'];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -49,5 +50,9 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class, RoleUser::class);
+    }
+    public function statuss()
+    {
+        return $this->belongsTo(Status::class, 'status');
     }
 }

@@ -13,6 +13,11 @@
         justify-content: center;
         padding-top: 2%;
         padding-bottom: 2%;
+        margin-top: 200px;
+    }
+
+    .mt-1 {
+        padding-left: 7px;
     }
 
     .select {
@@ -26,12 +31,14 @@
             <form action="/update" method="post" style="width:90%;">
                 @csrf
                 <input type="hidden" name="id" value="{{$input['id']}}">
+                <div class="tt">Titel:</div>
                 <input style="border-radius: 5px;" value="{{ $input['title'] }}" type=" text" class="block mt-1 w-full" type="email" name="title" placeholder="Vul hier de titel van het weetje in.">
-                <div class="mt-4">
+                <div class="mt-4 tt">
+                    Weetje:
                     <input style="border-radius: 5px;" value="{{ $input['weetje'] }}" type=" text" class="block mt-1 w-full" type="email" name="weetje" placeholder="Vul hier uw weetje in.">
                 </div><br>
                 <div class="form-group">
-                    <label for="name">Categorie</label>
+                    <label class="tt" for="name">Categorie</label>
                     <?php
                     // dd($categorie);
                     ?>

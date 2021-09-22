@@ -3,7 +3,10 @@
 @section('content')
 <style>
     .navigatie {
+        height: 80vh;
+        margin-top: 55px;
         position: relative;
+        bottom: 100px;
         display: flex;
         flex-direction: column;
         font-size: 22px;
@@ -23,7 +26,7 @@
         display: flex;
         flex-direction: column;
         width: 100vw;
-        height: 100vh;
+        height: 100%;
     }
 
     .links>a {
@@ -33,9 +36,13 @@
     .title {
         color: white;
     }
+
+    .bg-white {
+        background-color: white;
+    }
 </style>
 <title>Beheer Panel</title>
-<div style="padding:500px 0;" class="navigatie">
+<div class="navigatie">
     <a style="padding-top:20px;" href="/user">Gebruikers beheren</a>
     <a style="padding-top:20px;" href="/profiel">Weetjes beheren</a>
     <a style="padding-top:20px;" href="/admin">Rollen beheren</a>

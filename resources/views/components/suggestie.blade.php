@@ -1,17 +1,13 @@
 <style>
-    .suggestie {
-        display: flex;
-        justify-content: right;
-    }
-
     .bg-white {
-        width: 30%;
         margin-right: 0px;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-top: 2%;
-        padding-bottom: 2%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        background-color: #557a95;
+        border-radius: 20px;
     }
 
     .mb-4 {
@@ -31,29 +27,101 @@
 
     .block {
         display: block;
+        color: black;
     }
 
     .mt-1 {
         margin-top: 0.25rem;
     }
+
+    .qmark {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        height: 50px;
+        width: 50px;
+    }
+
+    .suggestie {
+        opacity: 0;
+        justify-content: right;
+        position: fixed;
+        bottom: 150px;
+        right: -600px;
+        transition-duration: 1s;
+    }
+
+    .hidden {
+        opacity: 1;
+        right: 50px;
+
+    }
+
+    #demo2 {
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        bottom: 30px;
+        right: 50px;
+        display: block;
+        z-index: 20;
+        transition-duration: 0.5s;
+    }
+
+    #demo2 {
+        background: url(/images/feedback.svg);
+    }
+
+    #demo2:hover {
+        width: 100px;
+        height: 100px;
+
+    }
+
+    .tt {
+        margin: 0px;
+        padding: 0px;
+        color: white;
+    }
+
+    #knop {
+        width: 100%;
+        margin-top: 10px;
+        background-color: #1f2937;
+        color: white;
+        border-color: transparent;
+    }
+
+    #text {
+        display: none;
+        color: red;
+        font-weight: 200;
+        font-weight: bold;
+    }
 </style>
+
 <div style="justify-content:right;" class="suggestie">
-    <div style="margin-top: 200px;" class="bg-white">
+    <div class="bg-white" style="padding-top:20px;padding-bottom:20px">
         <form id="suggestieformulier" action="/suggestie" method="post" style="width:90%;">
 
             @csrf
-
-            <textarea style="width: 100%;" rows="1" cols="62" name="suggestietitle" class="block mt-1 w-full" wrap="hard" placeholder="Vul hier uw weetje in.">Dit is een standaard titel voor de suggestie :)</textarea>
             <div class="mt-4">
-                <textarea style="width: 100%;" rows="4" cols="62" name="suggestie" class="block mt-1 w-full" wrap="hard" placeholder="Vul hier uw weetje in.">Dit is een standaard text voor de suggestie :)</textarea>
+                <p class="tt">Onderwerp:</p>
+                <textarea style="width: 100%;padding-left:7px;" id="myInput" rows="1" cols="62" name="suggestietitle" class="block mt-1 w-full" wrap="hard" placeholder="Vul hier het onderwerp in.">Dit is een standaard titel voor de suggestie :)</textarea>
+
+            </div>
+            <div class="mt-4">
+                <p class="tt">Suggestie:</p>
+                <textarea style="width: 100%;padding-left:7px;" id="myInput2" rows="4" cols="62" name="suggestie" class="block mt-1 w-full" wrap="hard" placeholder="Vul hier de suggestie in.">Dit is een standaard text voor de suggestie :)</textarea>
             </div><br>
 
+            <p id="text">LET OP! Capslock staat aan.</p>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Verstuur suggestie') }}
-                </x-button>
-            </div>
+            <x-button id="knop">
+                {{ __('Verstuur suggestie') }}
+
+            </x-button>
+
         </form>
     </div>
     @if ($errors->any())
@@ -71,3 +139,4 @@
     </div>
     @endif
 </div>
+<span id="demo2"></span>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Register;
 use App\Models\User;
+use App\Models\Status;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterInput extends Controller
@@ -43,6 +44,7 @@ class RegisterInput extends Controller
             'password' => 'required',
             'password_confirmation' => 'required',
             'image' => 'required',
+
         ]);
         $store = Storage::disk('public')->put('example.txt', $request->file);
         $data = $request->all();
@@ -71,9 +73,9 @@ class RegisterInput extends Controller
     public function editUser($id)
     {
         $user = User::find($id);
-
-        // dd($user);
-        return view('editUser', ['input' => $user]);
+        $statuses = Status::all();
+        // dd($user->statuss);
+        return view('editUser', ['input' => $user, 'statuses' => $statuses, 'status' => $user->statuss]);
     }
 
     /**
@@ -90,8 +92,9 @@ class RegisterInput extends Controller
         $input = User::find($data['id']);
         $input->name = $data['name'];
         $input->email = $data['email'];
-        $input->password = Hash::make($data['password']);
+        $input->status = $data['banned'];
         $input->save();
+        // dd($data);
         return redirect('user');
     }
 
@@ -105,6 +108,13 @@ class RegisterInput extends Controller
     {
         $input = User::find($id);
         $input->delete();
+        return redirect('user');
+    }
+    public function banUser($id)
+    {
+        $input = User::find($id);
+
+        // dd($input);
         return redirect('user');
     }
 }

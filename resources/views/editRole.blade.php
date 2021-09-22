@@ -23,11 +23,13 @@
             <form action="/UpdateRole" method="post" style="width:50%;">
 
                 @csrf
-                <label for="name">Selecteer een rol</label><br>
+                <label class="tt" for="name">Selecteer een rol</label><br>
                 <input type="hidden" value="{{$allusers->id}}" name="id">
 
                 @foreach($allroles as $allrole)
-                <input type="checkbox" name="roles[]" value="{{$allrole->id}}" {{ $allrole->selected == 1 ? 'checked' : false }}> {{$allrole->role}}<br>
+                <div class="tt">
+                    <input type="checkbox" name="roles[]" value="{{$allrole->id}}" {{ $allrole->selected == 1 ? 'checked' : false }}> {{$allrole->role}}<br>
+                </div>
                 @endforeach
 
                 <div class="flex items-center justify-end mt-4">

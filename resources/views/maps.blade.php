@@ -6,12 +6,24 @@
         text-align: center;
         width: 100%;
     }
+
+    .center {
+        display: flex;
+        justify-content: center;
+    }
+
+    .maps {
+        width: 640px;
+        height: 480px;
+    }
 </style>
 <title>Maps</title>
 
 <body>
     <h1 class="aparth1">Onze locatie</h1>
-    <div style="width: 640px; height: 480px; position: absolute; left: 30%;" id="mapContainer"></div>
+    <div class="center">
+        <div class="maps" id="mapContainer"></div>
+    </div>
     <script>
         // Initialize the platform object:
         var platform = new H.service.Platform({

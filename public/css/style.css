@@ -1,6 +1,5 @@
 html,
 body {
-	background-color: #fff;
 	color: #636b6f;
 	font-family: "Nunito", sans-serif;
 	font-weight: 200;
@@ -130,7 +129,7 @@ a:hover {
 
 #menuToggle {
 	display: block;
-	position: absolute;
+	position: fixed;
 	top: 50px;
 	right: 50px;
 
@@ -246,4 +245,18 @@ a:hover {
 	.links {
 		display: none;
 	}
+}
+.block {
+	display: block;
+}
+.mt-1 {
+	margin-top: -0.25rem;
+	width: 100%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	font-family: "Avenir Next", "Avenir", sans-serif;
+}
+.w-full {
+	width: 100%;
 }

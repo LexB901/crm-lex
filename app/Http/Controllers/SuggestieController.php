@@ -40,7 +40,8 @@ class SuggestieController extends Controller
         $data = $request->all();
         $data['user_id'] = Auth::id();
         $suggestie = Suggestie::create($data);
-        dd($data);
+        echo 'Suggestie is verzonden!';
+        // dd($data);
         return response()->json('succes', 200);
     }
 

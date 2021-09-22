@@ -52,6 +52,51 @@ form.addEventListener('submit', function(e) {
             ajax.setRequestHeader("X-CSRF-Token", metas[i].getAttribute("content"));
         }
     }
+    alert('Uw suggestie is verzonden!');
     ajax.send(formdata);
     // console.log(formdata);
 })
+
+document.getElementById("demo2").addEventListener("click", myFunctions);
+
+function myFunctions() {
+    document.getElementsByClassName("suggestie")[0].classList.toggle("hidden");
+}
+
+let input = document.getElementById("myInput");
+let input2 = document.getElementById("myInput2");
+let input3 = document.getElementById("myInput3");
+let input4 = document.getElementById("myInput4")
+let text = document.getElementById("text");
+input.addEventListener("keyup", function(event) {
+
+    if (event.getModifierState("CapsLock")) {
+        text.style.display = "block";
+    } else {
+        text.style.display = "none"
+    }
+});
+input2.addEventListener("keyup", function(event) {
+
+    if (event.getModifierState("CapsLock")) {
+        text.style.display = "block";
+    } else {
+        text.style.display = "none"
+    }
+});
+input3.addEventListener("keyup", function(event) {
+
+    if (event.getModifierState("CapsLock")) {
+        text2.style.display = "block";
+    } else {
+        text2.style.display = "none"
+    }
+});
+input4.addEventListener("keyup", function(event) {
+
+    if (event.getModifierState("CapsLock")) {
+        text2.style.display = "block";
+    } else {
+        text2.style.display = "none"
+    }
+});

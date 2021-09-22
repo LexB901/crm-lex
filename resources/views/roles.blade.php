@@ -1,17 +1,34 @@
 @extends('layouts.themalogin')
 
 @section('content')
-
+<style>
+</style>
 <title>Mijn Rollen</title>
 <div style="overflow-x:auto;">
-    <table>
+    <table style="margin-top: 50px;">
         <thead>
             <div class="weetjetitel">
                 <tr>
                     <th>Naam</th>
-                    <th>Rollen</th>
-                    <th>Edit</th>
+                    <td>{{$users->name}}</td>
                 </tr>
+                <tr>
+                    <th>Rollen</th>
+                    <td>
+                        @for($i=0; $i < count($users->roles);$i++)
+                            @if($i==count($users->roles) - 1) {{$users->roles[$i]['role']}}
+                            @else {{$users->roles[$i]['role'].','}}
+                            @endif
+                            @endfor
+                    </td>
+                </tr>
+                <tr>
+                    <<th>Edit</th>
+                        <th style="background-color: #aec6cf;" class="no-padding">
+                            <a href="{{route('admin.editRole',$users)}}">Edit</a>
+                        </th>
+                </tr>
+
             </div>
         </thead>
         <tbody>
@@ -31,18 +48,10 @@
 
 
                 <tr>
-                    <td>{{$users->name}}</td>
-                    <td>
-                        @for($i=0; $i < count($users->roles);$i++)
-                            @if($i==count($users->roles) - 1) {{$users->roles[$i]['role']}}
-                            @else {{$users->roles[$i]['role'].','}}
-                            @endif
-                            @endfor
-                    </td>
 
-                    <th style="background-color: #aec6cf;" class="no-padding">
-                        <a href="{{route('admin.editRole',$users)}}">Edit</a>
-                    </th>
+
+
+
 
                 </tr>
 

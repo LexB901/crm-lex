@@ -46,7 +46,8 @@ class FormInput extends Controller
         $data['user_id'] = Auth::id();
         $weetje = Weetje::create($data);
         $categories = Categorie::select('id', 'categorie')->get();
-        echo 'Weetje is toegevoegd';
+        $message = "Weetje verzonden";
+        echo "<script type='text/javascript'>alert('$message');</script>";
         // dd($weetje);
         return view('weetjes', ['input' => $weetje, 'categorie' => $weetje->categorien, 'user' => $weetje->user, 'categories' => $categories]);
     }

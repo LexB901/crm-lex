@@ -38,6 +38,19 @@
     .title {
         color: white;
     }
+
+    #demo {
+        fill: #fff;
+    }
+
+    #demo2 {
+        fill: #fff;
+    }
+
+    .bg-white {
+        padding-top: 0%;
+        padding-bottom: 0%;
+    }
 </style>
 <title>Home</title>
 

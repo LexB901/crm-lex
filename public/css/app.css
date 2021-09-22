@@ -458,9 +458,9 @@ button,
 	outline: auto;
 }
 
-table {
+/* table {
 	border-collapse: collapse;
-}
+} */
 
 h1,
 h2,
@@ -15560,7 +15560,7 @@ select {
 	background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
 }
 
-.bg-white {
+ {
 	--tw-bg-opacity: 1;
 	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
 }
