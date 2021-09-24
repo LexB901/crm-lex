@@ -40,12 +40,19 @@
     .bg-white {
         background-color: white;
     }
+
+    .footer {
+        background-color: transparent;
+        color: white;
+    }
 </style>
 <title>Beheer Panel</title>
 <div class="navigatie">
     <a style="padding-top:20px;" href="/user">Gebruikers beheren</a>
     <a style="padding-top:20px;" href="/profiel">Weetjes beheren</a>
     <a style="padding-top:20px;" href="/admin">Rollen beheren</a>
+    <a style="padding-top:20px;" href="/suggesties">Suggesties beheren</a>
+    <a style="padding-top:20px;" href="/activity">Activiteitenlog beheren</a>
 </div>
 
 

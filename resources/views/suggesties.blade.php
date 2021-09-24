@@ -14,9 +14,7 @@
                 <tr>
                     <th>Gebruiker</th>
                     <th>Titel</th>
-                    <th>Weetje</th>
-                    <th>Categorie</th>
-                    <th>Datum</th>
+                    <th>Suggestie</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -24,21 +22,19 @@
         </thead>
         <tbody>
             <div class="weetje">
-                @foreach($posts as $post)
+                @foreach($suggestie as $post)
                 <tr>
-                    <td>{{$post->user->name}}</td>
-                    <td>{{$post->title}}</td>
-                    <td>{{$post->weetje}}</td>
-                    <td>{{$post->categorien->categorie}}</td>
-                    <td>{{\Carbon\Carbon::parse($post['created_at'])->format('d/m/Y')}}</td>
+                    <td>{{$post->user->name }}</td>
+                    <td>{{$post->suggestietitle}}</td>
+                    <td>{{$post->suggestie}}</td>
                     <th style="background-color: #aec6cf;" class="no-padding">
 
-                        <a href="{{route('post.edit',$post->id)}}">Edit</a>
+                        <a href="{{route('suggestie.editSuggestie',$post->id)}}">Edit</a>
 
                     </th>
                     <th style="background-color: #b0c4de; z-index:0;" class="no-padding">
 
-                        <a onclick="return confirm('Weet je zeker dat je dit weetje wilt verwijderen?')" href="{{"deleteWeetje/".$post['id']}}">Delete</a>
+                        <a onclick="return confirm('Weet u zeker dat u deze suggestie wilt verwijderen?')" href="{{"deleteSuggestie/".$post['id']}}">Delete</a>
 
                     </th>
                 </tr>

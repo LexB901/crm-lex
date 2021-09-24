@@ -2,10 +2,16 @@
 
 @section('content')
 <style>
+    .centerform {
+        margin-top: 50px;
+        width: 50%;
+        position: relative;
+        left: 25%;
+    }
 </style>
 <title>Mijn Rollen</title>
 <div style="overflow-x:auto;">
-    <table style="margin-top: 50px;">
+    <table class="centerform">
         <thead>
             <div class="weetjetitel">
                 <tr>

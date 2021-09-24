@@ -45,22 +45,20 @@ body {
 	top: 50px;
 	font-family: "Avenir Next", "Avenir", sans-serif;
 }
-.footerholder {
-	background: none repeat scroll 0 0 transparent;
-	bottom: 0;
-	position: fixed;
-	text-align: center;
-	width: 100%;
-}
 
 .footer {
-	background: none repeat scroll 0 0;
-	height: 30px;
-	margin: auto;
-	width: 400px;
+	position: fixed;
+	width: 100%;
 	color: black;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	background-color: white;
 }
-
+.pfooter {
+	padding: 0;
+	margin: 0;
+}
 .loginform {
 	boder: 1px solid black;
 	width: 200px;

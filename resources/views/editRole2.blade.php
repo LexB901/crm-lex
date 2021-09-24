@@ -33,9 +33,11 @@
                 @endforeach
 
                 <div class="flex items-center justify-end mt-4">
-                    <x-button>
-                        {{ __('Verstuur Rol') }}
-                    </x-button>
+                    <a class="flex items-center justify-end mt-4" onclick="return confirm('Weet je zeker dat je deze gebruiker zijn rollen wilt bijwerken?')">
+                        <x-button>
+                            {{ __('Wijzig rollen') }}
+                        </x-button>
+                    </a>
                 </div>
             </form>
             @if ($errors->any())

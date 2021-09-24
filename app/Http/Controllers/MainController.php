@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Respources\Views;
 use App\Categorie;
 use App\Models\User;
 use App\Weetje;
 use Illuminate\Support\Facades\Storage;
-use App\Role;
-use App\RoleUser;
-use Response;
+use App\Suggestie;
 
 
 class MainController extends Controller
@@ -35,11 +32,10 @@ class MainController extends Controller
     {
         return view('beheer');
     }
-    // public function suggestie(Request $request)
-    // {
-    //     // dd($request->all());
-    //     return response()->json('succes', 200);
-    // }
+    public function activity()
+    {
+        return view('activity');
+    }
     public function create()
     {
         $categories = Categorie::select('id', 'categorie')->get();
@@ -49,7 +45,7 @@ class MainController extends Controller
     {
         $posts = Weetje::all();
         $gebruikers = User::all();
-        // dd($gebruikers);
+        // dd($posts);
         return view('profiel', ['posts' => $posts]);
     }
     public function getUsers(Request $request)
@@ -94,5 +90,13 @@ class MainController extends Controller
         $gebruikers = User::all();
         // dd($gebruikers);
         return view('weetjess', ['posts' => $posts]);
+    }
+    public function getSuggesties()
+    {
+        $suggestie = Suggestie::all();
+
+
+        // dd($suggestie);
+        return view('suggesties', ['suggestie' => $suggestie]);
     }
 }

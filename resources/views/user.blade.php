@@ -57,16 +57,13 @@
                         <a href="{{route('user.editUser',$user->id)}}">Edit</a>
                     </th>
                     <th style="background-color: #b0c4de;" class="no-padding">
-                        <a href="{{"deleteUser/".$user['id']}}">Delete</a>
+                        <a onclick="return confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?')" href="{{"deleteUser/".$user['id']}}">Delete</a>
                     </th>
-                    <th style="background-color: #93cbef;" class="no-padding">
-                        @if( $user->status == 0)
-                        Banned
-                        @else Actief
-                        @endif
-                        <!-- <a href="{{"banUser/".$user['id']}}">Ban</a> -->
-                        <!-- {{ $user->status }} -->
-                    </th>
+                    @if( $user->status == 0)
+                    <th style="background-color:darkred;" class="no-padding">Banned</th>
+                    @else
+                    <th style="background-color:darkgreen;" class="no-padding">Actief</th>
+                    @endif
                 </tr>
             </div>
 

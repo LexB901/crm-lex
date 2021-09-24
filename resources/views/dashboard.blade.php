@@ -28,6 +28,7 @@
     }
 
     .footer {
+        background-color: transparent;
         color: white;
     }
 

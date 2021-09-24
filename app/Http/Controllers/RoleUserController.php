@@ -108,7 +108,7 @@ class RoleUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function UpdateRole(Request $request)
+    public function updateRole(Request $request)
     {
 
         $data = $request->only('id');
@@ -119,7 +119,7 @@ class RoleUserController extends Controller
         // dd($user->roles);
         return redirect('roles');
     }
-    public function UpdateRole2(Request $request)
+    public function updateRole2(Request $request)
     {
 
         $data = $request->only('id');

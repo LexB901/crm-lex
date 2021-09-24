@@ -1,7 +1,5 @@
 <footer>
-    <div class="footerholder">
-        <div class="footer">
-            Copyright © 2021 Weetjes TM, Inc.
-        </div>
+    <div class="footer">
+        <p class="pfooter">Copyright © 2021 Weetjes TM, Inc.</p>
     </div>
 </footer>

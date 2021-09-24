@@ -107,7 +107,7 @@
             @csrf
             <div class="mt-4">
                 <p class="tt">Onderwerp:</p>
-                <textarea style="width: 100%;padding-left:7px;" id="myInput" rows="1" cols="62" name="suggestietitle" class="block mt-1 w-full" wrap="hard" placeholder="Vul hier het onderwerp in.">Dit is een standaard titel voor de suggestie :)</textarea>
+                <textarea style="width: 100%;padding-left:7px;" id="myInput" rows="1" cols="62" name="suggestietitle" class="block mt-1 w-full" wrap="hard" placeholder="Vul hier het onderwerp in.">Standaard titel voor suggesties :)</textarea>
 
             </div>
             <div class="mt-4">

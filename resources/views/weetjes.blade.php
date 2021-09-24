@@ -37,6 +37,13 @@
         font-weight: 200;
         font-weight: bold;
     }
+
+    .caterror {
+        display: block;
+        color: red;
+        font-weight: 200;
+        font-weight: bold;
+    }
 </style>
 
 <div class="mb-4">
@@ -82,17 +89,18 @@
                     {{ __('Verstuur weetje') }}
                 </x-button>
             </div>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li class="caterror">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
         </form>
     </div>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
+
     @if(\Session::has('success'))
     <div class="alert alert-succes">
         <p>{{\Session::get('succes')}}</p>

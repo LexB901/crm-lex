@@ -69,11 +69,12 @@
                 {{-- <option value="Eten">Eten</option>--}}
                 {{-- <option value="Transport">Transport</option>--}}
                 {{-- </select>--}}
-                <div class="flex items-center justify-end mt-4">
+                <a onclick="return confirm('Weet je zeker dat je dit weetje wilt wijzigen?')" class="flex items-center justify-end mt-4">
                     <x-button>
                         {{ __('Weetje wijzigen') }}
                     </x-button>
-                </div>
+                </a>
+
             </form>
             @if ($errors->any())
             <div class="alert alert-danger">

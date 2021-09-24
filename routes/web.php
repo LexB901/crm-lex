@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\FormInput;
-use App\Http\Controllers\RolInput;
 use App\Http\Controllers\RegisterInput;
 use App\Http\Controllers\RoleUserController;
 use App\Http\Controllers\SuggestieController;
@@ -28,9 +27,12 @@ Route::get('/profiel', [MainController::class, 'getWeetjes']);
 Route::get('/user', [MainController::class, 'getUsers']);
 Route::get('/roles', [MainController::class, 'getRoles']);
 Route::get('/admin', [MainController::class, 'getRoles2']);
+Route::get('/suggesties', [MainController::class, 'getSuggesties']);
 Route::get('/welcome', [MainController::class, 'welcome']);
 Route::get('/beheer', [MainController::class, 'beheer']);
 Route::get('/Alle-Weetjes', [MainController::class, 'getWeetjes2']);
+Route::get('/activity', [MainController::class, 'activity']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -58,10 +60,14 @@ Route::get('/deleteRole/{id}', [RoleUserController::class, 'deleteRole']);
 Route::post('/UpdateRole', [RoleUserController::class, 'UpdateRole']);
 
 Route::get('/admin/{id}/editRole', [RoleUserController::class, 'editRole'])->name('admin.editRole');
-Route::post('/UpdateRole', [RoleUserController::class, 'UpdateRole']);
+Route::post('/UpdateRole', [RoleUserController::class, 'updateRole']);
 
 Route::get('/admin/{id}/editRole2', [RoleUserController::class, 'editRole2'])->name('admin.editRole2');
-Route::post('/UpdateRole2', [RoleUserController::class, 'UpdateRole2']);
+Route::post('/UpdateRole2', [RoleUserController::class, 'updateRole2']);
+
+Route::get('/suggesties/{id}/editSuggestie', [SuggestieController::class, 'editSuggestie'])->name('suggestie.editSuggestie');
+Route::get('/deleteSuggestie/{id}', [SuggestieController::class, 'deleteSuggestie']);
+Route::post('/updateSuggestie', [SuggestieController::class, 'updateSuggestie']);
 
 Route::get('/maps', [MainController::class, 'maps']);
 

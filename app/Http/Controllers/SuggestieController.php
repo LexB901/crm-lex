@@ -62,8 +62,12 @@ class SuggestieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editSuggestie($id)
     {
+        $suggestie = Suggestie::find($id);
+
+        // dd($suggestie);
+        return view('editSuggesties', ['input' => $suggestie]);
     }
 
     /**
@@ -73,8 +77,16 @@ class SuggestieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function updateSuggestie(Request $request)
     {
+        $data = $request->all();
+
+        $input = Suggestie::find($data['id']);
+        $input->suggestietitle = $data['suggestietitle'];
+        $input->suggestie = $data['suggestie'];
+        $input->save();
+        // dd($data);
+        return redirect('suggesties');
     }
 
     /**
@@ -83,7 +95,11 @@ class SuggestieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function deleteWeetje($id)
+    public function deleteSuggestie($id)
     {
+        $input = Suggestie::find($id);
+        $input->delete();
+        // dd($input);
+        return redirect('suggesties');
     }
 }
