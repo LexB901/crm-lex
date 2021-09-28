@@ -1,4 +1,5 @@
 <header>
+
     <div class="flex-center position-ref full-height">
         <div class="top-right links"></div>
         <div class="content">
@@ -7,11 +8,11 @@
             </div>
 
             <div class="links">
-                <a href="/dashboard">Home</a>
-                <a href="/weetjes">Weetje toevoegen</a>
+                <a href="/Home">Home</a>
+                <a href="/WeetjesForm">Weetje toevoegen</a>
                 <a href="/Alle-Weetjes">Alle weetjes</a>
-                <a href="/roles">Mijn rollen</a>
-                <a href="/beheer">Beheer panel</a>
+                <a href="/Mijn-Rollen">Mijn rollen</a>
+                <a href="/Admin-Nav">Admin panel</a>
             </div>
         </div>
         <nav role="navigation">
@@ -22,22 +23,22 @@
                 <span></span>
 
                 <ul id="menu">
-                    <a href="/dashboard">
+                    <a class="hbm" href="/dashboard">
                         <li>Home</li>
                     </a>
-                    <a href="/weetjes">
+                    <a class="hbm" href="/weetjes">
                         <li>Weetje toevoegen</li>
                     </a>
-                    <a href="/Alle-Weetjes">
+                    <a class="hbm" href="/Alle-Weetjes">
                         <li>Alle weetjes</li>
                     </a>
-                    <a href="/profiel">
+                    <a class="hbm" href="/profiel">
                         <li>Mijn weetjes</li>
                     </a>
-                    <a href="/roles">
+                    <a class="hbm" href="/roles">
                         <li>Mijn rollen</li>
                     </a>
-                    <a href="/beheer">
+                    <a class="hbm" href="/beheer">
                         <li>Beheer panel</li>
                     </a>
                     </a>

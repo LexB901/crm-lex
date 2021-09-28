@@ -11,7 +11,7 @@ class Weetje extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['title', 'weetje', 'categorie', 'user_id', 'created_at'];
+    protected $fillable = ['title', 'weetje', 'categorie', 'user_id', 'created_at', 'date'];
     protected $with = ['categorien', 'user'];
     public function categorien()
     {

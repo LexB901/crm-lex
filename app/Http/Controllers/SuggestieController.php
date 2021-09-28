@@ -86,7 +86,7 @@ class SuggestieController extends Controller
         $input->suggestie = $data['suggestie'];
         $input->save();
         // dd($data);
-        return redirect('suggesties');
+        return redirect('Suggesties');
     }
 
     /**
@@ -100,6 +100,6 @@ class SuggestieController extends Controller
         $input = Suggestie::find($id);
         $input->delete();
         // dd($input);
-        return redirect('suggesties');
+        return redirect('Suggesties');
     }
 }

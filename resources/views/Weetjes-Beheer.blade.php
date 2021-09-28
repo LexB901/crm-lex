@@ -2,6 +2,15 @@
 
 @section('content')
 <style>
+    .bg-white {
+        background-color: #557a95;
+    }
+
+    table {
+        margin-top: 30px;
+        left: 5%;
+        width: 90%;
+    }
 </style>
 <title>Alle Weetjes</title>
 <div style="overflow-x:auto;">
@@ -14,8 +23,8 @@
                     <th>Weetje</th>
                     <th>Categorie</th>
                     <th>Datum</th>
-                    <!-- <th>Edit</th>
-                    <th>Delete</th> -->
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </div>
         </thead>
@@ -28,23 +37,26 @@
                     <td>{{$post->weetje}}</td>
                     <td>{{$post->categorien->categorie}}</td>
                     <td>{{\Carbon\Carbon::parse($post['created_at'])->format('d/m/Y')}}</td>
-                    <!-- <th style="background-color: #aec6cf;" class="no-padding">
+                    <th style="background-color: #aec6cf;" class="no-padding">
 
-                        <a href="{{route('post.edit',$post->id)}}">Edit</a>
+                        <a href="{{route('Form.edit',$post->id)}}">Edit</a>
 
                     </th>
-                    <th style="background-color: #b0c4de;" class="no-padding">
+                    <th style="background-color: #b0c4de; z-index:0;" class="no-padding">
 
-                        <a href="{{"deleteWeetje/".$post['id']}}">Delete</a>
+                        <a onclick="return confirm('Weet je zeker dat je dit weetje wilt verwijderen?')" href="{{"deleteWeetje/".$post['id']}}">Delete</a>
 
-                    </th> -->
+                    </th>
                 </tr>
             </div>
 
             @endforeach
-</div>
-</tbody>
-</table>
+
+        </tbody>
+
+    </table>
+    {{ $posts->links() }}
+
 </div>
 
 @endsection

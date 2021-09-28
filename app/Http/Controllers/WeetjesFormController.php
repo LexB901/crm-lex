@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Register;
-use App\Models\User;
-use App\Models\Status;
-use Illuminate\Support\Facades\Hash;
+use App\Weetje;
+use Illuminate\Support\Facades\Auth;
+use App\Categorie;
 
-class RegisterInput extends Controller
+class WeetjesFormController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +26,7 @@ class RegisterInput extends Controller
      */
     public function create()
     {
-        return view('index'); //
+        return view('WeetjesForm'); //
     }
 
     /**
@@ -39,18 +38,19 @@ class RegisterInput extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'password_confirmation' => 'required',
-            'image' => 'required',
-
+            'title' => 'required',
+            'weetje' => 'required',
+            'categorie' => 'required',
+            'date' => 'required',
         ]);
-        $store = Storage::disk('public')->put('example.txt', $request->file);
         $data = $request->all();
-        $user = Register::create($data);
-        // dd($data);
-        return view('user', ["input" => $user, 'image' => $store]);
+        $data['user_id'] = Auth::id();
+        $weetje = Weetje::create($data);
+        $categories = Categorie::select('id', 'categorie')->get();
+        $message = "Weetje verzonden";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        // dd($weetje);
+        return view('WeetjesForm', ['input' => $weetje, 'categorie' => $weetje->categorien, 'user' => $weetje->user, 'categories' => $categories]);
     }
 
     /**
@@ -70,12 +70,12 @@ class RegisterInput extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editUser($id)
+    public function edit($id)
     {
-        $user = User::find($id);
-        $statuses = Status::all();
-        // dd($user->statuss);
-        return view('editUser', ['input' => $user, 'statuses' => $statuses, 'status' => $user->statuss]);
+        $weetje = Weetje::find($id);
+        $categories = Categorie::all();
+        // dd($categories);
+        return view('EditWeetjes', ['input' => $weetje, 'categories' => $categories, 'categorie' => $weetje->categorien]);
     }
 
     /**
@@ -85,17 +85,14 @@ class RegisterInput extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateUser(Request $request)
+    public function update(Request $request)
     {
-        $data = $request->all();
-
-        $input = User::find($data['id']);
-        $input->name = $data['name'];
-        $input->email = $data['email'];
-        $input->status = $data['banned'];
+        $input = Weetje::find($request->id);
+        $input->title = $request->title;
+        $input->weetje = $request->weetje;
+        $input->categorie = $request->categorie;
         $input->save();
-        // dd($data);
-        return redirect('user');
+        return  redirect('Weetjes-Beheer');
     }
 
     /**
@@ -104,17 +101,10 @@ class RegisterInput extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function deleteUser($id)
+    public function deleteWeetje($id)
     {
-        $input = User::find($id);
+        $input = Weetje::find($id);
         $input->delete();
-        return redirect('user');
-    }
-    public function banUser($id)
-    {
-        $input = User::find($id);
-
-        // dd($input);
-        return redirect('user');
+        return redirect('Weetjes-Beheer');
     }
 }

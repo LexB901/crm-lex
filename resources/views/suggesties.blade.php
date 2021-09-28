@@ -5,6 +5,12 @@
     .bg-white {
         background-color: #557a95;
     }
+
+    table {
+        margin-top: 30px;
+        left: 5%;
+        width: 90%;
+    }
 </style>
 <title>Alle Weetjes</title>
 <div style="overflow-x:auto;">

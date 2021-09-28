@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Weetje;
+use App\Models\User;
 
-class WeetjesSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class WeetjesSeeder extends Seeder
      */
     public function run()
     {
-        Weetje::factory(10)->create();
+         User::factory(10)->unverified()->create();
     }
 }

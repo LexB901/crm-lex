@@ -11,7 +11,12 @@
 </head>
 
 <body>
-    @include('components.header')
+    <div class="links">
+        <a href="/">Home</a>
+        <a href="/register">Registreer</a>
+        <a href="/login">Login</a>
+
+    </div>
     @yield('content')
     @include('components.footer')
 

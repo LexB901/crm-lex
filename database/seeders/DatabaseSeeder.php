@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Categorie;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -23,8 +24,6 @@ class DatabaseSeeder extends Seeder
                 'categorie' => $categorie
             ]);
         }
-        $this->call([WeetjesSeeder::class]);
-        $this->call([RollenSeeder::class]);
-        // \App\Models\User::factory(10)->create();
+        $this->call([UserSeeder::class]);
     }
 }

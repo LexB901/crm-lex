@@ -1,7 +1,13 @@
 @extends('layouts.themalogin')
 
 @section('content')
-
+<style>
+    table {
+        margin-top: 30px;
+        left: 5%;
+        width: 90%;
+    }
+</style>
 <title>Rollen Beheer</title>
 <div style="overflow-x:auto;">
     <table>
@@ -28,7 +34,7 @@
                             @endfor
                     </td>
                     <th style="background-color: #aec6cf;" class="no-padding">
-                        <a href="{{route('admin.editRole2',$user)}}">Edit</a>
+                        <a href="{{route('Rollen-Beheer.editRoleAdmin',$user)}}">Edit</a>
                     </th>
                 </tr>
                 @endforeach

@@ -85,7 +85,7 @@ class RoleUserController extends Controller
         // dd($allusers);
         return view('editRole', ['input' => $roles, 'allroles' => $allroles, 'allusers' => $allusers]);
     }
-    public function editRole2($id)
+    public function editRoleAdmin($id)
     {
         $allusers = User::with('roles')->find($id);
         $roles = $allusers->roles;
@@ -98,7 +98,7 @@ class RoleUserController extends Controller
             }
         }
         // dd($allusers);
-        return view('editRole2', ['input' => $roles, 'allroles' => $allroles, 'allusers' => $allusers]);
+        return view('editRoleAdmin', ['input' => $roles, 'allroles' => $allroles, 'allusers' => $allusers]);
     }
 
     /**
@@ -117,7 +117,7 @@ class RoleUserController extends Controller
         $user->roles()->sync($request->input('roles'));
 
         // dd($user->roles);
-        return redirect('roles');
+        return redirect('Mijn-Rollen');
     }
     public function updateRole2(Request $request)
     {
@@ -128,7 +128,7 @@ class RoleUserController extends Controller
         $user->roles()->sync($request->input('roles'));
 
         // dd($user->roles);
-        return redirect('admin');
+        return redirect('Rollen-Beheer');
     }
 
     /**

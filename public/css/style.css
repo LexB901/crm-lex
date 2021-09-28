@@ -2,7 +2,6 @@ html,
 body {
 	color: #636b6f;
 	font-family: "Nunito", sans-serif;
-	font-weight: 200;
 	margin: 0;
 }
 
@@ -75,13 +74,13 @@ td {
 }
 
 table {
-	border-spacing: 0.5rem;
-	width: 100%;
+	position: relative;
 }
 
 th {
 	background-color: #636b6f;
 	position: relative;
+	z-index: ;
 	color: rgba(243, 244, 246);
 	width: 100px;
 }
@@ -113,7 +112,7 @@ body {
 	overflow-x: hidden;
 }
 
-a {
+a.hbm {
 	text-decoration: none;
 	color: rgba(243, 244, 246);
 
@@ -121,9 +120,36 @@ a {
 }
 
 a:hover {
-	color: #;
 	text-decoration: underline;
 }
+
+.pagination {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	font-size: 5rem;
+	text-decoration: none;
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+li.page-item {
+	color: black;
+}
+
+.page-item.active {
+	color: lightgray;
+}
+.page-item.disabled {
+	color: lightgray;
+}
+
+/* Hamburger Menu */
 
 #menuToggle {
 	display: block;

@@ -20,40 +20,28 @@ class MainController extends Controller
     {
         return view('registreer');
     }
-    public function maps()
+    public function AdminNav()
     {
-        return view('maps');
-    }
-    public function welcome()
-    {
-        return view('welcome');
-    }
-    public function beheer()
-    {
-        return view('beheer');
-    }
-    public function activity()
-    {
-        return view('activity');
+        return view('Admin-Nav');
     }
     public function create()
     {
         $categories = Categorie::select('id', 'categorie')->get();
-        return view('weetjes', ['categories' => $categories]);
+        return view('WeetjesForm', ['categories' => $categories]);
     }
     public function getWeetjes()
     {
-        $posts = Weetje::all();
+        $posts = Weetje::paginate(10);
         $gebruikers = User::all();
         // dd($posts);
-        return view('profiel', ['posts' => $posts]);
+        return view('Weetjes-Beheer', ['posts' => $posts]);
     }
     public function getUsers(Request $request)
     {
-        $users = User::all();
-
-        // dd($users);
-        return view('user', ['users' => $users]);
+        $users = User::paginate(10);
+        $datas = $request->session()->all();
+        // dd($datas);
+        return view('User-Beheer', ['users' => $users, 'datas' => $datas]);
     }
     public function getRoles(Request $request)
     {
@@ -67,7 +55,7 @@ class MainController extends Controller
         $allusers = User::with('roles')->get();
 
         // dd($allusers);
-        return view('roles', ['roles' => $roles, 'users' => $users, 'allusers' => $allusers]);
+        return view('Mijn-Rollen', ['roles' => $roles, 'users' => $users, 'allusers' => $allusers]);
     }
     public function store(Request $request)
     {
@@ -82,21 +70,33 @@ class MainController extends Controller
         $allusers = User::with('roles')->get();
 
         // dd($allusers);
-        return view('admin', ['roles' => $roles, 'users' => $users, 'allusers' => $allusers]);
+        return view('Rollen-Beheer', ['roles' => $roles, 'users' => $users, 'allusers' => $allusers]);
     }
     public function getWeetjes2()
     {
-        $posts = Weetje::all();
+        $posts = Weetje::paginate(10);
         $gebruikers = User::all();
         // dd($gebruikers);
-        return view('weetjess', ['posts' => $posts]);
+        return view('Alle-Weetjes', ['posts' => $posts]);
     }
     public function getSuggesties()
     {
-        $suggestie = Suggestie::all();
+        $suggestie = Suggestie::paginate(10);
 
 
         // dd($suggestie);
-        return view('suggesties', ['suggestie' => $suggestie]);
+        return view('Suggesties', ['suggestie' => $suggestie]);
+    }
+    public function test()
+    {
+        $users = \DB::table('users')
+            ->select(\DB::raw('count(*) as user_count, status'))
+            ->where('status', '!=', 1)
+            ->groupBy('status')
+            ->get();
+
+
+        dd($users);
+        return view('test', ['users' => $users]);
     }
 }

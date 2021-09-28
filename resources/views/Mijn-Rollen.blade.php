@@ -31,38 +31,14 @@
                 <tr>
                     <<th>Edit</th>
                         <th style="background-color: #aec6cf;" class="no-padding">
-                            <a href="{{route('admin.editRole',$users)}}">Edit</a>
+                            <a href="{{route('Rollen-Beheer.editRole',$users)}}">Edit</a>
                         </th>
                 </tr>
 
             </div>
         </thead>
         <tbody>
-            <div class="weetje">
-                <!-- @foreach($roles as $role)
-                <tr>
-                    <td>{{$users}}</td>
-                    <td>{{$role->role}}</td>
-                    <th style="background-color: #aec6cf;" class="no-padding">
-                        <a href="{{route('admin.editRole2',$role)}}">Edit</a>
-                    </th>
-                    <th style="background-color: #b0c4de;" class="no-padding">
-                        <a href="{{"deleteRole/".$role['id']}}">Delete</a>
-                    </th>
-                </tr>
-                @endforeach -->
 
-
-                <tr>
-
-
-
-
-
-                </tr>
-
-
-            </div>
 </div>
 </tbody>
 </table>
