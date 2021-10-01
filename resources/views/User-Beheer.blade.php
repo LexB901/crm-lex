@@ -69,8 +69,8 @@
                     <th style="background-color: #aec6cf;" class="no-padding">
                         <a href="{{route('User-Beheer.editUser',$user->id)}}">Edit</a>
                     </th>
-                    <th style="background-color:#e34234;" class="no-padding">
-                        <a onclick="return confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?')" href="{{"deleteUser/".$user->id}}">Delete</a>
+                    <th style="background-color:black" class="no-padding">
+                        <a style="color:rgba(243, 244, 246)" onclick="return confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?')" href="{{"deleteUser/".$user->id}}">Delete</a>
                     </th>
                     @if( $user->status == 0)
                     <th style="background-color:darkred;" class="no-padding">Banned</th>

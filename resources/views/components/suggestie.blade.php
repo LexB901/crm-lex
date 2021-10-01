@@ -102,7 +102,7 @@
 
 <div style="justify-content:right;" class="suggestie">
     <div class="bg-white" style="padding-top:20px;padding-bottom:20px">
-        <form id="suggestieformulier" action="/suggestie" method="post" style="width:90%;">
+        <form id="suggestieformulier" action="/Suggesties" method="get" style="width:90%;">
 
             @csrf
             <div class="mt-4">

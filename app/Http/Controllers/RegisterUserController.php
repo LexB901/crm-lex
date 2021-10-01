@@ -93,7 +93,7 @@ class RegisterUserController extends Controller
         $input = User::find($data['id']);
         $input->name = $data['name'];
         $input->email = $data['email'];
-        $input->status = $data['banned'];
+        $input->status = $data['status'];
         $input->save();
         // dd($data);
         return redirect('User-Beheer');
@@ -111,19 +111,16 @@ class RegisterUserController extends Controller
         $input->delete();
         // dd($input);
 
-        return redirect('User-Beheer');
-    }
-    public function banUser($id)
-    {
-        $input = User::find($id);
-
-        return redirect('User-Beheer');
+        return redirect()->back();
     }
     public function deleteSession(Request $request, $id)
     {
-        // retrieve sessions
         $session = \DB::table('sessions')->where('user_id', $id)->delete();
 
         return redirect('User-Beheer');
+    }
+    public function return()
+    {
+        return redirect()->back();
     }
 }

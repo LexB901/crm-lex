@@ -105,6 +105,6 @@ class WeetjesFormController extends Controller
     {
         $input = Weetje::find($id);
         $input->delete();
-        return redirect('Weetjes-Beheer');
+        return redirect()->back();
     }
 }

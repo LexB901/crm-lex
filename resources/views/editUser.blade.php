@@ -34,7 +34,7 @@
             </div> -->
             <div class="mt-4">
                 <x-label class="tt" for="status" :value="__('Wijzig de status:')" />
-                <select name="banned" class="select" style="width: 100%;">
+                <select name="status" class="select" style="width: 100%;">
 
                     @foreach($statuses as $item)
 
@@ -48,7 +48,7 @@
 
                 </select>
             </div>
-            <a class="flex items-center justify-end mt-4" onclick="return confirm('Weet je zeker dat je deze gebruiker wilt bijwerken met nieuwe informatie?')">
+            <a href="{{ url()->previous() }}" class="flex items-center justify-end mt-4" onclick="return confirm('Weet je zeker dat je deze gebruiker wilt bijwerken met nieuwe informatie?')">
                 <x-button class="mt-4">
                     {{ __('Wijzig gebruiker') }}
 
