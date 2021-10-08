@@ -23,22 +23,19 @@
                 <span></span>
 
                 <ul id="menu">
-                    <a class="hbm" href="/dashboard">
+                    <a class="hbm" href="/Home">
                         <li>Home</li>
                     </a>
-                    <a class="hbm" href="/weetjes">
+                    <a class="hbm" href="/WeetjesForm">
                         <li>Weetje toevoegen</li>
                     </a>
                     <a class="hbm" href="/Alle-Weetjes">
                         <li>Alle weetjes</li>
                     </a>
-                    <a class="hbm" href="/profiel">
-                        <li>Mijn weetjes</li>
-                    </a>
-                    <a class="hbm" href="/roles">
+                    <a class="hbm" href="/Mijn-Rollen">
                         <li>Mijn rollen</li>
                     </a>
-                    <a class="hbm" href="/beheer">
+                    <a class="hbm" href="/Admin-Nav">
                         <li>Beheer panel</li>
                     </a>
                     </a>

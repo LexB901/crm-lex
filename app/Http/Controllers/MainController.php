@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categorie;
 use App\Models\User;
+use App\project;
 use App\Weetje;
 use Illuminate\Support\Facades\Storage;
 use App\Suggestie;
+use App\Spending;
 
 
 class MainController extends Controller
@@ -23,6 +25,12 @@ class MainController extends Controller
     public function AdminNav()
     {
         return view('Admin-Nav');
+    }
+    public function spendings()
+    {
+        $projects = Project::select('id', 'project')->get();
+        // dd($projects);
+        return view('Spendings', ['projects' => $projects]);
     }
     public function create()
     {
@@ -42,6 +50,12 @@ class MainController extends Controller
         $datas = $request->session()->all();
         // dd($datas);
         return view('User-Beheer', ['users' => $users, 'datas' => $datas]);
+    }
+    public function getSpendings(Request $request)
+    {
+        $spendings = Spending::all();
+        // dd($spendings);
+        return view('SpendingsShow', ['spendings' => $spendings]);
     }
     public function getRoles(Request $request)
     {

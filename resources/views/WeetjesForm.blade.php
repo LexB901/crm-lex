@@ -28,10 +28,6 @@
         margin-top: 200px;
     }
 
-    .mt-4 {
-        padding-right: 11px;
-    }
-
     #text2 {
         display: none;
         color: red;
@@ -52,8 +48,7 @@
     }
 
     .next {
-        display: flex;
-        justify-content: right;
+        text-align: right;
     }
 
     .datepicker-switch {
@@ -89,6 +84,10 @@
         .container {
             width: 100%;
         }
+    }
+
+    .hbm:hover {
+        color: white;
     }
 
     .day:hover {

@@ -18,6 +18,7 @@ use App\Http\Controllers\WeetjesFormController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\RoleUserController;
 use App\Http\Controllers\SuggestieController;
+use App\Http\Controllers\spendingsFormController;
 
 Route::get('/', function () {
     return view('index');
@@ -26,6 +27,7 @@ Route::get('/', function () {
 Route::get('/Mijn-Rollen', [MainController::class, 'getRoles']);
 Route::get('/Suggesties', [MainController::class, 'getSuggesties']);
 Route::get('/test', [MainController::class, 'test']);
+Route::get('/Spendings', [MainController::class, 'Spendings']);
 
 
 Route::get('/Home', function () {
@@ -38,6 +40,7 @@ require __DIR__ . '/auth.php';
 Route::get('/WeetjesForm', [MainController::class, 'create']);
 Route::post('/Form', [WeetjesFormController::class, 'store']);
 Route::post('/Suggestie', [SuggestieController::class, 'store']);
+Route::post('/spend', [SpendingsFormController::class, 'store']);
 
 Route::get('/WeetjesForm/{id}/edit', [WeetjesFormController::class, 'edit'])->name('Form.edit');
 Route::get('/deleteWeetje/{id}', [WeetjesFormController::class, 'deleteWeetje']);
@@ -70,6 +73,7 @@ Route::middleware(['Administrator'])->group(function () {
     Route::get('User-Beheer', [MainController::class, 'getUsers']);
     Route::get('Weetjes-Beheer', [MainController::class, 'getWeetjes']);
     Route::get('Admin-Nav', [MainController::class, 'AdminNav']);
+    Route::get('SpendingsShow', [MainController::class, 'getSpendings']);
 });
 
 Route::middleware(['Lid'])->group(function () {
