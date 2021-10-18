@@ -148,6 +148,360 @@ li.page-item {
 .page-item.disabled {
 	color: lightgray;
 }
+.borderblock {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 5vh;
+	border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+	z-index: 10;
+}
+input {
+	padding: 0px;
+	margin: 0px;
+}
+
+select {
+	margin: 1px;
+}
+
+p {
+	padding: 0px;
+	margin: 0px;
+}
+
+textarea {
+	padding: 0px;
+	padding: 0px;
+}
+
+form {
+}
+
+.footer {
+	background-color: #9fc1cb;
+}
+
+.spendingspage {
+	display: flex;
+	position: relative;
+	width: 80vw;
+	height: 800px;
+	top: 5vh;
+	left: 200px;
+}
+
+.spendingsform {
+	padding: 10px;
+	box-sizing: content-box;
+	border: 1px solid black;
+	width: 250px;
+	position: absolute;
+	border: none;
+	border-right: 1px solid rgb(0, 0, 0, 0.1);
+	padding-top: 30px;
+	left: 300px;
+	font-family: Nunito;
+}
+
+#spendform {
+	height: 330px;
+}
+
+.pdfcontainer {
+	display: flex;
+	width: 100%;
+}
+
+.spendingsinput {
+	width: 240px;
+	border-radius: 0px;
+	border-width: 1px;
+	height: 28px;
+	font-size: 1.2rem;
+	border: none;
+	border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+	font-family: Nunito;
+}
+
+.fileoutput {
+	position: absolute;
+	right: 10vw;
+	height: 600px;
+	width: 66vw;
+	left: 571px;
+	top: 70px;
+	padding-left: 23px;
+	padding-top: 23px;
+}
+
+.notesinput {
+	height: 44px;
+}
+
+.fileinput {
+	margin-top: 10px;
+}
+
+.saveinput {
+	border-radius: 0px;
+	width: 60px;
+	height: 30px;
+	background: #333333;
+	color: white;
+	border: none;
+	position: absolute;
+	right: 50px;
+	bottom: 50px;
+}
+
+.svg {
+	width: 10px;
+}
+
+.date {
+	width: 190px;
+}
+
+.datepicker:hover {
+	cursor: default;
+}
+
+table {
+	width: 10vw;
+}
+
+.type {
+	padding: 10px;
+	margin-left: 10px;
+	border: solid 1px black;
+	background-color: black;
+	color: white;
+	height: 20px;
+}
+
+.selectmargin {
+	margin: 1px;
+}
+
+.radio-toolbar {
+	position: absolute;
+	left: 572px;
+	display: flex;
+	flex-direction: row;
+	padding: 3px;
+	border: 1px solid rgb(0, 0, 0, 0.1);
+	width: 70vw;
+	margin-left: 20px;
+	margin-top: 30px;
+}
+
+.radio-toolbar input[type="radio"] {
+	opacity: 0;
+	width: 0;
+}
+
+.radio-toolbar label {
+	background-color: #333333;
+	padding: 10px;
+	font-family: sans-serif, Arial;
+	color: white;
+	font-size: 16px;
+	border-radius: 0px;
+}
+
+.radio-toolbar input[type="radio"]:checked + label {
+	background-color: white;
+	color: black;
+}
+
+.caterror {
+	color: #d22b2b;
+}
+
+.selectborder {
+	border: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.management {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 300px;
+	height: 92vh;
+	background-color: #ffffff;
+	border-right: 1px solid rgb(0, 0, 0, 0.1);
+	z-index: 0;
+	overflow: auto;
+}
+
+.total {
+	position: absolute;
+	z-index: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 50px;
+	background-color: #ffffff;
+	border-top: 1px solid rgb(0, 0, 0, 0.1);
+	color: black;
+}
+
+.amount {
+	position: absolute;
+	left: 210px;
+	bottom: 15px;
+	font-family: Nunito;
+}
+
+.ptitle {
+	font-size: 1.5rem;
+	font-style: italic;
+	padding-bottom: 25px;
+	color: #000000;
+	margin-left: 15px;
+	font-weight: 530;
+}
+
+.spendingid {
+	display: flex;
+	margin-bottom: 5px;
+}
+
+.plussvg {
+	height: 1em;
+	position: absolute;
+	right: 5px;
+	top: 10px;
+}
+
+.navspendings {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 200px;
+	height: 100vh;
+	background-color: #333333;
+	z-index: 20;
+	text-align: left;
+}
+
+.navspendbox {
+	position: absolute;
+	top: 120px;
+}
+
+.navspendtext {
+	color: white;
+	position: absolute;
+	text-decoration: none;
+	width: 180px;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	text-transform: uppercase;
+	font-weight: 250;
+	padding-left: 20px;
+	padding-bottom: 0.75rem;
+	padding-top: 0.75rem;
+	border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+}
+
+.navspendtextbox {
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+}
+
+.navspendtext:hover {
+	background-color: rgb(0, 0, 0, 0.3);
+}
+
+.navspendings {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 200px;
+	height: 100vh;
+	background-color: #333333;
+	z-index: 20;
+	text-align: left;
+}
+
+.navspendtext {
+	color: white;
+	position: absolute;
+	text-decoration: none;
+	width: 180px;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	text-transform: uppercase;
+	font-weight: 250;
+	padding-left: 20px;
+	padding-bottom: 0.75rem;
+	padding-top: 0.75rem;
+	border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+}
+
+.navspendtextbox {
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+}
+
+.navspendtext:hover {
+	background-color: rgb(0, 0, 0, 0.3);
+}
+
+.deletespending {
+	display: flex;
+	justify-content: center;
+	text-decoration: none;
+	background-color: #333333;
+	color: white;
+	border-radius: 5px;
+	padding-top: 2px;
+	margin-right: 15px;
+	margin-left: 15px;
+}
+
+.spendingleft {
+	display: flex;
+	margin-left: 15px;
+}
+
+.spendinghover {
+	margin-left: 15px;
+	margin-right: 15px;
+	padding-left: 5px;
+	margin-bottom: 5px;
+	border-top: 1px solid rgb(0, 0, 0, 0.2);
+}
+
+.spendinghover:hover {
+	background-color: rgb(0, 0, 0, 0.1);
+	border-radius: 10px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.spendingname {
+	display: flex;
+	justify-content: space-between;
+	text-decoration: none;
+}
+
+.spendingamount {
+	display: flex;
+	justify-content: right;
+	text-decoration: none;
+}
+
+.addbgtospending {
+	background-color: rgb(0, 0, 0);
+}
+
+.togglespending {
+	background-color: rgb(0, 0, 0, 0.2);
+	border-radius: 5px;
+}
 
 /* Hamburger Menu */
 

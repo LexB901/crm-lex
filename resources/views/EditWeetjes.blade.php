@@ -69,6 +69,20 @@
                 {{-- <option value="Eten">Eten</option>--}}
                 {{-- <option value="Transport">Transport</option>--}}
                 {{-- </select>--}}
+
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+
+                <div class="container">
+                    <input value="{{$input->date}}" name="date" id="datepicker" class="date form-control" type="text" readonly>
+                </div>
+
+                <script type="text/javascript">
+                    $('.date').datepicker({
+                        format: 'yyyy-mm-dd'
+                    });
+                </script>
+
                 <a onclick="return confirm('Weet je zeker dat je dit weetje wilt wijzigen?')" class="flex items-center justify-end mt-4">
                     <x-button>
                         {{ __('Weetje wijzigen') }}

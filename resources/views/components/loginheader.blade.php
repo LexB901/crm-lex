@@ -8,6 +8,7 @@
             </div>
 
             <div class="links">
+                <a href="/Spendings">Expenses</a>
                 <a href="/Home">Home</a>
                 <a href="/WeetjesForm">Weetje toevoegen</a>
                 <a href="/Alle-Weetjes">Alle weetjes</a>
@@ -23,6 +24,9 @@
                 <span></span>
 
                 <ul id="menu">
+                    <a class="hbm" href="/Spendings">
+                        <li>Expenses</li>
+                    </a>
                     <a class="hbm" href="/Home">
                         <li>Home</li>
                     </a>
@@ -38,7 +42,7 @@
                     <a class="hbm" href="/Admin-Nav">
                         <li>Beheer panel</li>
                     </a>
-                    </a>
+
                 </ul>
             </div>
         </nav>

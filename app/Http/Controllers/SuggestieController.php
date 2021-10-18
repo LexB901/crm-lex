@@ -66,7 +66,7 @@ class SuggestieController extends Controller
     {
         $suggestie = Suggestie::find($id);
 
-        // dd($suggestie);
+        dd($suggestie);
         return view('editSuggesties', ['input' => $suggestie]);
     }
 

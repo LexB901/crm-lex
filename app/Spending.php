@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\project;
+use App\Project;
 
 class Spending extends Model
 {
-    protected $fillable = ['name', 'date', 'project', 'currency', 'note', 'file', 'type'];
+    protected $fillable = ['name', 'date', 'project', 'currency', 'note', 'file', 'type', 'amount'];
     protected $with = ['projects'];
     public function projects()
     {

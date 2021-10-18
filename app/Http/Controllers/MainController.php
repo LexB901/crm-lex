@@ -28,9 +28,10 @@ class MainController extends Controller
     }
     public function spendings()
     {
+        $spendings = Spending::all();
         $projects = Project::select('id', 'project')->get();
-        // dd($projects);
-        return view('Spendings', ['projects' => $projects]);
+        // dd($spendings);
+        return view('Spendings', ['projects' => $projects, 'spendings' => $spendings]);
     }
     public function create()
     {

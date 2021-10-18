@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStatusToUsersTable extends Migration
+class CreateSpendingStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddStatusToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('status')->default(1);
+        Schema::create('spending_statuses', function (Blueprint $table) {
+            $table->id();
+            $table->string('Status');
+            $table->timestamps();
         });
     }
 
@@ -25,7 +27,6 @@ class AddStatusToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-        });
+        Schema::dropIfExists('spending_statuses');
     }
 }

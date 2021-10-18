@@ -36,7 +36,7 @@
                     <td>{{$post->title}}</td>
                     <td>{{$post->weetje}}</td>
                     <td>{{$post->categorien->categorie}}</td>
-                    <td>{{\Carbon\Carbon::parse($post['created_at'])->format('d/m/Y')}}</td>
+                    <td>{{\Carbon\Carbon::parse($post['date'])->format('d/m/Y')}}</td>
                     <th style="background-color: #aec6cf;" class="no-padding">
 
                         <a href="{{route('Form.edit',$post->id)}}">Edit</a>

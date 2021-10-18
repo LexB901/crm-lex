@@ -1,222 +1,43 @@
-@extends('layouts.themalogin')
-
-@section('content')
 <style>
-    body {
-        background-color: #9FC1CB;
-    }
 
-    input {
-        padding: 0px;
-        margin: 0px;
-    }
-
-    select {
-        margin: 1px;
-    }
-
-    p {
-        padding: 0px;
-        margin: 0px;
-    }
-
-    textarea {
-        padding: 0px;
-        padding: 0px;
-    }
-
-    .footer {
-        background-color: #9FC1CB;
-    }
-
-    .spendingspage {
-        display: flex;
-        position: relative;
-        width: 80vw;
-        height: 800px;
-        top: 10vh;
-        left: 10vw;
-    }
-
-    .spendingsform {
-        background-color: #E3E3E3;
-        padding: 10px;
-        box-sizing: content-box;
-        border: 1px solid black;
-        width: 250px;
-        position: absolute;
-    }
-
-    #spendform {
-        height: 330px
-    }
-
-    .pdfcontainer {
-        display: flex;
-        width: 100%;
-    }
-
-    .spendingsinput {
-        width: 240px;
-        border-radius: 0px;
-        border-width: 1px;
-        height: 28px;
-        font-size: 1.2rem;
-    }
-
-    .fileoutput {
-        position: absolute;
-        right: 10vw;
-        height: 600px;
-        width: 66vw;
-        left: 272px;
-        top: 40px;
-        padding-left: 20px;
-        padding-top: 20px;
-    }
-
-    .notesinput {
-        height: 44px;
-    }
-
-    .fileinput {
-        margin-top: 10px;
-
-    }
-
-    .saveinput {
-        border-radius: 0px;
-        width: 60px;
-        height: 30px;
-        background: black;
-        color: white;
-        border: none;
-        position: absolute;
-        right: 230px;
-        bottom: 490px;
-    }
-
-    .svg {
-        width: 10px;
-    }
-
-    .date {
-        width: 190px;
-    }
-
-    .datepicker:hover {
-        cursor: default;
-    }
-
-    table {
-        width: 10vw;
-
-    }
-
-    .type {
-        padding: 10px;
-        margin-right: 10px;
-        border: solid 1px black;
-        background-color: black;
-        color: white;
-        height: 20px;
-    }
-
-    .selectmargin {
-        margin: 1px;
-    }
-
-    .radio-toolbar {
-        position: absolute;
-        left: 272px;
-        display: flex;
-        flex-direction: row;
-        padding-left: 10px;
-    }
-
-    .radio-toolbar input[type="radio"] {
-        opacity: 0;
-        width: 0;
-    }
-
-    .radio-toolbar label {
-        background-color: black;
-        padding: 10px;
-        font-family: sans-serif, Arial;
-        color: white;
-        font-size: 16px;
-        border-radius: 0px;
-    }
-
-    .radio-toolbar input[type="radio"]:checked+label {
-        background-color: white;
-        border-color: black;
-        color: black;
-    }
 </style>
-<div class="spendingspage">
-    <div class="spendingsform">
-        <form id="spendform" action="/spend" method="post" enctype="multipart/form-data">
-            @csrf
-            Name<br>
-            <textarea class="spendingsinput" type="text" name="name"></textarea><br>
-            Date<br>
-            <input type="date" name="date" class="spendingsinput">
-            Projects<br>
-            <select name="project" class="spendingsinput selectmargin">
-                <option selected disabled value="">Selecteer een project</option>
-
-                @foreach($projects as $project)
-
-                <option value="{{$project->id}}">{{$project->project}}</option>
-
-                @endforeach
-            </select>
-            Currencies
-            <select class="spendingsinput selectmargin" name="currency" id="currencylist"><br>
-                <option selected disabled value="">Selecteer een currency</option>
-            </select>
-            Notes<br>
-            <textarea class="spendingsinput notesinput" type="text" name="note"></textarea><br>
-            <input class="fileinput spendingsinput" type="file" name="file" accept="application/pdf" placeholder="Drop a file" onchange="loadFile(event)"><br>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li class="caterror">{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-
-        </form>
-
-    </div>
-    <div class="pdfcontainer">
-        <div class="radio-toolbar">
-            <input type="radio" id="radioINK" class="type" name="type" value="INK" checked form="spendform">
-            <label for="radioINK">INK</label>
-
-            <input type="radio" id="radioVRK" class="type" name="type" value="VRK" form="spendform">
-            <label for="radioVRK">VRK</label>
-
-            <input type="radio" id="radioCNT" class="type" name="type" value="CNT" form="spendform">
-            <label for="radioCNT">CNT</label>
+<link rel="stylesheet" href="/css/style.css">
+<div class="borderblock"></div>
+<div class="navspendings">
+    <div class="navspendbox">
+        <div class="navspendtextbox">
+            <a style="text-decoration:none;" class="navspendtext" href="/Home">Home</a><br>
         </div>
-
-        <p><embed class="fileoutput" id="output" /></p>
-        <script>
-            let loadFile = function(event) {
-                let file = document.getElementById('output');
-                file.src = URL.createObjectURL(event.target.files[0]);
-            };
-        </script>
-
+        <div class="navspendtextbox">
+            <a style="text-decoration:none;" class="navspendtext" href="/WeetjesForm">Weetje Toevoegen</a><br>
+        </div>
+        <div class="navspendtextbox">
+            <a style="text-decoration:none;" class="navspendtext" href="Alle-Weetjes">Alle Weetjes</a><br>
+        </div>
+        <div class="navspendtextbox">
+            <a style="text-decoration:none;" class="navspendtext" href="Mijn-Rolles">Mijn Rollen</a><br>
+        </div>
+        <div class="navspendtextbox">
+            <a style="text-decoration:none;border:none;" class="navspendtext" href="Admin-Nav">Admin Panel</a><br>
+        </div>
     </div>
 </div>
-<input class="saveinput" type="submit" value="SAVE" form="spendform">
+<div class="spendingspage">
+    <div class="management">
+        <p class="ptitle">Expensemanagement</p>
+        <a href="/Spendings/create">
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="plussvg">
+                <path fill="currentColor" d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z" class=""></path>
+            </svg>
+        </a>
 
+        @foreach($spendings as $spending)
+        <div class="spendinghover">
+            <a href="{{route('Spendings.edit',$spending->id)}}" class="spendingleft" style="text-decoration:none;">{{ $spending->name }}</a>
+            <a href="{{route('Spendings.edit',$spending->id)}}" style="display:flex;justify-content:right;margin-right:15px;text-decoration:none;">€{{ $spending->amount }}</a>
+            <a href="{{route('Spendings.edit',$spending->id)}}" class="spendingleft" style="text-decoration:none;">{{ $spending->id }}</a>
+        </div>
+        <a onclick="return confirm('Weet je zeker dat je deze gebruiker zijn sessie wilt verwijderen?')" href="{{"Spendings/".$spending['id']."/delete"}}" class="spendingid deletespending">Delete</a>
 
-
-
-@endsection
+        @endforeach
+    </div>

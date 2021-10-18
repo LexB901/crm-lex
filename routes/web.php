@@ -37,10 +37,17 @@ Route::get('/Home', function () {
 require __DIR__ . '/auth.php';
 
 
+Route::get('/Spendings/{id}/edit', [spendingsFormController::class, 'edit'])->name('Spendings.edit');
+Route::get('/Spendings/create', [spendingsFormController::class, 'create'])->name('Spendings.create');
+Route::post('/Spendings', [SpendingsFormController::class, 'store']);
+Route::post('/Spendings/{id}/update', [SpendingsFormController::class, 'update']);
+Route::get('/Spendings/{id}/delete', [SpendingsFormController::class, 'delete']);
+Route::get('/{id}/delete', [SpendingsFormController::class, 'delete']);
+
+
 Route::get('/WeetjesForm', [MainController::class, 'create']);
 Route::post('/Form', [WeetjesFormController::class, 'store']);
 Route::post('/Suggestie', [SuggestieController::class, 'store']);
-Route::post('/spend', [SpendingsFormController::class, 'store']);
 
 Route::get('/WeetjesForm/{id}/edit', [WeetjesFormController::class, 'edit'])->name('Form.edit');
 Route::get('/deleteWeetje/{id}', [WeetjesFormController::class, 'deleteWeetje']);

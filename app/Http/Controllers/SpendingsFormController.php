@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\project;
+use App\Project;
 use App\Spending;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,7 +28,11 @@ class SpendingsFormController extends Controller
      */
     public function create()
     {
-        return view('WeetjesForm'); //
+        $spendings = Spending::all();
+        $projects = Project::select('id', 'project')->get();
+
+        // dd($spending);
+        return view('/Spendings/create', ['spendings' => $spendings, 'projects' => $projects]);
     }
 
     /**
@@ -41,29 +45,29 @@ class SpendingsFormController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'date' => 'required',
+            'date' => 'date_format:"Y-m-d"|required',
+            'file' => 'required',
             'project' => 'required',
             'currency' => 'required',
-            'note' => 'required',
-            'file' => 'required',
             'type' => 'required',
-
-
+            'amount' => 'required',
         ]);
 
         $data = $request->all();
-        // dd($data);
+
         $spending = Spending::create($data);
+        $spendings = Spending::all();
+        $projects = Project::select('id', 'project')->get();
 
-        $projects = project::select('id', 'project')->get();
-
-        $store = Storage::disk('public')->put($spending->id, $request->file);
+        $store = Storage::disk('public')->put($spending->id, $request->file('file'));
         $spending->update([
             'file' => $store,
         ]);
         $message = "uitgave verzonden";
+        // dd($data);
+
         echo "<script type='text/javascript'>alert('$message');</script>";
-        return view('Spendings', ['input' => $spending, 'categorie' => $spending->projects, 'projects' => $projects]);
+        return view('Spendings', ['spendings' => $spendings, 'categorie' => $spending->projects, 'projects' => $projects]);
     }
 
     /**
@@ -74,7 +78,6 @@ class SpendingsFormController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -85,6 +88,13 @@ class SpendingsFormController extends Controller
      */
     public function edit($id)
     {
+        $spending = Spending::find($id);
+        $projects = Project::select('id', 'project')->get();
+
+        $spendings = Spending::all();
+        // dd($spending);
+
+        return view('/Spendings/edit', ['input' => $spending, 'projects' => $projects, 'project' => $spending->projects, 'spendings' => $spendings]);
     }
 
     /**
@@ -94,8 +104,21 @@ class SpendingsFormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $data = $request->all();
+        // dd($request->input('project'));
+
+        $input = Spending::find($id);
+        $input->name = $data['name'];
+        $input->date = $data['date'];
+        $input->project = $data['project'];
+        $input->currency = $data['currency'];
+        $input->type = $data['type'];
+        $input->amount = $data['amount'];
+        $input->update();
+
+        return redirect('Spendings');
     }
 
     /**
@@ -106,5 +129,9 @@ class SpendingsFormController extends Controller
      */
     public function delete($id)
     {
+        $input = Spending::find($id);
+        $input->delete();
+
+        return redirect()->back();
     }
 }
