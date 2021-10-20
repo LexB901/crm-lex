@@ -13,6 +13,16 @@
 <div class="borderblock"></div>
 <div class="navspendings">
     <div class="navspendbox">
+        @if(Request::url() === 'http://localhost:8000/Spendings/create')
+        <style>
+            .currentnav1 {
+                background-color: rgb(0, 0, 0, .3);
+            }
+        </style>
+        @endif
+        <div class="navspendtextbox">
+            <a style="text-decoration:none;" class="navspendtext currentnav1" href="/Spendings">Expenses</a><br>
+        </div>
         <div class="navspendtextbox">
             <a style="text-decoration:none;" class="navspendtext" href="/Home">Home</a><br>
         </div>

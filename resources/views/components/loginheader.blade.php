@@ -1,5 +1,7 @@
 <header>
+    <style>
 
+    </style>
     <div class="flex-center position-ref full-height">
         <div class="top-right links"></div>
         <div class="content">
@@ -8,12 +10,47 @@
             </div>
 
             <div class="links">
+                @if(Request::url() === 'http://localhost:8000/Home')
+                <style>
+                    .currentnav1 {
+                        text-decoration: underline;
+                    }
+                </style>
+                @endif
+                @if(Request::url() === 'http://localhost:8000/WeetjesForm')
+                <style>
+                    .currentnav2 {
+                        text-decoration: underline;
+                    }
+                </style>
+                @endif
+                @if(Request::url() === 'http://localhost:8000/Alle-Weetjes')
+                <style>
+                    .currentnav3 {
+                        text-decoration: underline;
+                    }
+                </style>
+                @endif
+                @if(Request::url() === 'http://localhost:8000/Mijn-Rollen')
+                <style>
+                    .currentnav4 {
+                        text-decoration: underline;
+                    }
+                </style>
+                @endif
+                @if(Request::url() === 'http://localhost:8000/Admin-Nav')
+                <style>
+                    .currentnav5 {
+                        text-decoration: underline;
+                    }
+                </style>
+                @endif
                 <a href="/Spendings">Expenses</a>
-                <a href="/Home">Home</a>
-                <a href="/WeetjesForm">Weetje toevoegen</a>
-                <a href="/Alle-Weetjes">Alle weetjes</a>
-                <a href="/Mijn-Rollen">Mijn rollen</a>
-                <a href="/Admin-Nav">Admin panel</a>
+                <a class="currentnav1" href="/Home">Home</a>
+                <a class="currentnav2" href="/WeetjesForm">Weetje toevoegen</a>
+                <a class="currentnav3" href="/Alle-Weetjes">Alle weetjes</a>
+                <a class="currentnav4" href="/Mijn-Rollen">Mijn rollen</a>
+                <a class="currentnav5" href="/Admin-Nav">Admin panel</a>
             </div>
         </div>
         <nav role="navigation">

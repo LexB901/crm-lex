@@ -5,6 +5,16 @@
 <div class="borderblock"></div>
 <div class="navspendings">
     <div class="navspendbox">
+        @if(Request::url() === 'http://localhost:8000/Spendings')
+        <style>
+            .currentnav1 {
+                background-color: rgb(0, 0, 0, .3);
+            }
+        </style>
+        @endif
+        <div class="navspendtextbox">
+            <a style="text-decoration:none;" class="navspendtext currentnav1" href="/Spendings">Expenses</a><br>
+        </div>
         <div class="navspendtextbox">
             <a style="text-decoration:none;" class="navspendtext" href="/Home">Home</a><br>
         </div>
@@ -12,13 +22,13 @@
             <a style="text-decoration:none;" class="navspendtext" href="/WeetjesForm">Weetje Toevoegen</a><br>
         </div>
         <div class="navspendtextbox">
-            <a style="text-decoration:none;" class="navspendtext" href="Alle-Weetjes">Alle Weetjes</a><br>
+            <a style="text-decoration:none;" class="navspendtext" href="/Alle-Weetjes">Alle Weetjes</a><br>
         </div>
         <div class="navspendtextbox">
-            <a style="text-decoration:none;" class="navspendtext" href="Mijn-Rolles">Mijn Rollen</a><br>
+            <a style="text-decoration:none;" class="navspendtext" href="/Mijn-Rollen">Mijn Rollen</a><br>
         </div>
         <div class="navspendtextbox">
-            <a style="text-decoration:none;border:none;" class="navspendtext" href="Admin-Nav">Admin Panel</a><br>
+            <a style="text-decoration:none;border:none;" class="navspendtext" href="/Admin-Nav">Admin Panel</a><br>
         </div>
     </div>
 </div>

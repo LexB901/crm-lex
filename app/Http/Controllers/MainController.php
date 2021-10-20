@@ -52,12 +52,6 @@ class MainController extends Controller
         // dd($datas);
         return view('User-Beheer', ['users' => $users, 'datas' => $datas]);
     }
-    public function getSpendings(Request $request)
-    {
-        $spendings = Spending::all();
-        // dd($spendings);
-        return view('SpendingsShow', ['spendings' => $spendings]);
-    }
     public function getRoles(Request $request)
     {
         // $roles = \Auth::user()->roles;
