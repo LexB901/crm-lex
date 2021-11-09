@@ -19,13 +19,13 @@ class AdministratorMiddleware
     {
         $isadministrator = false;
         foreach (\Auth::user()->roles as $role) {
-            if ($role->role == 'Administrator') {
+            if ($role->role == 'Admin') {
                 $isadministrator = true;
             }
         }
 
         if (!$isadministrator) {
-            return response()->view('failed', ['role' => 'Administrator', '‘logged’' => $request->user()->role]);
+            return response()->view('failed', ['role' => 'Admin', '‘logged’' => $request->user()->role]);
         }
 
         return $next($request);

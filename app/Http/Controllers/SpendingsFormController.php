@@ -32,7 +32,7 @@ class SpendingsFormController extends Controller
         $projects = Project::select('id', 'project')->get();
 
         // dd($spending);
-        return view('/Spendings/create', ['spendings' => $spendings, 'projects' => $projects]);
+        return view('/expense/create', ['spendings' => $spendings, 'projects' => $projects]);
     }
 
     /**
@@ -49,6 +49,7 @@ class SpendingsFormController extends Controller
             'file' => 'required',
             'project' => 'required',
             'currency' => 'required',
+            'note' => 'required',
             'type' => 'required',
             'amount' => 'required',
         ]);
@@ -63,11 +64,11 @@ class SpendingsFormController extends Controller
         $spending->update([
             'file' => $store,
         ]);
-        $message = "uitgave verzonden";
+        $message = "expense verzonden";
         // dd($data);
 
         echo "<script type='text/javascript'>alert('$message');</script>";
-        return view('Spendings', ['spendings' => $spendings, 'categorie' => $spending->projects, 'projects' => $projects]);
+        return view('/expenses', ['spendings' => $spendings, 'categorie' => $spending->projects, 'projects' => $projects]);
     }
 
     /**
@@ -94,7 +95,7 @@ class SpendingsFormController extends Controller
         $spendings = Spending::all();
         // dd($spending);
 
-        return view('/Spendings/edit', ['input' => $spending, 'projects' => $projects, 'project' => $spending->projects, 'spendings' => $spendings]);
+        return view('/expense/edit', ['input' => $spending, 'projects' => $projects, 'project' => $spending->projects, 'spendings' => $spendings]);
     }
 
     /**
@@ -114,11 +115,12 @@ class SpendingsFormController extends Controller
         $input->date = $data['date'];
         $input->project = $data['project'];
         $input->currency = $data['currency'];
+        $input->note = $data['note'];
         $input->type = $data['type'];
         $input->amount = $data['amount'];
         $input->update();
 
-        return redirect('Spendings');
+        return redirect('/expenses');
     }
 
     /**

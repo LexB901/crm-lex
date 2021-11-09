@@ -1,42 +1,23 @@
-<style>
+@extends('layouts.themalogin')
 
-</style>
-<link rel="stylesheet" href="/css/style.css">
+@section('content')
+<title>ST.APE | Expenses</title>
+
 <div class="borderblock"></div>
-<div class="navspendings">
-    <div class="navspendbox">
-        @if(Request::url() == "http://localhost:8000/Spendings/".$input->id."/edit")
-        <style>
-            .currentnav1 {
-                background-color: rgb(0, 0, 0, .3);
-            }
-        </style>
-        @endif
-        <div class="navspendtextbox">
-            <a style="text-decoration:none;" class="navspendtext currentnav1" href="/Spendings">Expenses</a><br>
-        </div>
-        <div class="navspendtextbox">
-            <a style="text-decoration:none;" class="navspendtext" href="/Home">Home</a><br>
-        </div>
-        <div class="navspendtextbox">
-            <a style="text-decoration:none;" class="navspendtext" href="/WeetjesForm">Weetje Toevoegen</a><br>
-        </div>
-        <div class="navspendtextbox">
-            <a style="text-decoration:none;" class="navspendtext" href="/Alle-Weetjes">Alle Weetjes</a><br>
-        </div>
-        <div class="navspendtextbox">
-            <a style="text-decoration:none;" class="navspendtext" href="/Mijn-Rollen">Mijn Rollen</a><br>
-        </div>
-        <div class="navspendtextbox">
-            <a style="text-decoration:none;border:none;" class="navspendtext" href="/Admin-Nav">Admin Panel</a><br>
-        </div>
-    </div>
-</div>
+
+@if(Request::url() === "http://localhost:8000/expense/".$input->id."/edit")
+<style>
+    .currentnav2 {
+        background-color: rgb(0, 0, 0, .3);
+    }
+</style>
+@endif
+
 <div class="spendingspage">
 
     <div class="management">
         <p class="ptitle">Expensemanagement</p>
-        <a href="/Spendings/create">
+        <a href="/expense/create">
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="plussvg">
                 <path fill="currentColor" d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z" class=""></path>
             </svg>
@@ -47,20 +28,21 @@
 
             @if ($spending->id != $input->id)
             <div class="spendinghover">
-                <a href="{{route('Spendings.edit',$spending->id)}}" class="spendingname" style="text-decoration:none;">{{ $spending->name }}</a>
-                <a href="{{route('Spendings.edit',$spending->id)}}" class="spendingamount" style="text-decoration:none;">€{{ $spending->amount }}</a>
-                <a href="{{route('Spendings.edit',$spending->id)}}" class="spendingid" style="text-decoration:none;">{{ $spending->id }}</a>
+                <a href="{{route('expense.edit',$spending->id)}}" class="spendingname" style="text-decoration:none;">{{ $spending->name }}</a>
+                <a href="{{route('expense.edit',$spending->id)}}" class="spendingamount" style="text-decoration:none;">€{{ $spending->amount }}</a>
+                <a href="{{route('expense.edit',$spending->id)}}" class="spendingid" style="text-decoration:none;">{{ $spending->id }}</a>
             </div>
-            <a onclick="return confirm('Weet je zeker dat je deze gebruiker zijn sessie wilt verwijderen?')" href="{{"/Spendings/".$spending['id']."/delete"}}" class="spendingid deletespending" style="text-decoration:none;">Delete</a>
+            <a onclick="return confirm('Weet je zeker dat je deze gebruiker zijn sessie wilt verwijderen?')" href="{{"/expense/".$spending['id']."/delete"}}" class="spendingid deletespending" style="text-decoration:none;">Delete</a>
             @else
             <div class="spendinghover togglespending">
-                <a href="{{route('Spendings.edit',$spending->id)}}" class="spendingname" style="text-decoration:none;">{{ $spending->name }}</a>
-                <a href="{{route('Spendings.edit',$spending->id)}}" class="spendingamount" style="text-decoration:none;">€{{ $spending->amount }}</a>
-                <a href="{{route('Spendings.edit',$spending->id)}}" class="spendingid" style="text-decoration:none;">{{ $spending->id }}</a>
+                <a href="{{route('expense.edit',$spending->id)}}" class="spendingname" style="text-decoration:none;">{{ $spending->name }}</a>
+                <a href="{{route('expense.edit',$spending->id)}}" class="spendingamount" style="text-decoration:none;">€{{ $spending->amount }}</a>
+                <a href="{{route('expense.edit',$spending->id)}}" class="spendingid" style="text-decoration:none;">{{ $spending->id }}</a>
             </div>
             <a onclick="return confirm('Je kan de uitgave niet verwijderen, omdat je hem aan het wijzigen bent.')" class="spendingid deletespending" style="text-decoration:none">Delete</a>
 
             @endif
+
             @endforeach
         </div>
 
@@ -69,7 +51,15 @@
 
     </div>
     <div class="spendingsform">
-        <form id="spendform" action="/Spendings/{{$spending->id}}/update" method="post">
+        @foreach($spendings as $spending)
+        @if ($spending->id != $input->id)
+        @else
+
+        <form id="spendform" action="/expense/{{$spending->id}}/update" method="post">
+            @endif
+
+            @endforeach
+
             <!-- enctype="multipart/form-data" -->
             @csrf
             Name<br>

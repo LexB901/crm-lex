@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Register;
 use App\Models\User;
 use App\Models\Status;
-use App\Http\Controllers\Auth;
+use Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterUserController extends Controller
@@ -28,7 +28,12 @@ class RegisterUserController extends Controller
      */
     public function create()
     {
-        return view('index'); //
+        $users = User::all();
+        $statuses = Status::all();
+
+        // dd($users);
+
+        return view('/user/create', ['users' => $users, 'statuses' => $statuses]); //
     }
 
     /**
@@ -43,15 +48,13 @@ class RegisterUserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'password_confirmation' => 'required',
-            'image' => 'required',
+            'password_confirmation',
 
         ]);
-        $store = Storage::disk('public')->put('example.txt', $request->file);
         $data = $request->all();
         $user = Register::create($data);
         // dd($data);
-        return view('Beheer-User', ["input" => $user, 'image' => $store]);
+        return view('/user/create', ["input" => $user]);
     }
 
     /**
@@ -62,7 +65,8 @@ class RegisterUserController extends Controller
      */
     public function show($id)
     {
-        //
+        // $data = User::find($id);
+        // return view('account', ['data' => $data]);
     }
 
     /**
@@ -71,12 +75,14 @@ class RegisterUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editUser($id)
+    public function edit($id)
     {
         $user = User::find($id);
         $statuses = Status::all();
+
+        $users = User::all();
         // dd($user->statuss);
-        return view('editUser', ['input' => $user, 'statuses' => $statuses, 'status' => $user->statuss]);
+        return view('/user/edit', ['input' => $user, 'statuses' => $statuses, 'status' => $user->statuss, 'users' => $users]);
     }
 
     /**
@@ -96,7 +102,19 @@ class RegisterUserController extends Controller
         $input->status = $data['status'];
         $input->save();
         // dd($data);
-        return redirect('User-Beheer');
+        return redirect('/user/show');
+    }
+
+    public function accountUpdate(Request $request)
+    {
+        $data = $request->all();
+
+        $input = User::find($data['id']);
+        $input->name = $data['name'];
+        $input->email = $data['email'];
+        $input->save();
+        // dd($data);
+        return redirect('account');
     }
 
     /**
@@ -117,7 +135,7 @@ class RegisterUserController extends Controller
     {
         $session = \DB::table('sessions')->where('user_id', $id)->delete();
 
-        return redirect('User-Beheer');
+        return redirect('/user/show');
     }
     public function return()
     {

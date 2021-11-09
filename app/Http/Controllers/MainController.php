@@ -2,55 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Categorie;
 use App\Models\User;
 use App\project;
-use App\Weetje;
 use Illuminate\Support\Facades\Storage;
-use App\Suggestie;
 use App\Spending;
 
 
 class MainController extends Controller
 {
-    public function login()
-    {
-        return view('login');
-    }
-    public function registreer()
-    {
-        return view('registreer');
-    }
     public function AdminNav()
     {
         return view('Admin-Nav');
     }
-    public function spendings()
+    public function expenses()
     {
         $spendings = Spending::all();
         $projects = Project::select('id', 'project')->get();
         // dd($spendings);
-        return view('Spendings', ['projects' => $projects, 'spendings' => $spendings]);
+        return view('expense.show ', ['projects' => $projects, 'spendings' => $spendings]);
     }
-    public function create()
-    {
-        $categories = Categorie::select('id', 'categorie')->get();
-        return view('WeetjesForm', ['categories' => $categories]);
-    }
-    public function getWeetjes()
-    {
-        $posts = Weetje::paginate(10);
-        $gebruikers = User::all();
-        // dd($posts);
-        return view('Weetjes-Beheer', ['posts' => $posts]);
-    }
-    public function getUsers(Request $request)
+
+    public function users(Request $request)
     {
         $users = User::paginate(10);
-        $datas = $request->session()->all();
-        // dd($datas);
-        return view('User-Beheer', ['users' => $users, 'datas' => $datas]);
+
+        // dd($users);
+        return view('user.show', ['users' => $users]);
     }
     public function getRoles(Request $request)
     {
@@ -81,31 +60,12 @@ class MainController extends Controller
         // dd($allusers);
         return view('Rollen-Beheer', ['roles' => $roles, 'users' => $users, 'allusers' => $allusers]);
     }
-    public function getWeetjes2()
+    public function account(Request $request)
     {
-        $posts = Weetje::paginate(10);
-        $gebruikers = User::all();
-        // dd($gebruikers);
-        return view('Alle-Weetjes', ['posts' => $posts]);
-    }
-    public function getSuggesties()
-    {
-        $suggestie = Suggestie::paginate(10);
-
-
-        // dd($suggestie);
-        return view('Suggesties', ['suggestie' => $suggestie]);
-    }
-    public function test()
-    {
-        $users = \DB::table('users')
-            ->select(\DB::raw('count(*) as user_count, status'))
-            ->where('status', '!=', 1)
-            ->groupBy('status')
-            ->get();
-
-
-        dd($users);
-        return view('test', ['users' => $users]);
+        $data = Auth::user();
+        $session = $request->session()->all();
+        $user = User::find(Auth::user()->id);
+        // dd($session);
+        return view('account', ['data' => $data, 'session' => $session, 'users' => $user]);
     }
 }

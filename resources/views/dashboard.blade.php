@@ -53,7 +53,7 @@
         padding-bottom: 0%;
     }
 </style>
-<title>Home</title>
+<title>ST.APE | Dashboard</title>
 
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">

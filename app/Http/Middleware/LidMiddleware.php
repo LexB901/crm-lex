@@ -18,13 +18,13 @@ class LidMiddleware
     {
         $islid = false;
         foreach (\Auth::user()->roles as $role) {
-            if ($role->role == 'Lid') {
+            if ($role->role == 'Member') {
                 $islid = true;
             }
         }
 
         if (!$islid) {
-            return response()->view('failed', ['role' => 'Lid', '‘logged’' => $request->user()->role]);
+            return response()->view('failed', ['role' => 'Member', '‘logged’' => $request->user()->role]);
         }
 
         return $next($request);

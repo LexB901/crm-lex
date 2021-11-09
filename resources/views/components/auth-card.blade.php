@@ -3,7 +3,7 @@
         {{ $logo }}
     </div>
 
-    <div style="position:relative; top: 400px;" class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+    <div class="indexboxshadow indexform w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
         {{ $slot }}
     </div>
 </div>
