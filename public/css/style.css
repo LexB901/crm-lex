@@ -527,9 +527,10 @@ table {
 }
 
 .saintapeicon {
-	height: 35px;
-	padding-top: 13 px;
-	padding-bottom: 13 px;
+	width: 30px;
+	height: 40px;
+	padding-left: 11px;
+	padding-right: 11px;
 	border-radius: 50%;
 	cursor: pointer;
 }
