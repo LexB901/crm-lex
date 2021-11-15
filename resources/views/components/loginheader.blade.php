@@ -67,5 +67,10 @@
                 <a style="text-decoration:none;border:none;" class="navspendtext" href="/Admin-Nav">Admin Panel</a><br>
             </div>
         </div>
+        <footer>
+            <div class="footer">
+                <p class="pfooter">Copyright © 2021 Saint Ape, Inc.</p>
+            </div>
+        </footer>
     </div>
 </header>

@@ -74,6 +74,17 @@
                 </form>
             </x-auth-card>
         </div>
-
+        <footer>
+            <style>
+                .footer {
+                    font-size: 1rem;
+                    color: black;
+                    width: 100%;
+                }
+            </style>
+            <div class="footer">
+                <p class="pfooter">Copyright © 2021 Weetjes TM, Inc.</p>
+            </div>
+        </footer>
     </x-guest-layout>
 </div>

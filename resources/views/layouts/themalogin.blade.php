@@ -20,7 +20,6 @@
 <body>
     @include('components.loginheader')
     @yield('content')
-    @include('components.footer')
     <script src="/js/script.js"></script>
 </body>
 
