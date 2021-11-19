@@ -196,7 +196,6 @@ textarea {
 	position: absolute;
 	border: none;
 	border-right: 1px solid rgb(0, 0, 0, 0.1);
-	padding-top: 30px;
 	left: 300px;
 	font-family: Nunito;
 }
@@ -219,6 +218,7 @@ textarea {
 	border: none;
 	border-bottom: 1px solid rgb(0, 0, 0, 0.1);
 	font-family: Nunito;
+	margin-bottom: 1rem;
 }
 
 .fileoutput {
@@ -354,7 +354,6 @@ table {
 .ptitle {
 	font-size: 1.5rem;
 	font-style: italic;
-	padding-bottom: 25px;
 	color: #000000;
 	margin-left: 15px;
 	font-weight: 530;
@@ -586,6 +585,24 @@ table {
 	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 	-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.userleft {
+	padding-bottom: 1rem;
+	padding-top: 1rem;
+}
+
+.formtitle {
+	font-size: 1.5rem;
+	color: #000000;
+	margin-bottom: 15px;
+}
+
+.headerbackimg {
+	position: absolute;
+	left: 201px;
+	height: 1.3rem;
+	z-index: 100;
 }
 
 /* Hamburger Menu */

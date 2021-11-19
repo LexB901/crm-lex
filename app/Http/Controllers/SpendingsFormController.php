@@ -68,7 +68,7 @@ class SpendingsFormController extends Controller
         // dd($data);
 
         echo "<script type='text/javascript'>alert('$message');</script>";
-        return view('/expenses', ['spendings' => $spendings, 'categorie' => $spending->projects, 'projects' => $projects]);
+        return view('/expense/show', ['spendings' => $spendings, 'categorie' => $spending->projects, 'projects' => $projects]);
     }
 
     /**
@@ -115,12 +115,13 @@ class SpendingsFormController extends Controller
         $input->date = $data['date'];
         $input->project = $data['project'];
         $input->currency = $data['currency'];
+        $input->status = $data['status'];
         $input->note = $data['note'];
         $input->type = $data['type'];
         $input->amount = $data['amount'];
         $input->update();
 
-        return redirect('/expenses');
+        return redirect()->back();
     }
 
     /**

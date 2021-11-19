@@ -46,18 +46,16 @@ class RegisteredUserController extends Controller
         ]);
 
 
-        $store = Storage::disk('public')->put($user->id, $request->image);
-        $user->update([
-            'image' => $store,
-        ]);
+        // $store = Storage::disk('public')->put($user->id, $request->image);
+        // $user->update([
+        //     'image' => $store,
+        // ]);
         // dd($request->file, $store);
 
         $input = $request->all();
 
         event(new Registered($user));
-
-        Auth::login($user);
         // dd($user);
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('/users');
     }
 }

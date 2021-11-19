@@ -41,15 +41,21 @@
 
         <div class="navspendbox">
 
-            @if(Request::url() === 'http://localhost:8000/expenses')
+            @if(Request::url() === 'http://127.0.0.1:8000/dashboard')
+            <style>
+                .currentnav1 {
+                    background-color: rgb(0, 0, 0, .3);
+                }
+            </style>
+            @elseif(Request::url() === 'http://127.0.0.1:8000/expenses')
             <style>
                 .currentnav2 {
                     background-color: rgb(0, 0, 0, .3);
                 }
             </style>
-            @elseif(Request::url() === 'http://localhost:8000/dashboard')
+            @elseif(Request::url() === 'http://127.0.0.1:8000/users')
             <style>
-                .currentnav1 {
+                .currentnav3 {
                     background-color: rgb(0, 0, 0, .3);
                 }
             </style>
@@ -59,6 +65,9 @@
             </div>
             <div class="navspendtextbox">
                 <a style="text-decoration:none;" class="navspendtext currentnav2" href="/expenses">expenses</a><br>
+            </div>
+            <div class="navspendtextbox">
+                <a style="text-decoration:none;" class="navspendtext currentnav3" href="/users">users</a><br>
             </div>
             <div class="navspendtextbox">
                 <a style="text-decoration:none;" class="navspendtext" href="/Mijn-Rollen">Mijn Rollen</a><br>

@@ -8028,6 +8028,65 @@
             "install-path": "../symfony/var-dumper"
         },
         {
+            "name": "thepinecode/blade-filters",
+            "version": "v0.7.0",
+            "version_normalized": "0.7.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/conedevelopment/blade-filters.git",
+                "reference": "1bf68b530cd6a416de46a21fb5ee029350bc9485"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/conedevelopment/blade-filters/zipball/1bf68b530cd6a416de46a21fb5ee029350bc9485",
+                "reference": "1bf68b530cd6a416de46a21fb5ee029350bc9485",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^6.0 || ^7.0 || ^8.0",
+                "php": "^7.2.5"
+            },
+            "require-dev": {
+                "laravel/laravel": "dev-master",
+                "phpunit/phpunit": "^9.0"
+            },
+            "time": "2020-09-16T06:37:02+00:00",
+            "type": "project",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pine\\BladeFilters\\BladeFiltersServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Pine\\BladeFilters\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cone Development",
+                    "email": "hello@conedevelopment.com"
+                }
+            ],
+            "description": "Use filters easily in your blade templates.",
+            "support": {
+                "issues": "https://github.com/conedevelopment/blade-filters/issues",
+                "source": "https://github.com/conedevelopment/blade-filters/tree/v0.7.0"
+            },
+            "abandoned": "conedevelopment/blade-filters",
+            "install-path": "../thepinecode/blade-filters"
+        },
+        {
             "name": "theseer/tokenizer",
             "version": "1.2.1",
             "version_normalized": "1.2.1.0",

@@ -106,6 +106,7 @@ class ComposerStaticInite0828e993b775cb183fe51935f411b8e
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'Prophecy\\' => 9,
+            'Pine\\BladeFilters\\' => 18,
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
         ),
@@ -367,6 +368,10 @@ class ComposerStaticInite0828e993b775cb183fe51935f411b8e
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
         ),
+        'Pine\\BladeFilters\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/thepinecode/blade-filters/src',
+        ),
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
@@ -533,7 +538,6 @@ class ComposerStaticInite0828e993b775cb183fe51935f411b8e
     );
 
     public static $classMap = array (
-        'App\\Categorie' => __DIR__ . '/../..' . '/app/Categorie.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
@@ -544,13 +548,12 @@ class ComposerStaticInite0828e993b775cb183fe51935f411b8e
         'App\\Http\\Controllers\\Auth\\PasswordResetLinkController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/PasswordResetLinkController.php',
         'App\\Http\\Controllers\\Auth\\RegisteredUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisteredUserController.php',
         'App\\Http\\Controllers\\Auth\\VerifyEmailController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerifyEmailController.php',
+        'App\\Http\\Controllers\\ChangePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChangePasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\MainController' => __DIR__ . '/../..' . '/app/Http/Controllers/MainController.php',
         'App\\Http\\Controllers\\RegisterUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegisterUserController.php',
         'App\\Http\\Controllers\\RoleUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoleUserController.php',
         'App\\Http\\Controllers\\SpendingsFormController' => __DIR__ . '/../..' . '/app/Http/Controllers/SpendingsFormController.php',
-        'App\\Http\\Controllers\\SuggestieController' => __DIR__ . '/../..' . '/app/Http/Controllers/SuggestieController.php',
-        'App\\Http\\Controllers\\WeetjesFormController' => __DIR__ . '/../..' . '/app/Http/Controllers/WeetjesFormController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\AdministratorMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdministratorMiddleware.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -564,7 +567,6 @@ class ComposerStaticInite0828e993b775cb183fe51935f411b8e
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
-        'App\\Models\\SpendingStatus' => __DIR__ . '/../..' . '/app/Models/SpendingStatus.php',
         'App\\Models\\Status' => __DIR__ . '/../..' . '/app/Models/Status.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -576,11 +578,9 @@ class ComposerStaticInite0828e993b775cb183fe51935f411b8e
         'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
         'App\\RoleUser' => __DIR__ . '/../..' . '/app/RoleUser.php',
         'App\\Spending' => __DIR__ . '/../..' . '/app/Spending.php',
-        'App\\Suggestie' => __DIR__ . '/../..' . '/app/Suggestie.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
+        'App\\View\\Components\\Forms\\Input' => __DIR__ . '/../..' . '/app/View/Components/Forms/Input.php',
         'App\\View\\Components\\GuestLayout' => __DIR__ . '/../..' . '/app/View/Components/GuestLayout.php',
-        'App\\Weetje' => __DIR__ . '/../..' . '/app/Weetje.php',
-        'App\\project' => __DIR__ . '/../..' . '/app/project.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
@@ -1358,6 +1358,7 @@ class ComposerStaticInite0828e993b775cb183fe51935f411b8e
         'Faker\\Provider\\nl_BE\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Payment.php',
         'Faker\\Provider\\nl_BE\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Person.php',
         'Faker\\Provider\\nl_BE\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/PhoneNumber.php',
+        'Faker\\Provider\\nl_BE\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Text.php',
         'Faker\\Provider\\nl_NL\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Address.php',
         'Faker\\Provider\\nl_NL\\Color' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Color.php',
         'Faker\\Provider\\nl_NL\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Company.php',
@@ -3974,6 +3975,10 @@ class ComposerStaticInite0828e993b775cb183fe51935f411b8e
         'PhpParser\\Parser\\Tokens' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Parser/Tokens.php',
         'PhpParser\\PrettyPrinterAbstract' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php',
         'PhpParser\\PrettyPrinter\\Standard' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/PrettyPrinter/Standard.php',
+        'Pine\\BladeFilters\\BladeFilters' => __DIR__ . '/..' . '/thepinecode/blade-filters/src/BladeFilters.php',
+        'Pine\\BladeFilters\\BladeFiltersCompiler' => __DIR__ . '/..' . '/thepinecode/blade-filters/src/BladeFiltersCompiler.php',
+        'Pine\\BladeFilters\\BladeFiltersServiceProvider' => __DIR__ . '/..' . '/thepinecode/blade-filters/src/BladeFiltersServiceProvider.php',
+        'Pine\\BladeFilters\\Exceptions\\MissingBladeFilterException' => __DIR__ . '/..' . '/thepinecode/blade-filters/src/Exceptions/MissingBladeFilterException.php',
         'Prophecy\\Argument' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument.php',
         'Prophecy\\Argument\\ArgumentsWildcard' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument/ArgumentsWildcard.php',
         'Prophecy\\Argument\\Token\\AnyValueToken' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument/Token/AnyValueToken.php',

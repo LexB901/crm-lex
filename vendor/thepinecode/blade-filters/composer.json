@@ -1,0 +1,42 @@
+{
+    "name": "thepinecode/blade-filters",
+    "description": "Use filters easily in your blade templates.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cone Development",
+            "email": "hello@conedevelopment.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pine\\BladeFilters\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pine\\BladeFilters\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^7.2.5",
+        "illuminate/support": "^6.0 || ^7.0 || ^8.0"
+    },
+    "require-dev": {
+        "laravel/laravel": "dev-master",
+        "phpunit/phpunit": "^9.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pine\\BladeFilters\\BladeFiltersServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

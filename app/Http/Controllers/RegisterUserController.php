@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Status;
 use Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Role;
 
 class RegisterUserController extends Controller
 {
@@ -26,14 +27,24 @@ class RegisterUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $id)
     {
         $users = User::all();
         $statuses = Status::all();
+        $allusers = User::with('roles')->find($id);
+        $roles = $allusers;
+        $allroles = Role::all();
+
+        foreach ($allroles as $item) {
+            $item['selected'] = false;
+            if (collect($roles)->where('id', $item['id'])->all()) {
+                $item['selected'] = true;
+            }
+        }
 
         // dd($users);
 
-        return view('/user/create', ['users' => $users, 'statuses' => $statuses]); //
+        return view('/user/create', ['users' => $users, 'statuses' => $statuses, 'input' => $roles, 'allroles' => $allroles, 'allusers' => $allusers]); //
     }
 
     /**
@@ -80,6 +91,7 @@ class RegisterUserController extends Controller
         $user = User::find($id);
         $statuses = Status::all();
 
+
         $users = User::all();
         // dd($user->statuss);
         return view('/user/edit', ['input' => $user, 'statuses' => $statuses, 'status' => $user->statuss, 'users' => $users]);
@@ -92,17 +104,16 @@ class RegisterUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateUser(Request $request)
+    public function update(Request $request)
     {
         $data = $request->all();
-
         $input = User::find($data['id']);
         $input->name = $data['name'];
         $input->email = $data['email'];
-        $input->status = $data['status'];
+        // $input->status = $data['status'];
         $input->save();
         // dd($data);
-        return redirect('/user/show');
+        return redirect('/users');
     }
 
     public function accountUpdate(Request $request)
@@ -123,7 +134,7 @@ class RegisterUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function deleteUser($id)
+    public function delete($id)
     {
         $input = User::find($id);
         $input->delete();

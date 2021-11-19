@@ -2,16 +2,65 @@
 
 @section('content')
 <title>ST.APE | Expenses</title>
+<style>
+    .selectborder {}
 
+    .type {
+        padding: 10px;
+        margin-left: 10px;
+        border: solid 1px black;
+        background-color: black;
+        color: white;
+        height: 20px;
+    }
+
+    .selectmargin {
+        margin: 1px;
+    }
+
+    .radio-filter {
+        display: flex;
+        flex-direction: row;
+        padding: 3px;
+        margin-left: 15px;
+        margin-bottom: 30px;
+    }
+
+    .radio-filter input[type="radio"] {
+        opacity: 0;
+        width: 0;
+    }
+
+    .radio-filter label {
+        padding: 10px;
+        font-family: sans-serif, Arial;
+        color: black;
+        font-size: 16px;
+        border-radius: 0px;
+    }
+
+    .radio-filter input[type="radio"]:checked+label {
+        background-color: white;
+        color: black;
+    }
+</style>
 <div class="borderblock"></div>
-@if(Request::url() === "http://localhost:8000/expense/create")
+@if(Request::url() === "http://127.0.0.1:8000/expense/create")
 <style>
     .currentnav2 {
         background-color: rgb(0, 0, 0, .3);
     }
 </style>
 @endif
+<div class="cursor-pointer mr-2 relative flex space-x-2 items-center">
+    <a href="{{ url()->previous() }}">
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="backward" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="headerbackimg">
+            <path fill="currentColor" d="M459.5 71.41l-171.5 142.9v83.45l171.5 142.9C480.1 457.7 512 443.3 512 415.1V96.03C512 68.66 480.1 54.28 459.5 71.41zM203.5 71.41L11.44 231.4c-15.25 12.87-15.25 36.37 0 49.24l192 159.1c20.63 17.12 52.51 2.749 52.51-24.62v-319.9C255.1 68.66 224.1 54.28 203.5 71.41z" class=""></path>
+        </svg>
+    </a>
+</div>
 <div class="spendingspage">
+
     <div class="management">
         <p class="ptitle">Expensemanagement</p>
         <a href="/expense/create">
@@ -19,7 +68,6 @@
                 <path fill="currentColor" d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z" class=""></path>
             </svg>
         </a>
-
         @foreach($spendings as $spending)
         <div class="spendinghover">
             <a href="{{route('expense.edit',$spending->id)}}" class="spendingleft" style="text-decoration:none;">{{ $spending->name }}</a>
@@ -31,6 +79,7 @@
         @endforeach
     </div>
     <div class="spendingsform">
+        <p class="formtitle">Create</p>
         <form id="spendform" action="/expenses" method="post" enctype="multipart/form-data">
             @csrf
             Name<br>
@@ -57,7 +106,11 @@
             <select class="spendingsinput selectmargin" name="currency" id="currencylist"><br>
                 <option value="EUR">EUR</option>
             </select>
-
+            Status
+            <select class="spendingsinput selectmargin" name="status">
+                <option value="Unpaid">Unpaid</option>
+                <option value="Paid">Paid</option>
+            </select>
             Notes<br>
             <input value="no notes" class="spendingsinput notesinput" type="text" name="note"><br>
             <input class="fileinput " type="file" name="file" accept="application/pdf" placeholder="Drop a file" onchange="loadFile(event)"><br>
@@ -69,6 +122,7 @@
     </div>
     <div class="pdfcontainer">
         <div class="radio-toolbar">
+
             <input type="radio" id="radioINK" name="type" value="INK" form="spendform" checked>
             <label class="selectborder" for="radioINK">INK</label>
 
@@ -77,6 +131,7 @@
 
             <input type="radio" id="radioCNT" class="type" name="type" value="CNT" form="spendform">
             <label class="selectborder" for="radioCNT">CNT</label>
+
         </div>
 
         <p><embed class="fileoutput" id="output" /></p>

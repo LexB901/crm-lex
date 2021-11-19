@@ -39,12 +39,6 @@
 
     }
 
-    .headersearchimg {
-        position: relative;
-        left: 200px;
-        height: 1.3rem;
-    }
-
     .headerbackimg {
         position: relative;
         left: 200px;
@@ -123,14 +117,7 @@
 <header style="height: 4rem; display:flex;position:relative;align-items:center;padding-left:2rem;padding-right:2rem;">
     <div class="flex items-center font-serif justify-between w-full">
         <div class="cursor-pointer mr-2 relative flex space-x-2 items-center">
-            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.005 512.005" xml:space="preserve" class="headersearchimg">
-                <path d="M505.749,475.587l-145.6-145.6c28.203-34.837,45.184-79.104,45.184-127.317c0-111.744-90.923-202.667-202.667-202.667
-                    S0,90.925,0,202.669s90.923,202.667,202.667,202.667c48.213,0,92.48-16.981,127.317-45.184l145.6,145.6
-                    c4.16,4.16,9.621,6.251,15.083,6.251s10.923-2.091,15.083-6.251C514.091,497.411,514.091,483.928,505.749,475.587z
-                    M202.667,362.669c-88.235,0-160-71.765-160-160s71.765-160,160-160s160,71.765,160,160S290.901,362.669,202.667,362.669z">
-                </path>
-            </svg>
-            <a href="">
+            <a href="{{ url()->previous() }}">
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="backward" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="headerbackimg">
                     <path fill="currentColor" d="M459.5 71.41l-171.5 142.9v83.45l171.5 142.9C480.1 457.7 512 443.3 512 415.1V96.03C512 68.66 480.1 54.28 459.5 71.41zM203.5 71.41L11.44 231.4c-15.25 12.87-15.25 36.37 0 49.24l192 159.1c20.63 17.12 52.51 2.749 52.51-24.62v-319.9C255.1 68.66 224.1 54.28 203.5 71.41z" class=""></path>
                 </svg>
@@ -214,7 +201,6 @@
     </div>
     <div>
         <div></div>
-        <!-- <?php echo URL::current(); ?> -->
 
         <div></div>
     </div>

@@ -18,6 +18,7 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\RoleUserController;
 use App\Http\Controllers\spendingsFormController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', function () {
     return view('/auth/login');
@@ -49,7 +50,7 @@ Route::get('/{id}/delete', [SpendingsFormController::class, 'delete']);
 
 Route::get('/user/{id}/edit', [RegisterUserController::class, 'edit'])->name('user.edit');
 Route::get('/user/create', [RegisterUserController::class, 'create'])->name('user.create');
-Route::post('/users', [RegisterUserController::class, 'store']);
+Route::post('/users', [RegisteredUserController::class, 'store']);
 Route::post('/user/{id}/update', [RegisterUserController::class, 'update']);
 Route::get('/user/{id}/delete', [RegisterUserController::class, 'delete']);
 Route::get('/{id}/delete', [RegisterUserController::class, 'delete']);
