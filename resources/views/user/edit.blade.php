@@ -72,7 +72,40 @@
             @if($errors->has('email'))
             <div class="caterror">{{ $errors->first('date') }}</div>
             @endif
-
+            Group<br>
+            <select class="spendingsinput selectmargin" name="role">
+                @if($input->role === 'Member')
+                <option value="{{$input->role}}">{{ $input->role }}</option>
+                <option value="Admin">Admin</option>
+                <option value="Client">Client</option>
+                @elseif($input->role === 'Admin')
+                <option value="{{$input->role}}">{{ $input->role }}</option>
+                <option value="Member">Member</option>
+                <option value="Client">Client</option>
+                @elseif($input->role === 'Client')
+                <option value="{{$input->role}}">{{ $input->role }}</option>
+                <option value="Member">Member</option>
+                <option value="Admin">Admin</option>
+                @else
+                <option value="Member">Member</option>
+                <option value="Admin">Admin</option>
+                <option value="Client">Client</option>
+                @endif
+            </select>
+            Account status
+            {{$input->status}}
+            <select name="status" class="spendingsinput selectmargin">
+                @if($input->status === '1')
+                <option value="{{$input->status}}">Actief</option>
+                <option value="2">Banned</option>
+                @elseif($input->status === '2')
+                <option value="{{$input->status}}">Banned</option>
+                <option value="1">Actief</option>
+                @else
+                <option value="{{$input->status}}">Actief</option>
+                <option value="2">Banned</option>
+                @endif
+            </select>
         </form>
 
     </div>

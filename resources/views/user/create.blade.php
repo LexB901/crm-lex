@@ -53,28 +53,33 @@
             Email<br>
             <input value="test@" type="text" name="email" class="spendingsinput">
             @if($errors->has('email'))
-            <div class="caterror">{{ $errors->first('date') }}</div>
+            <div class="caterror">{{ $errors->first('email') }}</div>
             @endif
             <div class="mt-4">
                 <x-label for="password" :value="__('Vul je wachtwoord in:')" />
 
                 <x-input id="password" class="spendingsinput" type="password" name="password" required autocomplete="new-password" />
             </div>
-
-            <!-- Confirm Password -->
+            @if($errors->has('password'))
+            <div class="caterror">{{ $errors->first('password') }}</div>
+            @endif
             <div class="mt-4">
                 <x-label for="password_confirmation" :value="__('Herhaal uw wachtwoord:')" />
 
                 <x-input id="password_confirmation" class="spendingsinput" type="password" name="password_confirmation" required />
             </div>
-            Groups<br>
-            @foreach($allroles as $allrole)
-            <div class="tt">
-                <input type="checkbox" name="roles[]" value="{{$allrole->id}}" {{ $allrole->selected == 1 ? 'checked' : false }}> {{$allrole->role}}<br>
-            </div>
-            @endforeach
-
-
+            @if($errors->has('password_confirmation'))
+            <div class="caterror">{{ $errors->first('password_confirmation') }}</div>
+            @endif
+            Group<br>
+            <select class="spendingsinput selectmargin" name="role">
+                <option value="Member">Member</option>
+                <option value="Admin">Admin</option>
+                <option value="Client">Client</option>
+            </select>
+            @if($errors->has('role'))
+            <div class="caterror">{{ $errors->first('role') }}</div>
+            @endif
         </form>
 
     </div>

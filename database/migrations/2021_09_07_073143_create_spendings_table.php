@@ -20,7 +20,8 @@ class CreateSpendingsTable extends Migration
             $table->string('project');
             $table->string('currency');
             $table->string('note');
-            $table->string('file')->nullable();
+            $table->string('status');
+            $$table->string('file')->nullable();
             $table->timestamps();
         });
     }

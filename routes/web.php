@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\RegisterUserController;
-use App\Http\Controllers\RoleUserController;
 use App\Http\Controllers\spendingsFormController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -25,7 +24,6 @@ Route::get('/', function () {
 })->name('login');
 
 
-Route::get('/Mijn-Rollen', [MainController::class, 'getRoles']);
 Route::get('/expenses', [MainController::class, 'expenses'])->middleware('auth');
 Route::get('/users', [MainController::class, 'users'])->middleware('auth');
 
@@ -63,20 +61,8 @@ Route::get('/{id}/delete', [RegisterUserController::class, 'delete']);
 // Route::post('/banUser/{id}', [RegisterUserController::class, 'banUser']);
 // Route::get('/deleteSession/{_token}', [RegisterUserController::class, 'deleteSession']);
 
-Route::get('/Mijn-Rollen/{id}/editRole', [RoleUserController::class, 'editRole'])->name('Mijn-Rollen.editRole');
-Route::get('/deleteRole/{id}', [RoleUserController::class, 'deleteRole']);
-Route::post('/UpdateRole', [RoleUserController::class, 'UpdateRole']);
-
-Route::get('/Rollen-Beheer/{id}/editRole', [RoleUserController::class, 'editRole'])->name('Rollen-Beheer.editRole');
-Route::post('/UpdateRole', [RoleUserController::class, 'updateRole']);
-
-
-Route::get('/Rollen-Beheer/{id}/editRoleAdmin', [RoleUserController::class, 'editRoleAdmin'])->name('Rollen-Beheer.editRoleAdmin');
-Route::post('/UpdateRole2', [RoleUserController::class, 'updateRole2']);
-
 Route::middleware(['Admin'])->group(function () {
-    Route::get('Rollen-Beheer', [MainController::class, 'getRoles2']);
-    Route::get('User-Beheer', [MainController::class, 'getUsers']);
+    Route::get('User-Beheer', [MainController::class, 'users']);
     Route::get('Admin-Nav', [MainController::class, 'AdminNav']);
     Route::get('SpendingsShow', [MainController::class, 'getSpendings']);
 });

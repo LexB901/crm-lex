@@ -31,20 +31,10 @@ class RegisterUserController extends Controller
     {
         $users = User::all();
         $statuses = Status::all();
-        $allusers = User::with('roles')->find($id);
-        $roles = $allusers;
-        $allroles = Role::all();
-
-        foreach ($allroles as $item) {
-            $item['selected'] = false;
-            if (collect($roles)->where('id', $item['id'])->all()) {
-                $item['selected'] = true;
-            }
-        }
 
         // dd($users);
 
-        return view('/user/create', ['users' => $users, 'statuses' => $statuses, 'input' => $roles, 'allroles' => $allroles, 'allusers' => $allusers]); //
+        return view('/user/create', ['users' => $users, 'statuses' => $statuses]); //
     }
 
     /**
@@ -58,12 +48,15 @@ class RegisterUserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required',
+            'role' => 'required',
             'password' => 'required',
             'password_confirmation',
+
 
         ]);
         $data = $request->all();
         $user = Register::create($data);
+
         // dd($data);
         return view('/user/create', ["input" => $user]);
     }
@@ -91,10 +84,9 @@ class RegisterUserController extends Controller
         $user = User::find($id);
         $statuses = Status::all();
 
-
         $users = User::all();
         // dd($user->statuss);
-        return view('/user/edit', ['input' => $user, 'statuses' => $statuses, 'status' => $user->statuss, 'users' => $users]);
+        return view('/user/edit', ['input' => $user, 'statuses' => $statuses, 'status' => $user->statuss, 'users' => $users, 'role' => $user->role]);
     }
 
     /**
@@ -110,7 +102,8 @@ class RegisterUserController extends Controller
         $input = User::find($data['id']);
         $input->name = $data['name'];
         $input->email = $data['email'];
-        // $input->status = $data['status'];
+        $input->role = $data['role'];
+        $input->status = $data['status'];
         $input->save();
         // dd($data);
         return redirect('/users');

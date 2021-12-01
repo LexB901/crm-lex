@@ -26,13 +26,14 @@ class SpendingsFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $id)
     {
+        $spending = Spending::find($id);
         $spendings = Spending::all();
         $projects = Project::select('id', 'project')->get();
 
         // dd($spending);
-        return view('/expense/create', ['spendings' => $spendings, 'projects' => $projects]);
+        return view('/expense/create', ['input' => $spending, 'spendings' => $spendings, 'projects' => $projects]);
     }
 
     /**
@@ -90,9 +91,8 @@ class SpendingsFormController extends Controller
     public function edit($id)
     {
         $spending = Spending::find($id);
-        $projects = Project::select('id', 'project')->get();
-
         $spendings = Spending::all();
+        $projects = Project::select('id', 'project')->get();
         // dd($spending);
 
         return view('/expense/edit', ['input' => $spending, 'projects' => $projects, 'project' => $spending->projects, 'spendings' => $spendings]);

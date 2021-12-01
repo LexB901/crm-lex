@@ -3,36 +3,24 @@
 @section('content')
 <title>ST.APE | Expenses</title>
 <style>
-    .filterdiv {
-        font-size: .75rem;
-        margin-left: 15px;
-        padding-bottom: 30px;
+    .filterborder {
+        border: none;
     }
 
-    .filterall {}
-
-    .filterpaid {}
-
-    .filterunpaid {}
-
-    .filterall:hover {
-        cursor: pointer;
+    .filterborder:nth-child(2) {
+        color: black;
     }
 
-    .filterpaid:hover {
-        cursor: pointer;
+    .filterborder:nth-child(4) {
+        color: green;
     }
 
-    .filterunpaid:hover {
-        cursor: pointer;
+    .filterborder:nth-child(6) {
+        color: red;
     }
-
-    .selectborder {}
 
     .type {
-        padding: 10px;
         margin-left: 10px;
-        border: solid 1px black;
         background-color: black;
         color: white;
         height: 20px;
@@ -45,9 +33,7 @@
     .radio-filter {
         display: flex;
         flex-direction: row;
-        padding: 3px;
         margin-left: 15px;
-        margin-bottom: 30px;
     }
 
     .radio-filter input[type="radio"] {
@@ -56,16 +42,26 @@
     }
 
     .radio-filter label {
-        padding: 10px;
         font-family: sans-serif, Arial;
         color: black;
         font-size: 16px;
-        border-radius: 0px;
     }
 
     .radio-filter input[type="radio"]:checked+label {
         background-color: white;
         color: black;
+    }
+
+    .filter {
+        margin-left: 0px !important;
+    }
+
+    .paid {
+        background-color: rgba(0, 128, 0, 0.1);
+    }
+
+    .unpaid {
+        background-color: #ffcccb;
     }
 </style>
 <div class="borderblock"></div>
@@ -92,17 +88,15 @@
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-            <form action="" method="get" id="myForm" name="myForm">
-                <input type="hidden" name="page" value="searchresult">
-
+            <form action="" method="get" id="myForm" name="myForm" style="display:flex;">
                 <input type="radio" id="radioAll" name="filter" value="All" onChange="autoSubmit();">
-                <label class="selectborder" for="radioAll">All</label>
-
-                <input type="radio" id="radioPaid" class="type" name="filter" value="Paid" onChange="autoSubmit();">
-                <label class="selectborder" for="radioPaid">Paid</label>
-
-                <input type="radio" id="radioUnpaid" class="type" name="filter" value="Unpaid" onChange="autoSubmit();">
-                <label class="selectborder" for="radioUnpaid">Unpaid</label>
+                <label class="filterborder" for="radioAll">all</label>
+                /
+                <input type="radio" id="radioPaid" class="filter type" name="filter" value="Paid" onChange="autoSubmit();">
+                <label class="filterborder" for="radioPaid">paid</label>
+                /
+                <input type="radio" id="radioUnpaid" class="filter type" name="filter" value="Unpaid" onChange="autoSubmit();">
+                <label class="filterborder" for="radioUnpaid">unpaid</label>
             </form>
             <script>
                 function autoSubmit() {
@@ -116,18 +110,7 @@
             } else {
                 $selected = 'All';
             }
-            // if ($selected === "Paid") {
-            //     echo $selected;
-            // $filters = \App\Spending::where('status', 'Paid')->get(['name', 'id', 'amount']);
-            // foreach ($filters as $filter) {
-            //     echo $filter->name;
-            //     echo $filter->id;
-            //     echo $filter->amount;
-            // }
-            // }
             ?>
-
-
         </div>
         <a href="/expense/create">
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="plussvg">
@@ -141,74 +124,59 @@
             } else {
                 $selected = 'All';
             }
-            $filters = \App\Spending::all();
-            foreach ($filters as $filter) {
-                if ($selected === "All") {
-                    echo '<div class="spendinghover">';
-                    echo '<a href="{{route()}}" class="spendingname" style="text-decoration:none;">';
+            if ($selected === "All") {
+                echo '<p style="margin-left:15px; border-bottom: 1px solid rgb(0, 0, 0, 0.1);margin-bottom: 5px;">Filter: ' . $selected . '</p>';
+                $filters = \App\Spending::all();
+                foreach ($filters as $filter) {
+                    if ($filter->status === "Paid") {
+                        echo '<div class="spendinghover paid">';
+                    } else if ($filter->status === "Unpaid") {
+                        echo '<div class="spendinghover unpaid">';
+                    }
+                    echo '<a href="/expense/' . $filter->id . '/edit" class="spendingname" style="text-decoration:none;">';
                     echo $filter->name;
-                    echo '</a><a href="/expense/{id}/edit" class="spendingamount" style="text-decoration:none;">€';
+                    echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingamount" style="text-decoration:none;">€';
                     echo $filter->amount;
-                    echo '</a><a href="{{route()}}" class="spendingid" style="text-decoration:none;">';
+                    echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingid" style="text-decoration:none;">';
                     echo $filter->id;
                     echo '</a>';
                     echo '</div>';
-                    echo '<a href="" class="spendingid deletespending" style="text-decoration:none;">Delete</a>';
+                    echo '<a href="/expense/' . $filter->id . '/delete" class="spendingid deletespending" style="text-decoration:none;">Delete</a>';
                 }
             }
-            $filters = \App\Spending::where('status', 'Paid')->get(['name', 'id', 'amount']);
-            foreach ($filters as $filter) {
-                if ($selected === "Paid") {
-
-                    echo '<div class="spendinghover">';
-                    echo '<a href="{{route()}}" class="spendingname" style="text-decoration:none;">';
+            if ($selected === "Paid") {
+                echo '<p style="margin-left:15px;border-bottom: 1px solid rgb(0, 0, 0, 0.1);margin-bottom: 5px;">Filter: ' . $selected . '</p>';
+                $filters = \App\Spending::where('status', 'Paid')->get(['name', 'id', 'amount']);
+                foreach ($filters as $filter) {
+                    echo '<div class="spendinghover paid">';
+                    echo '<a href="/expense/' . $filter->id . '/edit" class="spendingname" style="text-decoration:none;">';
                     echo $filter->name;
-                    echo '</a><a href="{{route()}}" class="spendingamount" style="text-decoration:none;">€';
+                    echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingamount" style="text-decoration:none;">€';
                     echo $filter->amount;
-                    echo '</a><a href="{{route()}}" class="spendingid" style="text-decoration:none;">';
+                    echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingid" style="text-decoration:none;">';
                     echo $filter->id;
                     echo '</a>';
                     echo '</div>';
-                    echo '<a href="" class="spendingid deletespending" style="text-decoration:none;">Delete</a>';
+                    echo '<a href="/expense/' . $filter->id . '/delete" class="spendingid deletespending" style="text-decoration:none;">Delete</a>';
                 }
             }
-            $filters = \App\Spending::where('status', 'Unpaid')->get(['name', 'id', 'amount']);
-            foreach ($filters as $filter) {
-                if ($selected === "Unpaid") {
-                    echo '<div class="spendinghover">';
-                    echo '<a href="{{route()}}" class="spendingname" style="text-decoration:none;">';
+            if ($selected === "Unpaid") {
+                echo '<p style="margin-left:15px;border-bottom: 1px solid rgb(0, 0, 0, 0.1);margin-bottom: 5px;">Filter: ' . $selected . '</p>';
+                $filters = \App\Spending::where('status', 'Unpaid')->get(['name', 'id', 'amount']);
+                foreach ($filters as $filter) {
+                    echo '<div class="spendinghover unpaid">';
+                    echo '<a href="/expense/' . $filter->id . '/edit" class="spendingname" style="text-decoration:none;">';
                     echo $filter->name;
-                    echo '</a><a href="{{route()}}" class="spendingamount" style="text-decoration:none;">€';
+                    echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingamount" style="text-decoration:none;">€';
                     echo $filter->amount;
-                    echo '</a><a href="{{route()}}" class="spendingid" style="text-decoration:none;">';
+                    echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingid" style="text-decoration:none;">';
                     echo $filter->id;
                     echo '</a>';
                     echo '</div>';
-                    echo '<a href="" class="spendingid deletespending" style="text-decoration:none;">Delete</a>';
+                    echo '<a href="/expense/' . $filter->id . '/delete" class="spendingid deletespending" style="text-decoration:none;">Delete</a>';
                 }
             }
-
             ?>
-            @foreach($spendings as $spending)
-            <!-- @if ($spending->id != $input->id) -->
-
-            <!-- <div class="spendinghover">
-                <a href="{{route('expense.edit',$spending->id)}}" class="spendingname" style="text-decoration:none;">{{ $spending->name }}</a>
-                <a href="{{route('expense.edit',$spending->id)}}" class="spendingamount" style="text-decoration:none;">€ {{ $spending->amount }}</a>
-                <a href="{{route('expense.edit',$spending->id)}}" class="spendingid" style="text-decoration:none;">{{ $spending->id }}</a>
-            </div> -->
-            <!-- <a onclick="return confirm('Weet je zeker dat je deze gebruiker zijn sessie wilt verwijderen?')" href="{{"/expense/".$spending['id']."/delete"}}" class="spendingid deletespending" style="text-decoration:none;">Delete</a> -->
-            <!-- @else
-            <div class="spendinghover togglespending">
-                <a href="{{route('expense.edit',$spending->id)}}" class="spendingname" style="text-decoration:none;">{{ $spending->name }}</a>
-                <a href="{{route('expense.edit',$spending->id)}}" class="spendingamount" style="text-decoration:none;">€{{ $spending->amount }}</a>
-                <a href="{{route('expense.edit',$spending->id)}}" class="spendingid" style="text-decoration:none;">{{ $spending->id }}</a>
-            </div>
-            <a onclick="return confirm('Je kan de uitgave niet verwijderen, omdat je hem aan het wijzigen bent.')" class="spendingid deletespending" style="text-decoration:none">CURRENT</a>
-
-            @endif -->
-
-            @endforeach
         </div>
 
 
@@ -258,10 +226,10 @@
             {{ $input->status }}
             <select class="spendingsinput selectmargin" name="status">
                 @if($input->status === 'Unpaid')
-                <option value="{{$input->status}}">Unpaid</option>
+                <option value="{{$input->status}}">{{ $input->status }}</option>
                 <option value="Paid">Paid</option>
                 @else
-                <option value="{{$input->status}}">Paid</option>
+                <option value="{{$input->status}}">{{ $input->status }}</option>
                 <option value="Unpaid">Unpaid</option>
                 @endif
             </select>

@@ -39,11 +39,6 @@
 
     }
 
-    .headerbackimg {
-        position: relative;
-        left: 200px;
-        height: 1.3rem;
-    }
 
     .accountnameinput,
     .accountemailinput {

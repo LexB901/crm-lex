@@ -313,7 +313,7 @@ table {
 }
 
 .caterror {
-	color: #d22b2b;
+	color: red;
 }
 
 .selectborder {
@@ -424,7 +424,6 @@ table {
 	text-decoration: none;
 	background-color: #333333;
 	color: white;
-	border-radius: 5px;
 	padding-top: 2px;
 	margin-right: 15px;
 	margin-left: 15px;
@@ -440,7 +439,6 @@ table {
 	margin-right: 15px;
 	padding-left: 5px;
 	margin-bottom: 5px;
-	border-top: 1px solid rgb(0, 0, 0, 0.1);
 }
 
 .spendinghover:hover {
@@ -599,6 +597,7 @@ table {
 }
 
 .headerbackimg {
+	top: 0px;
 	position: absolute;
 	left: 201px;
 	height: 1.3rem;
