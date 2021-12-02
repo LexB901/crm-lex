@@ -93,17 +93,20 @@
                 @endif
             </select>
             Account status
-            {{$input->status}}
+            <?php
+            $input = $input->status;
+            print_r($input);
+            ?>
             <select name="status" class="spendingsinput selectmargin">
                 @if($input->status === '1')
-                <option value="{{$input->status}}">Actief</option>
-                <option value="2">Banned</option>
-                @elseif($input->status === '2')
-                <option value="{{$input->status}}">Banned</option>
-                <option value="1">Actief</option>
+                <option value="{{$input->status}}">amazing</option>
+                <option value="0">Inactive</option>
+                @elseif($input->status === '0')
+                <option value="{{$input->status}}">Inactive</option>
+                <option value="1">Active</option>
                 @else
-                <option value="{{$input->status}}">Actief</option>
-                <option value="2">Banned</option>
+                <option value="{{$input->status}}">Active</option>
+                <option value="0">Inactive</option>
                 @endif
             </select>
         </form>

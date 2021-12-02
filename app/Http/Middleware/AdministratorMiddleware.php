@@ -18,7 +18,9 @@ class AdministratorMiddleware
     public function handle(Request $request, Closure $next)
     {
         $isadministrator = false;
-        foreach (\Auth::user()->roles as $role) {
+        $userrole = \Auth::user()->roles;
+        echo ($userrole);
+        foreach ($userrole as $role) {
             if ($role->role == 'Admin') {
                 $isadministrator = true;
             }

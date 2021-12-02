@@ -46,7 +46,6 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'role' => $request->role,
         ]);
-        dd($user);
 
         // $store = Storage::disk('public')->put($user->id, $request->image);
         // $user->update([
