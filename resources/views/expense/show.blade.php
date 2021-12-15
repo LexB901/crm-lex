@@ -19,11 +19,11 @@
     }
 
     .filterborder:nth-child(4) {
-        color: green;
+        color: red;
     }
 
     .filterborder:nth-child(6) {
-        color: red;
+        color: green;
     }
 
     .type {
@@ -90,11 +90,13 @@
                 <input type="radio" id="radioAll" name="filter" value="All" onChange="autoSubmit();">
                 <label class="filterborder" for="radioAll">all</label>
                 /
-                <input type="radio" id="radioPaid" class="filter type" name="filter" value="Paid" onChange="autoSubmit();">
-                <label class="filterborder" for="radioPaid">paid</label>
-                /
                 <input type="radio" id="radioUnpaid" class="filter type" name="filter" value="Unpaid" onChange="autoSubmit();">
                 <label class="filterborder" for="radioUnpaid">unpaid</label>
+                /
+                <input type="radio" id="radioPaid" class="filter type" name="filter" value="Paid" onChange="autoSubmit();">
+                <label class="filterborder" for="radioPaid">paid</label>
+
+
             </form>
             <script>
                 function autoSubmit() {
@@ -134,7 +136,7 @@
                     echo '<a href="/expense/' . $filter->id . '/edit" class="spendingname" style="text-decoration:none;">';
                     echo $filter->name;
                     echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingamount" style="text-decoration:none;">€';
-                    echo $filter->amount;
+                    echo $amount_format = number_format($filter->amount, '2', ',', '.');
                     echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingid" style="text-decoration:none;">';
                     echo $filter->id;
                     echo '</a>';
@@ -150,7 +152,7 @@
                     echo '<a href="/expense/' . $filter->id . '/edit" class="spendingname" style="text-decoration:none;">';
                     echo $filter->name;
                     echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingamount" style="text-decoration:none;">€';
-                    echo $filter->amount;
+                    echo $amount_format = number_format($filter->amount, '2', ',', '.');
                     echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingid" style="text-decoration:none;">';
                     echo $filter->id;
                     echo '</a>';
@@ -166,7 +168,7 @@
                     echo '<a href="/expense/' . $filter->id . '/edit" class="spendingname" style="text-decoration:none;">';
                     echo $filter->name;
                     echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingamount" style="text-decoration:none;">€';
-                    echo $filter->amount;
+                    echo $amount_format = number_format($filter->amount, '2', ',', '.');
                     echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingid" style="text-decoration:none;">';
                     echo $filter->id;
                     echo '</a>';
@@ -176,6 +178,11 @@
             }
             ?>
         </div>
+    </div>
+</div>
+<div class="total">
+    <div style="justify-content:center;align-items:center;display:flex;width:100%;color: black;height:50px;">
+        <div style="font-weight: bold;">€{{ $total }}</div> / <div style="color: red; font-weight: bold;">€{{ $unpaid }}</div> / <div style="color: green; font-weight: bold;">€{{ $paid }}</div>
     </div>
 </div>
 @endsection

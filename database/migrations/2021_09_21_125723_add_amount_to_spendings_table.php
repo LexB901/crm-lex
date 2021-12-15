@@ -14,7 +14,7 @@ class AddAmountToSpendingsTable extends Migration
     public function up()
     {
         Schema::table('spendings', function (Blueprint $table) {
-            $table->string('amount');
+            $table->decimal('amount', 8, 2);
         });
     }
 
@@ -26,7 +26,7 @@ class AddAmountToSpendingsTable extends Migration
     public function down()
     {
         Schema::table('spendings', function (Blueprint $table) {
-            $table->dropColumn('amount');
+            $table->decimal('amount', 8, 2);
         });
     }
 }

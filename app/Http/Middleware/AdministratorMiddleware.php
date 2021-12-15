@@ -18,13 +18,13 @@ class AdministratorMiddleware
     public function handle(Request $request, Closure $next)
     {
         $isadministrator = false;
-        $userrole = \Auth::user()->roles;
-        echo ($userrole);
-        foreach ($userrole as $role) {
-            if ($role->role == 'Admin') {
-                $isadministrator = true;
-            }
+        $usergroup = \Auth::user();
+        // dd($usergroup->role);
+
+        if ($usergroup->role == 'Admin') {
+            $isadministrator = true;
         }
+
 
         if (!$isadministrator) {
             return response()->view('failed', ['role' => 'Admin', '‘logged’' => $request->user()->role]);

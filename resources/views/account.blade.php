@@ -103,8 +103,10 @@
 
     .savediv {
         width: 100%;
+        color: green;
         display: flex;
-        flex-direction: column;
+        align-items: flex-end;
+        flex-direction: row;
         justify-content: flex-end;
     }
 </style>
@@ -134,7 +136,13 @@
                 <input class="accountnameinput" type="text" name="name" value="{{$data->name}}">
                 <p style="margin-top:1rem;">Email</p>
                 <input class="accountemailinput" type="text" name="email" value="{{$data->email}}">
+
                 <div class="savediv">
+                    @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                    @endif
                     <button class="accountsave">SAVE</button>
                 </div>
             </form>
@@ -156,23 +164,30 @@
                 <p style="margin-top:1rem;">Confirm Password</p>
                 <input class="accountpasswordrepeatinput" type="password" name="password_confirmation">
                 <div class="savediv">
+
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li style="color:red;">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    @if(session()->has('error'))
+                    <span class="alert alert-danger">
+                        <strong style="color:red">{{ session()->get('error') }}</strong>
+                    </span>
+                    @endif
+                    @if(session()->has('success'))
+                    <span class="alert alert-success">
+                        <strong>{{ session()->get('success') }}</strong>
+                    </span>
+                    @endif
                     <button class="accountsave">SAVE</button>
                 </div>
             </form>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-            @if(session()->has('success'))
-            <span class="alert alert-success">
-                <strong>{{ session()->get('success') }}</strong>
-            </span>
-            @endif
+
         </div>
 
     </div>

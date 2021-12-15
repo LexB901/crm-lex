@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\project;
 use Illuminate\Support\Facades\Storage;
 use App\Spending;
-
+use Ramsey\Uuid\Type\Decimal;
 
 class MainController extends Controller
 {
@@ -20,8 +21,14 @@ class MainController extends Controller
     {
         $spendings = Spending::all();
         $projects = Project::select('id', 'project')->get();
-        // dd($spendings);
-        return view('expense.show ', ['projects' => $projects, 'spendings' => $spendings]);
+        $total = Spending::sum('amount');
+        $total = number_format($total, '2', ',', '.');
+        $unpaid = DB::table('spendings')->where('status', 'unpaid')->sum('amount');
+        $unpaid = number_format($unpaid, '2', ',', '.');
+        $paid = DB::table('spendings')->where('status', 'paid')->sum('amount');
+        $paid = number_format($paid, '2', ',', '.');
+        // dd($paid);
+        return view('expense.show ', ['projects' => $projects, 'spendings' => $spendings, 'total' => $total, 'unpaid' => $unpaid, 'paid' => $paid]);
     }
 
     public function users(Request $request)
@@ -61,6 +68,14 @@ class MainController extends Controller
         return view('Rollen-Beheer', ['roles' => $roles, 'users' => $users, 'allusers' => $allusers]);
     }
     public function account(Request $request)
+    {
+        $data = Auth::user();
+        $session = $request->session()->all();
+        $user = User::find(Auth::user()->id);
+        // dd($session);
+        return view('account', ['data' => $data, 'session' => $session, 'users' => $user]);
+    }
+    public function account2(Request $request)
     {
         $data = Auth::user();
         $session = $request->session()->all();

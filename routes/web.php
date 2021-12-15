@@ -36,8 +36,13 @@ Route::get('/dashboard', function () {
 require __DIR__ . '/auth.php';
 
 Route::get('/account', [MainController::class, 'account'])->name('change.password');
+Route::get('/user/{id}/edit', [MainController::class, 'account'])->name('change.password');
+
+
 
 Route::post('/account', [ChangePasswordController::class, 'changePassword']);
+Route::post('/user/{id}/edit', [ChangePasswordController::class, 'changeUserPassword']);
+
 
 Route::get('/expense/{id}/edit', [spendingsFormController::class, 'edit'])->name('expense.edit');
 Route::get('/expense/create', [spendingsFormController::class, 'create'])->name('expense.create');
@@ -57,7 +62,7 @@ Route::get('/{id}/delete', [RegisterUserController::class, 'delete']);
 // Route::get('/User-Beheer/{id}/editUser', [RegisterUserController::class, 'editUser'])->name('User-Beheer.editUser');
 // Route::get('/deleteUser/{id}', [RegisterUserController::class, 'deleteUser']);
 // Route::post('/updateUser', [RegisterUserController::class, 'updateUser']);
-// Route::post('/accountUpdate', [RegisterUserController::class, 'accountUpdate']);
+Route::post('/accountUpdate', [RegisterUserController::class, 'accountUpdate']);
 // Route::post('/banUser/{id}', [RegisterUserController::class, 'banUser']);
 // Route::get('/deleteSession/{_token}', [RegisterUserController::class, 'deleteSession']);
 

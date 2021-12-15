@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Project;
 use App\Spending;
@@ -32,8 +33,15 @@ class SpendingsFormController extends Controller
         $spendings = Spending::all();
         $projects = Project::select('id', 'project')->get();
 
+        $total = Spending::sum('amount');
+        $total = number_format($total, '2', ',', '.');
+        $unpaid = DB::table('spendings')->where('status', 'unpaid')->sum('amount');
+        $unpaid = number_format($unpaid, '2', ',', '.');
+        $paid = DB::table('spendings')->where('status', 'paid')->sum('amount');
+        $paid = number_format($paid, '2', ',', '.');
+
         // dd($spending);
-        return view('/expense/create', ['input' => $spending, 'spendings' => $spendings, 'projects' => $projects]);
+        return view('/expense/create', ['input' => $spending, 'spendings' => $spendings, 'projects' => $projects, 'total' => $total, 'unpaid' => $unpaid, 'paid' => $paid]);
     }
 
     /**
@@ -57,6 +65,13 @@ class SpendingsFormController extends Controller
 
         $data = $request->all();
 
+        $total = Spending::sum('amount');
+        $total = number_format($total, '2', ',', '.');
+        $unpaid = DB::table('spendings')->where('status', 'unpaid')->sum('amount');
+        $paid = DB::table('spendings')->where('status', 'paid')->sum('amount');
+        $unpaid = number_format($unpaid, '2', ',', '.');
+        $paid = number_format($paid, '2', ',', '.');
+
         $spending = Spending::create($data);
         $spendings = Spending::all();
         $projects = Project::select('id', 'project')->get();
@@ -67,9 +82,8 @@ class SpendingsFormController extends Controller
         ]);
         $message = "expense verzonden";
         // dd($data);
-
         echo "<script type='text/javascript'>alert('$message');</script>";
-        return view('/expense/show', ['spendings' => $spendings, 'categorie' => $spending->projects, 'projects' => $projects]);
+        return view('/expense/show', ['spendings' => $spendings, 'categorie' => $spending->projects, 'projects' => $projects, 'total' => $total, 'unpaid' => $unpaid, 'paid' => $paid]);
     }
 
     /**
@@ -90,12 +104,19 @@ class SpendingsFormController extends Controller
      */
     public function edit($id)
     {
+        $total = Spending::sum('amount');
+        $total = number_format($total, '2', ',', '.');
+        $unpaid = DB::table('spendings')->where('status', 'unpaid')->sum('amount');
+        $unpaid = number_format($unpaid, '2', ',', '.');
+        $paid = DB::table('spendings')->where('status', 'paid')->sum('amount');
+        $paid = number_format($paid, '2', ',', '.');
+
         $spending = Spending::find($id);
         $spendings = Spending::all();
         $projects = Project::select('id', 'project')->get();
         // dd($spending);
 
-        return view('/expense/edit', ['input' => $spending, 'projects' => $projects, 'project' => $spending->projects, 'spendings' => $spendings]);
+        return view('/expense/edit', ['input' => $spending, 'projects' => $projects, 'project' => $spending->projects, 'spendings' => $spendings, 'total' => $total, 'unpaid' => $unpaid, 'paid' => $paid]);
     }
 
     /**

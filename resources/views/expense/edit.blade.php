@@ -12,11 +12,11 @@
     }
 
     .filterborder:nth-child(4) {
-        color: green;
+        color: red;
     }
 
     .filterborder:nth-child(6) {
-        color: red;
+        color: green;
     }
 
     .type {
@@ -92,11 +92,13 @@
                 <input type="radio" id="radioAll" name="filter" value="All" onChange="autoSubmit();">
                 <label class="filterborder" for="radioAll">all</label>
                 /
-                <input type="radio" id="radioPaid" class="filter type" name="filter" value="Paid" onChange="autoSubmit();">
-                <label class="filterborder" for="radioPaid">paid</label>
-                /
                 <input type="radio" id="radioUnpaid" class="filter type" name="filter" value="Unpaid" onChange="autoSubmit();">
                 <label class="filterborder" for="radioUnpaid">unpaid</label>
+                /
+                <input type="radio" id="radioPaid" class="filter type" name="filter" value="Paid" onChange="autoSubmit();">
+                <label class="filterborder" for="radioPaid">paid</label>
+
+
             </form>
             <script>
                 function autoSubmit() {
@@ -133,137 +135,202 @@
                     } else if ($filter->status === "Unpaid") {
                         echo '<div class="spendinghover unpaid">';
                     }
-                    echo '<a href="/expense/' . $filter->id . '/edit" class="spendingname" style="text-decoration:none;">';
-                    echo $filter->name;
-                    echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingamount" style="text-decoration:none;">€';
-                    echo $filter->amount;
-                    echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingid" style="text-decoration:none;">';
-                    echo $filter->id;
-                    echo '</a>';
-                    echo '</div>';
-                    echo '<a href="/expense/' . $filter->id . '/delete" class="spendingid deletespending" style="text-decoration:none;">Delete</a>';
+            ?>
+                    @if($input->id === $filter->id)
+                    <a href="{{route('expense.edit',$filter->id)}}" class="spendingname" style="text-decoration:none;">{{ $filter->name }}</a>
+                    <a href="{{route('expense.edit',$filter->id)}}" class="spendingamount" style="text-decoration:none;">
+                        <?php
+                        echo $amount_format = number_format($filter->amount, '2', ',', '.');
+                        ?></a>
+                    <a href="{{route('expense.edit',$filter->id)}}" class="spendingid" style="text-decoration:none;">{{ $filter->id }}</a>
+        </div>
+        <div onclick="return confirm('Je kan de uitgave niet verwijderen, omdat je hem aan het wijzigen bent.')" class="spendingid deletespending" style="text-decoration:none">CURRENT</div>
+        @elseif ($input->id != $filter->id)
+        <a href="{{route('expense.edit',$filter->id)}}" class="spendingname" style="text-decoration:none;">{{ $filter->name }}</a>
+        <a href="{{route('expense.edit',$filter->id)}}" class="spendingamount" style="text-decoration:none;">
+            <?php
+                    echo $amount_format = number_format($filter->amount, '2', ',', '.');
+            ?></a>
+        <a href="{{route('expense.edit',$filter->id)}}" class="spendingid" style="text-decoration:none;">{{ $filter->id }}</a>
+    </div>
+    <a onclick="return confirm('Weet je zeker dat je deze gebruiker zijn sessie wilt verwijderen?')" href="{{"/expense/".$filter['id']."/delete"}}" class="spendingid deletespending" style="text-decoration:none;">Delete</a>
+    @else
+    <a href="{{route('expense.edit',$filter->id)}}" class="spendingname" style="text-decoration:none;">{{ $filter->name }}</a>
+    <a href="{{route('expense.edit',$filter->id)}}" class="spendingamount" style="text-decoration:none;">
+        <?php
+                    echo $amount_format = number_format($filter->amount, '2', ',', '.');
+        ?></a>
+    <a href="{{route('expense.edit',$filter->id)}}" class="spendingid" style="text-decoration:none;">{{ $filter->id }}</a>
+</div>
+<div onclick="return confirm('Je kan de uitgave niet verwijderen, omdat je hem aan het wijzigen bent.')" class="spendingid deletespending" style="text-decoration:none">CURRENT</div>
+@endif
+
+<?php
                 }
             }
             if ($selected === "Paid") {
                 echo '<p style="margin-left:15px;border-bottom: 1px solid rgb(0, 0, 0, 0.1);margin-bottom: 5px;">Filter: ' . $selected . '</p>';
                 $filters = \App\Spending::where('status', 'Paid')->get(['name', 'id', 'amount']);
-                foreach ($filters as $filter) {
-                    echo '<div class="spendinghover paid">';
-                    echo '<a href="/expense/' . $filter->id . '/edit" class="spendingname" style="text-decoration:none;">';
-                    echo $filter->name;
-                    echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingamount" style="text-decoration:none;">€';
-                    echo $filter->amount;
-                    echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingid" style="text-decoration:none;">';
-                    echo $filter->id;
-                    echo '</a>';
-                    echo '</div>';
-                    echo '<a href="/expense/' . $filter->id . '/delete" class="spendingid deletespending" style="text-decoration:none;">Delete</a>';
+                foreach ($filters as $filter) { ?>
+    <div class="spendinghover paid">
+        @if($input->id === $filter->id)
+        <a href="{{route('expense.edit',$filter->id)}}" class="spendingname" style="text-decoration:none;">{{ $filter->name }}</a>
+        <a href="{{route('expense.edit',$filter->id)}}" class="spendingamount" style="text-decoration:none;">
+            <?php
+                    echo $amount_format = number_format($filter->amount, '2', ',', '.');
+            ?></a>
+        <a href="{{route('expense.edit',$filter->id)}}" class="spendingid" style="text-decoration:none;">{{ $filter->id }}</a>
+    </div>
+    <div onclick="return confirm('Je kan de uitgave niet verwijderen, omdat je hem aan het wijzigen bent.')" class="spendingid deletespending" style="text-decoration:none">CURRENT</div>
+    @elseif ($input->id != $filter->id)
+    <a href="{{route('expense.edit',$filter->id)}}" class="spendingname" style="text-decoration:none;">{{ $filter->name }}</a>
+    <a href="{{route('expense.edit',$filter->id)}}" class="spendingamount" style="text-decoration:none;">
+        <?php
+                    echo $amount_format = number_format($filter->amount, '2', ',', '.');
+        ?></a> <a href="{{route('expense.edit',$filter->id)}}" class="spendingid" style="text-decoration:none;">{{ $filter->id }}</a>
+    </div>
+    <a onclick="return confirm('Weet je zeker dat je deze gebruiker zijn sessie wilt verwijderen?')" href="{{"/expense/".$filter['id']."/delete"}}" class="spendingid deletespending" style="text-decoration:none;">Delete</a>
+    @else
+    <a href="{{route('expense.edit',$filter->id)}}" class="spendingname" style="text-decoration:none;">{{ $filter->name }}</a>
+    <a href="{{route('expense.edit',$filter->id)}}" class="spendingamount" style="text-decoration:none;">
+        <?php
+                    echo $amount_format = number_format($filter->amount, '2', ',', '.');
+        ?></a> <a href="{{route('expense.edit',$filter->id)}}" class="spendingid" style="text-decoration:none;">{{ $filter->id }}</a>
+    </div>
+    <div onclick="return confirm('Je kan de uitgave niet verwijderen, omdat je hem aan het wijzigen bent.')" class="spendingid deletespending" style="text-decoration:none">CURRENT</div>
+    @endif
+
+<?php
+
                 }
             }
             if ($selected === "Unpaid") {
                 echo '<p style="margin-left:15px;border-bottom: 1px solid rgb(0, 0, 0, 0.1);margin-bottom: 5px;">Filter: ' . $selected . '</p>';
                 $filters = \App\Spending::where('status', 'Unpaid')->get(['name', 'id', 'amount']);
                 foreach ($filters as $filter) {
-                    echo '<div class="spendinghover unpaid">';
-                    echo '<a href="/expense/' . $filter->id . '/edit" class="spendingname" style="text-decoration:none;">';
-                    echo $filter->name;
-                    echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingamount" style="text-decoration:none;">€';
-                    echo $filter->amount;
-                    echo '</a><a href="/expense/' . $filter->id . '/edit" class="spendingid" style="text-decoration:none;">';
-                    echo $filter->id;
-                    echo '</a>';
-                    echo '</div>';
-                    echo '<a href="/expense/' . $filter->id . '/delete" class="spendingid deletespending" style="text-decoration:none;">Delete</a>';
+?>
+    <div class="spendinghover unpaid">
+        @if($input->id === $filter->id)
+        <a href="{{route('expense.edit',$filter->id)}}" class="spendingname" style="text-decoration:none;">{{ $filter->name }}</a>
+        <a href="{{route('expense.edit',$filter->id)}}" class="spendingamount" style="text-decoration:none;">
+            <?php
+                    echo $amount_format = number_format($filter->amount, '2', ',', '.');
+            ?></a> <a href="{{route('expense.edit',$filter->id)}}" class="spendingid" style="text-decoration:none;">{{ $filter->id }}</a>
+    </div>
+    <div onclick="return confirm('Je kan de uitgave niet verwijderen, omdat je hem aan het wijzigen bent.')" class="spendingid deletespending" style="text-decoration:none">CURRENT</div>
+    @elseif ($input->id != $filter->id)
+    <a href="{{route('expense.edit',$filter->id)}}" class="spendingname" style="text-decoration:none;">{{ $filter->name }}</a>
+    <a href="{{route('expense.edit',$filter->id)}}" class="spendingamount" style="text-decoration:none;">
+        <?php
+                    echo $amount_format = number_format($filter->amount, '2', ',', '.');
+        ?></a> <a href="{{route('expense.edit',$filter->id)}}" class="spendingid" style="text-decoration:none;">{{ $filter->id }}</a>
+    </div>
+    <a onclick="return confirm('Weet je zeker dat je deze gebruiker zijn sessie wilt verwijderen?')" href="{{"/expense/".$filter['id']."/delete"}}" class="spendingid deletespending" style="text-decoration:none;">Delete</a>
+    @else
+    <a href="{{route('expense.edit',$filter->id)}}" class="spendingname" style="text-decoration:none;">{{ $filter->name }}</a>
+    <a href="{{route('expense.edit',$filter->id)}}" class="spendingamount" style="text-decoration:none;">
+        <?php
+                    echo $amount_format = number_format($filter->amount, '2', ',', '.');
+        ?></a> <a href="{{route('expense.edit',$filter->id)}}" class="spendingid" style="text-decoration:none;">{{ $filter->id }}</a>
+    </div>
+    <div onclick="return confirm('Je kan de uitgave niet verwijderen, omdat je hem aan het wijzigen bent.')" class="spendingid deletespending" style="text-decoration:none">CURRENT</div>
+    @endif
+
+<?php
                 }
             }
-            ?>
-        </div>
+?>
+</div>
 
 
 
 
-    </div>
-    <div class="spendingsform">
-        @foreach($spendings as $spending)
-        @if ($spending->id != $input->id)
-        @else
-        <p class="formtitle">Edit</p>
-        <form id="spendform" action="/expense/{{$spending->id}}/update" method="post">
+</div>
+<div class="spendingsform">
+    @foreach($spendings as $spending)
+    @if ($spending->id != $input->id)
+    @else
+    <p class="formtitle">Edit</p>
+    <form id="spendform" action="/expense/{{$spending->id}}/update" method="post">
+        @endif
+
+        @endforeach
+
+        <!-- enctype="multipart/form-data" -->
+        @csrf
+        Name<br>
+        <input value="{{$input->name}}" class="spendingsinput" type="text" name="name"><br>
+        @if($errors->has('name'))
+        <div class="caterror">{{ $errors->first('name') }}</div>
+        @endif
+        Date<br>
+
+        <input value="{{ date_format(date_create($input->date), "Y-m-d") }}" type="date" name="date" class="spendingsinput">
+        @if($errors->has('date'))
+        <div class="caterror">{{ $errors->first('date') }}</div>
+        @endif
+        Projects<br>
+        <select name="project" class="spendingsinput selectmargin">
+
+            @foreach($projects as $projecten)
+            @if($project->id == $projecten['id'])
+            <option value="{{$projecten->id}}" selected>{{$projecten->project}}</option>
+            @else
+            <option value="{{$projecten->id}}">{{$projecten->project}}</option>
             @endif
 
             @endforeach
-
-            <!-- enctype="multipart/form-data" -->
-            @csrf
-            Name<br>
-            <input value="{{$input->name}}" class="spendingsinput" type="text" name="name"><br>
-            @if($errors->has('name'))
-            <div class="caterror">{{ $errors->first('name') }}</div>
+        </select>
+        Currencies
+        <select class="spendingsinput selectmargin" name="currency" id="currencylist">
+            <option name="currency" value="{{$input->currency}}">{{$input->currency}}</option>
+        </select>
+        Status
+        {{ $input->status }}
+        <select class="spendingsinput selectmargin" name="status">
+            @if($input->status === 'Unpaid')
+            <option value="{{$input->status}}">{{ $input->status }}</option>
+            <option value="Paid">Paid</option>
+            @else
+            <option value="{{$input->status}}">{{ $input->status }}</option>
+            <option value="Unpaid">Unpaid</option>
             @endif
-            Date<br>
+        </select>
+        Notes<br>
+        <input value="{{$input->note}}" class="spendingsinput notesinput" type="text" name="note"><br>
 
-            <input value="{{ date_format(date_create($input->date), "Y-m-d") }}" type="date" name="date" class="spendingsinput">
-            @if($errors->has('date'))
-            <div class="caterror">{{ $errors->first('date') }}</div>
-            @endif
-            Projects<br>
-            <select name="project" class="spendingsinput selectmargin">
+    </form>
 
-                @foreach($projects as $projecten)
-                @if($project->id == $projecten['id'])
-                <option value="{{$projecten->id}}" selected>{{$projecten->project}}</option>
-                @else
-                <option value="{{$projecten->id}}">{{$projecten->project}}</option>
-                @endif
+</div>
+<div class="pdfcontainer">
+    <div class="radio-toolbar">
+        <input type="radio" id="radioINK" name="type" value="INK" {{ ($input->type=="INK")? "checked" : "" }} form="spendform">
+        <label class="selectborder" for="radioINK">INK</label>
 
-                @endforeach
-            </select>
-            Currencies
-            <select class="spendingsinput selectmargin" name="currency" id="currencylist">
-                <option name="currency" value="{{$input->currency}}">{{$input->currency}}</option>
-            </select>
-            Status
-            {{ $input->status }}
-            <select class="spendingsinput selectmargin" name="status">
-                @if($input->status === 'Unpaid')
-                <option value="{{$input->status}}">{{ $input->status }}</option>
-                <option value="Paid">Paid</option>
-                @else
-                <option value="{{$input->status}}">{{ $input->status }}</option>
-                <option value="Unpaid">Unpaid</option>
-                @endif
-            </select>
-            Notes<br>
-            <input value="{{$input->note}}" class="spendingsinput notesinput" type="text" name="note"><br>
+        <input type="radio" id="radioVRK" class="type" name="type" value="VRK" {{ ($input->type=="VRK")? "checked" : "" }} form="spendform">
+        <label class="selectborder" for="radioVRK">VRK</label>
 
-        </form>
-
+        <input type="radio" id="radioCNT" class="type" name="type" value="CNT" {{ ($input->type=="CNT")? "checked" : "" }} form="spendform">
+        <label class="selectborder" for="radioCNT">CNT</label>
     </div>
-    <div class="pdfcontainer">
-        <div class="radio-toolbar">
-            <input type="radio" id="radioINK" name="type" value="INK" {{ ($input->type=="INK")? "checked" : "" }} form="spendform">
-            <label class="selectborder" for="radioINK">INK</label>
-
-            <input type="radio" id="radioVRK" class="type" name="type" value="VRK" {{ ($input->type=="VRK")? "checked" : "" }} form="spendform">
-            <label class="selectborder" for="radioVRK">VRK</label>
-
-            <input type="radio" id="radioCNT" class="type" name="type" value="CNT" {{ ($input->type=="CNT")? "checked" : "" }} form="spendform">
-            <label class="selectborder" for="radioCNT">CNT</label>
-        </div>
-        <p><embed class="fileoutput" id="output" src="{{asset('/storage/'.$input->file)}}"></p>
-        <script>
-            let loadFile = function(event) {
-                let file = document.getElementById('output');
-                file.src = URL.createObjectURL(event.target.files[0]);
-            };
-        </script>
-    </div>
+    <p><embed class="fileoutput" id="output" src="{{asset('/storage/'.$input->file)}}"></p>
+    <script>
+        let loadFile = function(event) {
+            let file = document.getElementById('output');
+            file.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+</div>
 </div>
 <div class="total">
     <input style="bottom:10px;z-index:30" class="saveinput" type="submit" value="UPDATE" form="spendform">
+    <div style="justify-content:center;align-items:center;display:flex;width:100%;color: black;height:50px;">
+        <div style="font-weight: bold;">€{{ $total }}</div> / <div style="color: red; font-weight: bold;">€{{ $unpaid }}</div> / <div style="color: green; font-weight: bold;">€{{ $paid }}</div>
+    </div>
     <div class="amount">
         TOTAL: €
-        <input value="{{$input->amount}}" type="number" name="amount" form="spendform">
+
+        <input value="{{ $input->amount }}" type="text" name="amount" form="spendform">
     </div>
 </div>
 <script>

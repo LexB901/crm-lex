@@ -53,67 +53,109 @@
     @foreach($users as $user)
     @if ($user->id != $input->id)
     @else
-    <div class="spendingsform">
-        <p class="formtitle">Edit</p>
-        <form id="spendform" action="/user/{{$user->id}}/update" method="post">
-            @endif
+    <div style="display:flex; flex-direction:row;">
 
-            @endforeach
-            <!-- enctype="multipart/form-data" -->
-            @csrf
-            <input type="hidden" name="id" value="{{$user['id']}}">
-            Name<br>
-            <input value="{{ $input->name }}" class="spendingsinput" type="text" name="name"><br>
-            @if($errors->has('name'))
-            <div class="caterror">{{ $errors->first('name') }}</div>
-            @endif
-            Email<br>
-            <input value="{{$input->email}}" type="text" name="email" class="spendingsinput">
-            @if($errors->has('email'))
-            <div class="caterror">{{ $errors->first('date') }}</div>
-            @endif
-            Group<br>
-            <select class="spendingsinput selectmargin" name="role">
-                @if($input->role === 'Member')
-                <option value="{{$input->role}}">{{ $input->role }}</option>
-                <option value="Admin">Admin</option>
-                <option value="Client">Client</option>
-                @elseif($input->role === 'Admin')
-                <option value="{{$input->role}}">{{ $input->role }}</option>
-                <option value="Member">Member</option>
-                <option value="Client">Client</option>
-                @elseif($input->role === 'Client')
-                <option value="{{$input->role}}">{{ $input->role }}</option>
-                <option value="Member">Member</option>
-                <option value="Admin">Admin</option>
-                @else
-                <option value="Member">Member</option>
-                <option value="Admin">Admin</option>
-                <option value="Client">Client</option>
-                @endif
-            </select>
-            Account status
-            <?php
-            $input = $input->status;
-            print_r($input);
-            ?>
-            <select name="status" class="spendingsinput selectmargin">
-                @if($input->status === '1')
-                <option value="{{$input->status}}">amazing</option>
-                <option value="0">Inactive</option>
-                @elseif($input->status === '0')
-                <option value="{{$input->status}}">Inactive</option>
-                <option value="1">Active</option>
-                @else
-                <option value="{{$input->status}}">Active</option>
-                <option value="0">Inactive</option>
-                @endif
-            </select>
-        </form>
+        <div class="spendingsform">
+            <p class="formtitle">User edit</p>
+            <form id="spendform" action="/user/{{$user->id}}/update" method="post">
 
+                <!-- enctype="multipart/form-data" -->
+                @csrf
+                <input type="hidden" name="id" value="{{$user->id}}">
+                @endif
+                @endforeach
+
+                Name<br>
+                <input value="{{ $input->name }}" class="spendingsinput" type="text" name="name"><br>
+                @if($errors->has('name'))
+                <div class="caterror">{{ $errors->first('name') }}</div>
+                @endif
+                Email<br>
+                <input value="{{$input->email}}" type="text" name="email" class="spendingsinput">
+                @if($errors->has('email'))
+                <div class="caterror">{{ $errors->first('date') }}</div>
+                @endif
+                Group<br>
+                <select class="spendingsinput selectmargin" name="role">
+                    @if($input->role === 'Member')
+                    <option value="{{$input->role}}">{{ $input->role }}</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Client">Client</option>
+                    @elseif($input->role === 'Admin')
+                    <option value="{{$input->role}}">{{ $input->role }}</option>
+                    <option value="Member">Member</option>
+                    <option value="Client">Client</option>
+                    @elseif($input->role === 'Client')
+                    <option value="{{$input->role}}">{{ $input->role }}</option>
+                    <option value="Member">Member</option>
+                    <option value="Admin">Admin</option>
+                    @else
+                    <option value="Member">Member</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Client">Client</option>
+                    @endif
+                </select>
+                Account status
+                <select name="status" class="spendingsinput selectmargin">
+                    @if($status === 'Active')
+                    <option value="1">amazing</option>
+                    <option value="0">Inactive</option>
+                    @elseif($status === 'Banned')
+                    <option value="0">Inactive</option>
+                    <option value="1">Active</option>
+                    @else
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                    @endif
+                </select>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li style="color:red;">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                <input style="bottom:10px;z-index:30" class="saveinput" type="submit" value="UPDATE">
+            </form>
+        </div>
+        <div class="passwordform">
+            <p class="formtitle">Password edit</p>
+            <form id="spendform" method="post" action="">
+                @csrf
+                <input type="hidden" name="id" value="{{$user->id}}">
+                <p style="margin-top:1rem;">New Password</p>
+                <input class="spendingsinput" type="password" name="password">
+                <p style="margin-top:1rem;">Confirm Password</p>
+                <input class="spendingsinput" type="password" name="password_confirmation">
+                <div class="savediv">
+
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li style="color:red;">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    @if(session()->has('error'))
+                    <span class="alert alert-danger">
+                        <strong style="color:red">{{ session()->get('error') }}</strong>
+                    </span>
+                    @endif
+                    @if(session()->has('success'))
+                    <span class="alert alert-success">
+                        <strong>{{ session()->get('success') }}</strong>
+                    </span>
+                    @endif
+                    <input style="bottom:10px;z-index:30" class="saveinput" type="submit" value="UPDATE">
+                </div>
+            </form>
+        </div>
     </div>
-
+</div>
 </div>
 <div class="total">
-    <input style="bottom:10px;z-index:30" class="saveinput" type="submit" value="UPDATE" form="spendform">
 </div>

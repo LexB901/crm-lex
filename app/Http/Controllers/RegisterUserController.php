@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Status;
 use Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Role;
+// use Auth, Hash;
 
 class RegisterUserController extends Controller
 {
@@ -85,8 +85,10 @@ class RegisterUserController extends Controller
         $statuses = Status::all();
 
         $users = User::all();
-        // dd($user->statuss);
-        return view('/user/edit', ['input' => $user, 'statuses' => $statuses, 'status' => $user->statuss, 'users' => $users, 'role' => $user->role]);
+        $status = $user->statuss->status;
+
+        // dd($status);
+        return view('/user/edit', ['input' => $user, 'statuses' => $statuses, 'status' => $status, 'users' => $users, 'role' => $user->role]);
     }
 
     /**
@@ -106,8 +108,9 @@ class RegisterUserController extends Controller
         $input->status = $data['status'];
         $input->save();
         // dd($data);
-        return redirect('/users');
+        return back();
     }
+
 
     public function accountUpdate(Request $request)
     {
@@ -118,7 +121,7 @@ class RegisterUserController extends Controller
         $input->email = $data['email'];
         $input->save();
         // dd($data);
-        return redirect('account');
+        return redirect('account')->with('message', 'Account updated!');
     }
 
     /**

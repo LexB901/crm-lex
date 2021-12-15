@@ -30,4 +30,17 @@ class ChangePasswordController extends Controller
 
         return back()->with('success', 'Password successfully changed!');
     }
+    public function changeUserPassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string|min:6|confirmed',
+            'password_confirmation' => 'required',
+        ]);
+
+        $user = Auth::user();
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return back()->with('success', 'Password successfully changed!');
+    }
 }
