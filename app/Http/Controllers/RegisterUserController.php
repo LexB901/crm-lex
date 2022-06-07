@@ -50,6 +50,7 @@ class RegisterUserController extends Controller
             'email' => 'required',
             'password' => 'required',
             'password_confirmation',
+            'role' => 'Admin'
 
 
         ]);
@@ -84,7 +85,8 @@ class RegisterUserController extends Controller
         $statuses = Status::all();
 
         $users = User::all();
-        $status = $user->statuss->status;
+        $status = $user->status;
+        
 
         // dd($status);
         return view('/user/edit', ['input' => $user, 'statuses' => $statuses, 'status' => $status, 'users' => $users, 'role' => $user->role]);

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Register extends Model
 {
-    protected $fillable = ['name', 'email', 'password', 'password_confirmation', 'image', 'role'];
+    protected $fillable = ['name', 'email', 'password', 'password_confirmation', 'role'];
 }
