@@ -49,7 +49,6 @@ Route::get('/expense/create', [spendingsFormController::class, 'create'])->name(
 Route::post('/expenses', [SpendingsFormController::class, 'store']);
 Route::post('/expense/{id}/update', [SpendingsFormController::class, 'update']);
 Route::get('/expense/{id}/delete', [SpendingsFormController::class, 'delete']);
-Route::get('/{id}/delete', [SpendingsFormController::class, 'delete']);
 
 Route::get('/user/{id}/edit', [RegisterUserController::class, 'edit'])->name('user.edit');
 Route::get('/user/create', [RegisterUserController::class, 'create'])->name('user.create');

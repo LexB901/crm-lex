@@ -72,7 +72,7 @@ class MainController extends Controller
         $data = Auth::user();
         $session = $request->session()->all();
         $user = User::find(Auth::user()->id);
-        // dd($session);
+        dd($session);
         return view('account', ['data' => $data, 'session' => $session, 'users' => $user]);
     }
     public function account2(Request $request)
@@ -80,7 +80,7 @@ class MainController extends Controller
         $data = Auth::user();
         $session = $request->session()->all();
         $user = User::find(Auth::user()->id);
-        // dd($session);
+        dd($session);
         return view('account', ['data' => $data, 'session' => $session, 'users' => $user]);
     }
 }
